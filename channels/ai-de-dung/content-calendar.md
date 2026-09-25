@@ -26,19 +26,18 @@ Theo nhịp đã định ở `strategy/01-ke-hoach-tron-goi.md`: Long-form T3 & 
 ## Tuần 3
 | Ngày | Loại | Nội dung | Nguồn |
 |---|---|---|---|
-| T2 | — | Viết kịch bản video #5 (AI miễn phí tốt nhất) và #6 (AI viết CV) | — |
-| T3 | Long-form | #5 AI miễn phí tốt nhất 2026 cho dân văn phòng | backlog #5 |
+| T3 | Long-form | #5 AI miễn phí tốt nhất 2026 cho dân văn phòng | `scripts/05-ai-mien-phi-tot-nhat.md` |
 | T4-T5 | Short | Cắt từ #5 | từ #5 |
-| T6 | Long-form | #6 Dùng AI viết CV xin việc trong 10 phút | backlog #6 |
+| T6 | Long-form | #6 Dùng AI viết CV xin việc trong 10 phút | `scripts/06-ai-viet-cv.md` |
 | T7-CN | Short | Cắt từ #6 | từ #6 |
 
 ## Tuần 4
 | Ngày | Loại | Nội dung | Nguồn |
 |---|---|---|---|
-| T2 | — | Viết kịch bản video #7 và #8, **checkpoint: xem lại số liệu tuần 1-3 theo `strategy/07-doc-so-lieu.md` trước khi lên kế hoạch tiếp** | — |
-| T3 | Long-form | #7 Dùng AI viết email chuyên nghiệp chỉ trong 1 câu lệnh | backlog #7 |
+| T2 | — | **Checkpoint: xem lại số liệu tuần 1-3 theo `strategy/07-doc-so-lieu.md` trước khi lên kế hoạch tuần 5+** | — |
+| T3 | Long-form | #7 Dùng AI viết email chuyên nghiệp chỉ trong 1 câu lệnh | `scripts/07-ai-viet-email.md` |
 | T4-T5 | Short | Cắt từ #7 | từ #7 |
-| T6 | Long-form | #8 Cách dùng Gemini miễn phí trên điện thoại | backlog #8 |
+| T6 | Long-form | #8 Cách dùng Gemini miễn phí trên điện thoại | `scripts/08-gemini-tren-dien-thoai.md` |
 | T7-CN | Short | Cắt từ #8 | từ #8 |
 
 > *Sau tuần 4: đối chiếu số liệu thật với dự đoán, cập nhật lại tần suất/định dạng nếu cần, rồi lên lịch tiếp tuần 5-8 từ backlog Tier 1 còn lại + đầu Tier 2. Ghi kết quả vào `WORKLOG.md`.*

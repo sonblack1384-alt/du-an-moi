@@ -11,10 +11,10 @@ Trụ cột: **C** = Công cụ & Hướng dẫn · **K** = Case study & Kiếm 
 | 2 | Claude AI là gì — khác ChatGPT thế nào | S | Đã có kịch bản | [scripts/02-claude-vs-chatgpt.md](./scripts/02-claude-vs-chatgpt.md) |
 | 3 | 5 prompt ChatGPT giúp tiết kiệm 2 giờ mỗi ngày | C | Đã có kịch bản | [scripts/03-5-prompt-tiet-kiem-thoi-gian.md](./scripts/03-5-prompt-tiet-kiem-thoi-gian.md) |
 | 4 | Cách viết prompt AI hiệu quả cho người mới (công thức) | C | Đã có kịch bản | [scripts/04-cach-viet-prompt-hieu-qua.md](./scripts/04-cach-viet-prompt-hieu-qua.md) |
-| 5 | AI miễn phí tốt nhất 2026 cho dân văn phòng | S | Chưa làm | — |
-| 6 | Dùng AI viết CV xin việc trong 10 phút | C | Chưa làm | — |
-| 7 | Dùng AI viết email chuyên nghiệp chỉ trong 1 câu lệnh | C | Chưa làm | — |
-| 8 | Cách dùng Gemini miễn phí trên điện thoại | C | Chưa làm | — |
+| 5 | AI miễn phí tốt nhất 2026 cho dân văn phòng | S | Đã có kịch bản | [scripts/05-ai-mien-phi-tot-nhat.md](./scripts/05-ai-mien-phi-tot-nhat.md) |
+| 6 | Dùng AI viết CV xin việc trong 10 phút | C | Đã có kịch bản | [scripts/06-ai-viet-cv.md](./scripts/06-ai-viet-cv.md) |
+| 7 | Dùng AI viết email chuyên nghiệp chỉ trong 1 câu lệnh | C | Đã có kịch bản | [scripts/07-ai-viet-email.md](./scripts/07-ai-viet-email.md) |
+| 8 | Cách dùng Gemini miễn phí trên điện thoại | C | Đã có kịch bản | [scripts/08-gemini-tren-dien-thoai.md](./scripts/08-gemini-tren-dien-thoai.md) |
 | 9 | AI dịch thuật chính xác hơn Google Translate? | S | Chưa làm | — |
 | 10 | Dùng ChatGPT làm bài tập nhanh mà không bị phát hiện đạo văn | C | Chưa làm | — |
 | 11 | 3 công cụ AI giúp sinh viên làm luận văn nhanh hơn | C | Chưa làm | — |
