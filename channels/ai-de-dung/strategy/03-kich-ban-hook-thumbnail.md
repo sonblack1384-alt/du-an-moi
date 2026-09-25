@@ -51,3 +51,5 @@ Cuối video: 1 CTA duy nhất, cụ thể — "Đăng ký kênh để không b�
 
 **[4:30-5:00] Kết quả + CTA**
 > "Chỉ với 3 prompt này bạn đã tiết kiệm ít nhất 20 phút hôm nay. Tuần sau mình sẽ chỉ 5 prompt nâng cao hơn — bấm đăng ký để không bỏ lỡ."
+
+> *Bản kịch bản đầy đủ, có ghi chú sản xuất, nằm ở [`../scripts/01-chatgpt-la-gi.md`](../scripts/01-chatgpt-la-gi.md). Từ video #2 trở đi, mọi kịch bản viết trực tiếp vào `../scripts/NN-slug.md`, không viết dồn vào file này — theo dõi tiến độ ở [`../backlog.md`](../backlog.md).*

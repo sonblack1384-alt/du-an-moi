@@ -1,15 +1,13 @@
-# du-an-moi — Kênh YouTube "AI Dễ Dùng"
+# du-an-moi — Hệ thống xây kênh YouTube (khung sườn dùng chung)
 
-Bộ chiến lược trọn gói để xây dựng kênh YouTube "AI Dễ Dùng" (hướng dẫn ứng dụng AI vào công việc/kiếm tiền cho người Việt) từ con số 0, đi theo 7 bước tuần tự.
+> **Bắt đầu từ đây:** đọc [`WORKLOG.md`](./WORKLOG.md) để biết trạng thái hiện tại và việc cần làm tiếp — đặc biệt nếu bạn đang mở repo này từ một phiên/tài khoản Claude khác. [`CLAUDE.md`](./CLAUDE.md) giải thích cách Claude nên vận hành trong repo này.
 
-## Tài liệu chiến lược
-Xem thư mục [`strategy/`](./strategy):
+## Cấu trúc
+- [`framework/`](./framework) — khung sườn dùng chung (8 file chiến lược có placeholder) để tạo bất kỳ kênh YouTube nào, không giới hạn chủ đề. Xem [`framework/README.md`](./framework/README.md) để biết cách nhân bản thành kênh mới.
+- [`channels/ai-de-dung/`](./channels/ai-de-dung) — **kênh demo đầu tiên**, dùng khung sườn trên: "AI Dễ Dùng" (hướng dẫn ứng dụng AI vào công việc/kiếm tiền cho người Việt). Gồm:
+  - `strategy/` — 8 file chiến lược đã điền đầy đủ
+  - `backlog.md` — 100 ý tưởng video, theo dõi trạng thái
+  - `content-calendar.md` — lịch đăng 4 tuần đầu
+  - `scripts/` — kịch bản đầy đủ từng video, sẵn sàng quay
 
-1. [`00-tong-quan-kenh.md`](./strategy/00-tong-quan-kenh.md) — Tổng quan kênh (niche, định dạng, đối tượng)
-2. [`01-ke-hoach-tron-goi.md`](./strategy/01-ke-hoach-tron-goi.md) — Kế hoạch trọn gói
-3. [`02-chon-niche.md`](./strategy/02-chon-niche.md) — Nghiên cứu niche & 100 ý tưởng video
-4. [`03-kich-ban-hook-thumbnail.md`](./strategy/03-kich-ban-hook-thumbnail.md) — Kịch bản, hook, thumbnail viral
-5. [`04-thuat-toan-tang-truong.md`](./strategy/04-thuat-toan-tang-truong.md) — Thuật toán & tăng trưởng
-6. [`05-quy-trinh-lam-video-nhanh.md`](./strategy/05-quy-trinh-lam-video-nhanh.md) — Quy trình sản xuất video nhanh gấp 3
-7. [`06-ke-hoach-kiem-tien.md`](./strategy/06-ke-hoach-kiem-tien.md) — Kế hoạch kiếm tiền
-8. [`07-doc-so-lieu.md`](./strategy/07-doc-so-lieu.md) — Đọc số liệu & tối ưu hiệu suất
+Khi có kênh mới (chủ đề khác), thêm thư mục `channels/<tên-kênh>/` theo đúng cấu trúc trên.
