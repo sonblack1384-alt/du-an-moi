@@ -1,6 +1,6 @@
 # Video #3 — "5 prompt ChatGPT giúp tiết kiệm 2 giờ mỗi ngày"
 
-**Trụ cột:** Công cụ & Hướng dẫn · **Định dạng:** Long-form ~8 phút · **Trạng thái:** Sẵn sàng quay
+**Trụ cột:** Công cụ & Hướng dẫn · **Định dạng:** Long-form ~8 phút · **Trạng thái:** Sẵn sàng dựng (zero-filming — xem `../strategy/05-quy-trinh-lam-video-nhanh.md`)
 
 ## Tiêu đề đề xuất
 "5 Prompt ChatGPT Giúp Dân Văn Phòng Tiết Kiệm 2 Giờ Mỗi Ngày"
@@ -61,6 +61,37 @@ Gợi ý 10 ý tưởng cho [chủ đề], mỗi ý tưởng 1 câu ngắn gọn
 
 **[7:30-8:00] Kết quả + CTA**
 > "Lưu lại video này để dùng dần, và bấm đăng ký — tuần sau mình sẽ chỉ công thức viết prompt để bạn tự tạo ra prompt riêng cho công việc của mình."
+
+## Lời thoại thuần (dán vào tool giọng đọc AI / text-to-video)
+> 5 câu lệnh này sẽ giúp bạn lấy lại đúng 2 tiếng mỗi ngày — thời gian đủ để tập gym, ngủ thêm, hoặc làm việc mình thích. Xem hết video, làm theo, mình cam kết bạn thấy khác biệt ngay hôm nay.
+>
+> Đây là 5 prompt mình dùng thật mỗi ngày, không phải lý thuyết. Copy nguyên văn, đổi vài từ theo hoàn cảnh của bạn là dùng được ngay.
+>
+> Prompt đầu tiên, viết email nhanh: chỉ cần nói rõ tình huống, giọng điệu mong muốn, và giới hạn số từ, AI sẽ viết ra ngay một email hoàn chỉnh, tiết kiệm khoảng 10 phút mỗi email.
+>
+> Prompt thứ hai, tóm tắt cuộc họp hoặc tài liệu dài thành 5 gạch đầu dòng kèm việc cần làm tiếp theo — tiết kiệm khoảng 20 phút mỗi tài liệu.
+>
+> Prompt thứ ba, lên kế hoạch công việc trong ngày: liệt kê hết các việc cần làm, để AI sắp xếp thứ tự ưu tiên theo mức độ khẩn cấp và thời gian cần, chia rõ buổi sáng và buổi chiều — tiết kiệm khoảng 15 phút lập kế hoạch mỗi sáng.
+>
+> Prompt thứ tư, soạn báo cáo nhanh từ dữ liệu thô: dán số liệu vào, xin AI viết thành một đoạn báo cáo ngắn gọn chuyên nghiệp, nêu rõ xu hướng chính — tiết kiệm khoảng 30 phút mỗi báo cáo.
+>
+> Prompt thứ năm, brainstorm nhanh khi bí ý tưởng: xin AI gợi ý 10 ý tưởng đa dạng góc nhìn chỉ trong một câu lệnh — tiết kiệm khoảng 20 phút mỗi lần brainstorm.
+>
+> Cộng lại, 5 prompt này tiết kiệm cho bạn gần 95 phút mỗi ngày — gần đúng 2 tiếng đồng hồ.
+>
+> Lưu lại video này để dùng dần, và bấm đăng ký — tuần sau mình sẽ chỉ công thức viết prompt để bạn tự tạo ra prompt riêng cho công việc của mình.
+
+## Bảng cảnh AI
+| Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |
+|---|---|---|---|
+| 0:00-0:10 | Đồng hồ bấm giờ đếm ngược, hình ảnh 2 tiếng được "lấy lại" | AI text-to-video | "Stopwatch counting down fast, glowing clock hands reversing, energetic warm lighting, motivational feel" |
+| 0:25-1:30 | Ảnh chụp màn hình prompt 1 + kết quả email | Ảnh chụp màn hình | Chụp prompt và email AI trả về |
+| 1:30-2:45 | Ảnh chụp màn hình prompt 2 + kết quả tóm tắt | Ảnh chụp màn hình | Chụp prompt và bản tóm tắt |
+| 2:45-4:00 | Ảnh chụp màn hình prompt 3 + kết quả lịch làm việc | Ảnh chụp màn hình | Chụp prompt và bảng lịch AI sắp xếp |
+| 4:00-5:30 | Ảnh chụp màn hình prompt 4 + kết quả báo cáo | Ảnh chụp màn hình | Chụp prompt và đoạn báo cáo |
+| 5:30-6:45 | Ảnh chụp màn hình prompt 5 + kết quả brainstorm | Ảnh chụp màn hình | Chụp prompt và danh sách ý tưởng |
+| 6:45-7:30 | Đồ hoạ bảng tổng kết thời gian tiết kiệm | Ảnh chụp màn hình (dựng trong CapCut/Canva) | Dựng bảng trực tiếp trong tool dựng, không cần AI-video |
+| 7:30-8:00 | Cảnh kết, chữ CTA | AI text-to-video | "Clean minimal outro background, soft moving gradient blue-white, subscribe icon pulsing" |
 
 ## Ghi chú sản xuất
 - Text overlay hiện nguyên văn từng prompt để người xem pause lại chép.

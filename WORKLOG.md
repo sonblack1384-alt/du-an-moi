@@ -5,33 +5,52 @@
 ---
 
 ## TRẠNG THÁI HIỆN TẠI
-*(cập nhật lần cuối: mốc #3 — 2026-09-25)*
+*(cập nhật lần cuối: mốc #4 — 2026-09-25)*
 
 ### Đã có
-- **Khung sườn dùng chung** (`framework/`) — 8 file template + hướng dẫn tạo kênh mới. Hoàn chỉnh, có thể dùng ngay cho kênh thứ 2.
-- **Kênh demo "AI Dễ Dùng"** (`channels/ai-de-dung/`) — niche: ứng dụng AI vào công việc/kiếm tiền cho người Việt. Đã có:
-  - 8 file chiến lược đầy đủ (`strategy/`)
-  - Backlog 100 ý tưởng video, có trạng thái theo dõi (`backlog.md`)
-  - Lịch đăng 4 tuần đầu (`content-calendar.md`)
-  - **8/8 kịch bản đầy đủ sẵn sàng quay** cho toàn bộ 4 tuần đầu — video #1-8 trong `scripts/` (xem `backlog.md` để biết chi tiết từng video)
+- **Khung sườn dùng chung** (`framework/`) — 8 file template + hướng dẫn tạo kênh mới, mặc định zero-filming.
+- **Kênh demo "AI Dễ Dùng"** (`channels/ai-de-dung/`) — 8 file chiến lược, backlog 100 ý tưởng, lịch đăng 4 tuần, **8/8 kịch bản đầy đủ** — mỗi kịch bản giờ có thêm mục "Lời thoại thuần" (dán thẳng vào TTS) và "Bảng cảnh AI" (từng cảnh: ảnh chụp màn hình hay prompt AI-video).
+- **`pipeline/` — automation thật gọi Google Gemini API** (Veo tạo video + Gemini TTS tạo giọng đọc + ffmpeg ráp): đã viết `common.py`, `generate_voice.py`, `generate_scenes.py`, `assemble.py`, `run_all.py`. Đã kiểm chứng kỹ thuật: parsing kịch bản chạy đúng (test với video #1), toàn bộ chuỗi ráp video (ffmpeg: scale/Ken Burns/concat/mux audio) chạy thành công end-to-end với dữ liệu giả lập (voice.wav giả, scene video giả, screenshot giả) → ra đúng file 1920x1080 H.264+AAC khớp độ dài giọng đọc.
+- Đã xác nhận qua test mạng thật: `generativelanguage.googleapis.com` (Gemini API) gọi được từ môi trường này; `api.elevenlabs.io` và `api.runwayml.com` bị chặn bởi chính sách mạng — đây là lý do chọn Google Gemini API làm nền tảng automation thay vì các dịch vụ khác.
 
-### Đang thiếu / chưa làm
-- Chưa quay/dựng/đăng video nào thật — **đây là điểm nghẽn hiện tại**: Claude không thể tự làm phần thực thi vật lý này (xem mục "Giới hạn" trong `CLAUDE.md`). Người dùng cần tự quay/dựng theo `strategy/05-quy-trinh-lam-video-nhanh.md`, hoặc nói cho Claude biết nếu có công cụ/quy trình khác muốn Claude hỗ trợ thêm ở khâu này.
+### Đang thiếu / chưa làm — ĐIỂM NGHẼN HIỆN TẠI
+- **Chưa gọi API Veo/TTS thật lần nào** (không có key) — code gọi API dựa trên tài liệu Gemini API tại thời điểm viết, tên model (`veo-3.0-generate-001`, `gemini-2.5-flash-preview-tts`) và cách gọi SDK **chưa được xác minh với request thật**, có thể cần chỉnh khi chạy lần đầu.
+- **Cần người dùng thêm `GEMINI_API_KEY` vào environment secrets** (cloud environment menu → Edit) — Claude không được yêu cầu dán key vào chat. Chưa có key này thì pipeline chỉ chạy được ở chế độ `--dry-run`.
+- Sau khi có key: nên chạy thử 1 cảnh (`generate_scenes.py ... --only 1`) trước để xác nhận API hoạt động đúng, rồi mới chạy `run_all.py` cho từng video.
+- Vẫn cần người dùng tự chụp vài tấm ảnh màn hình thao tác thật cho mỗi video (không phải quay, chỉ vài giây/tấm) — `run_all.py` sẽ liệt kê chính xác cần chụp gì.
 - Chưa kiểm tra tên/handle "AI Dễ Dùng" có bị trùng trên YouTube ngoài đời chưa.
-- Kịch bản video #9 trở đi (Tier 1 còn lại + Tier 2) chưa viết — sẽ viết tiếp khi có số liệu thật từ tuần 1-4 để điều chỉnh (theo `content-calendar.md` mục checkpoint tuần 4).
-- Chưa có kênh thứ 2 (chủ đề khác) — khung sườn đã sẵn sàng để nhân bản khi có quyết định về chủ đề mới.
+- Kịch bản video #9 trở đi chưa viết — viết tiếp sau khi có số liệu thật hoặc khi chạy hết 8 video hiện có.
+- Chưa có kênh thứ 2 (chủ đề khác).
 
 ### Câu hỏi đang chờ người dùng quyết định
-*(không có câu nào đang chặn tiến độ — toàn bộ phần Claude tự làm được cho 4 tuần đầu đã xong. Việc tiếp theo cần người dùng: bắt tay quay video thật, hoặc cho Claude biết muốn mở kênh thứ 2 ngay hay chờ có số liệu từ kênh 1 trước.)*
+**Cần người dùng thêm `GEMINI_API_KEY` vào environment secrets để pipeline chạy được thật** (không phải câu hỏi cần trả lời trong chat — là 1 thao tác cần làm trong settings). Sau khi thêm key, báo lại cho Claude (ở phiên này hoặc phiên khác, WORKLOG này sẽ giúp phiên mới hiểu ngay bối cảnh) để chạy thử 1 cảnh trước khi chạy hàng loạt.
 
 ### Việc tiếp theo nên làm (theo thứ tự ưu tiên)
-1. **Cần người dùng:** quay/dựng/đăng 8 video theo kịch bản đã có (`scripts/01` đến `08`), theo quy trình ở `strategy/05-quy-trinh-lam-video-nhanh.md`.
-2. Sau tuần 1-3 đăng thật, đối chiếu số liệu theo `strategy/07-doc-so-lieu.md` (đã có checkpoint sẵn ở tuần 4 trong `content-calendar.md`), rồi Claude viết tiếp kịch bản #9+ dựa trên dữ liệu thật.
-3. Khi người dùng sẵn sàng mở kênh thứ 2: cho Claude biết chủ đề mong muốn (hoặc để Claude tự đề xuất như đã làm với kênh 1), rồi nhân bản từ `framework/template/`.
+1. **Cần người dùng:** thêm `GEMINI_API_KEY` vào environment secrets.
+2. Sau khi có key: Claude chạy thử `generate_scenes.py --only 1` + `generate_voice.py` cho 1 video để xác nhận API hoạt động đúng, chỉnh code nếu API đã đổi.
+3. Chạy `run_all.py` cho từng video trong 8 video hiện có — mỗi lần sẽ dừng lại xin ảnh chụp màn hình nếu thiếu.
+4. Người dùng chụp ảnh màn hình theo đúng danh sách được liệt kê, chạy lại để ra `draft.mp4`.
+5. Mở draft trong CapCut bật auto-caption, xuất bản.
+6. Sau khi có số liệu thật, viết tiếp kịch bản #9+ và/hoặc mở kênh thứ 2 từ `framework/template/`.
 
 ---
 
 ## LOG CHI TIẾT (mới nhất ở trên)
+
+### Mốc #4 — 2026-09-25 — Zero-filming + pipeline automation thật (Gemini API)
+**Người dùng yêu cầu (2 tin nhắn liên tiếp):** không có thời gian quay, hỏi có dùng được ảnh-chuyển-video/text-to-video không; và nhấn mạnh đã làm thì phải chất lượng, ra kết quả tốt nhất, kể cả tốn phí dùng "flow của Google" cũng được; cũng hỏi có nên làm 1 quy trình HTML không.
+
+**Đã làm:**
+1. Thiết kế lại toàn bộ định dạng sản xuất thành **zero-filming**: ảnh chụp màn hình (giây, không quay) + AI text-to-video cho cảnh hook/B-roll + giọng đọc AI + auto-assembly. Cập nhật `channels/ai-de-dung/strategy/00` và `05`, cùng bản tương ứng trong `framework/template/00` và `05` để mặc định dùng cho mọi kênh sau này.
+2. Thêm mục **"Lời thoại thuần"** (văn bản đọc liên tục) và **"Bảng cảnh AI"** (từng cảnh: ảnh chụp màn hình hay prompt AI-video) vào cả 8 file kịch bản trong `channels/ai-de-dung/scripts/`.
+3. Kiểm tra kỹ thuật mạng: `generativelanguage.googleapis.com` (Google Gemini API — chính là "Flow" người dùng nhắc tới) gọi được; `api.elevenlabs.io`/`api.runwayml.com` bị chặn.
+4. Build `pipeline/` — automation thật bằng Python + Gemini API (Veo + TTS) + ffmpeg: `common.py` (parse kịch bản), `generate_voice.py`, `generate_scenes.py`, `assemble.py`, `run_all.py`, `requirements.txt`, `README.md`.
+5. Test kỹ thuật: parsing kịch bản đúng (video #1: 4 cảnh AI-video, 2 cảnh ảnh chụp màn hình nhận diện chính xác); toàn bộ chuỗi ffmpeg trong `assemble.py` chạy thành công end-to-end với dữ liệu giả lập, ra đúng video 1920x1080 H.264+AAC khớp độ dài audio.
+6. Đây thay cho việc chỉ làm "1 trang HTML" như người dùng hỏi — pipeline chạy server-side (Python) mạnh hơn và an toàn hơn (API key không lộ ra trình duyệt); có thể làm thêm dashboard HTML để xem trạng thái/nội dung ở bước sau nếu cần.
+
+**Điểm nghẽn hiện tại:** chưa có `GEMINI_API_KEY` nên chưa gọi API thật được lần nào — code gọi Veo/TTS dựa trên tài liệu API tại thời điểm viết, chưa xác minh với request thật.
+
+---
 
 ### Mốc #3 — 2026-09-25 — Hoàn thành kịch bản cho toàn bộ 4 tuần đầu
 **Đã làm:** viết tiếp 4 kịch bản đầy đủ còn thiếu (video #5 AI miễn phí tốt nhất, #6 AI viết CV, #7 AI viết email, #8 Gemini trên điện thoại) trong `channels/ai-de-dung/scripts/`. Cập nhật `backlog.md` và `content-calendar.md` để phản ánh cả 8/8 video đã sẵn sàng quay.

@@ -6,12 +6,18 @@ Hướng dẫn ứng dụng **AI (ChatGPT, Claude, Gemini, Midjourney, Suno, Can
 **Vì sao chọn niche này:**
 - Đang trong giai đoạn tăng trưởng bùng nổ tại VN (search volume "AI là gì", "cách dùng ChatGPT" tăng liên tục), nhưng số kênh tiếng Việt chất lượng cao còn ít so với nhu cầu.
 - Đúng chuyên môn: nội dung xoay quanh AI/công cụ số — dễ nghiên cứu chính xác, ít rủi ro tạo thông tin sai.
-- Faceless-friendly, chi phí sản xuất thấp (screen recording + giọng đọc), phù hợp solo/ngân sách thấp.
+- Faceless-friendly, sản xuất **hoàn toàn không cần quay/thu âm thủ công** (xem "Định dạng nội dung"), phù hợp solo/ngân sách thấp/không có thời gian quay.
 - Đường kiếm tiền rõ ràng và đa dạng: affiliate công cụ AI, khoá học, tài trợ từ chính các hãng AI/SaaS, AdSense.
 - **An toàn về nguyên tắc cộng đồng:** không phải nội dung y tế/tài chính đưa ra lời khuyên đầu tư (nhóm YMYL rủi ro cao), không dùng nhạc/hình ảnh bản quyền, không giật gân sai sự thật.
 
 ## Định dạng nội dung
-**Faceless dạng "tutorial thực chiến":** screen recording thao tác thật trên máy tính/điện thoại + giọng đọc (ưu tiên giọng thật ghi âm bằng mic rẻ, nếu cần dùng TTS tiếng Việt chất lượng cao làm giọng phụ) + text overlay + B-roll minh hoạ. Tránh dùng 100% nội dung AI-generated không qua biên tập (dễ bị YouTube gắn cờ "nội dung hàng loạt/spam" theo chính sách cập nhật 2024-2025) — mọi video đều có góc nhìn, ví dụ thực tế và kịch bản do người biên soạn.
+**Faceless, sản xuất 100% qua AI — không quay, không thu âm tay:**
+- **Hình ảnh:** ảnh chụp màn hình (screenshot, vài giây/tấm — không phải quay) cho các bước thao tác thật + AI text-to-video/image-to-video (CapCut AI, Pika, Kling, Runway...) cho cảnh hook/B-roll/minh hoạ không có sẵn ảnh thật, thêm hiệu ứng chuyển động (Ken Burns/smart zoom) cho ảnh tĩnh để không bị "chết hình".
+- **Giọng đọc:** AI TTS tiếng Việt (CapCut TTS, FPT.AI, ElevenLabs...), không cần tự thu âm.
+- **Dựng:** tool auto-assembly (CapCut AI / InVideo AI / Pictory) ráp trực tiếp từ kịch bản văn bản → video nháp, người chỉ cần review/chỉnh nhẹ.
+- Chi tiết pipeline và prompt cụ thể cho từng cảnh: xem `05-quy-trinh-lam-video-nhanh.md` và mục "Bảng cảnh AI" trong từng file ở `../scripts/`.
+
+> **Lưu ý về nguyên tắc cộng đồng khi 100% AI-generated:** rủi ro của YouTube không phải là "có quay tay hay không", mà là nội dung **lặp lại/rỗng/không có giá trị thông tin thật** ("mass-produced/spam"). Cách né rủi ro này khi làm zero-filming: mỗi kịch bản vẫn do người biên soạn viết có góc nhìn riêng (không copy nguyên văn output AI), thông tin phải đúng/kiểm chứng được, mỗi video phải mang giá trị thực (không phải video AI tạo hàng loạt vô nghĩa). Không liên quan tới việc dùng AI để tạo hình ảnh/giọng đọc.
 
 ## Đối tượng mục tiêu
 Người đi làm văn phòng, sinh viên, chủ shop nhỏ/freelancer 22-40 tuổi tại Việt Nam, biết dùng máy tính/điện thoại cơ bản nhưng **chưa khai thác được AI**, muốn tiết kiệm thời gian và tăng thu nhập.

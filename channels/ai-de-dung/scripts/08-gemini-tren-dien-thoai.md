@@ -1,6 +1,6 @@
 # Video #8 — "Cách dùng Gemini miễn phí trên điện thoại"
 
-**Trụ cột:** Công cụ & Hướng dẫn · **Định dạng:** Long-form ~6 phút · **Trạng thái:** Sẵn sàng quay
+**Trụ cột:** Công cụ & Hướng dẫn · **Định dạng:** Long-form ~6 phút · **Trạng thái:** Sẵn sàng dựng (zero-filming — xem `../strategy/05-quy-trinh-lam-video-nhanh.md`)
 
 ## Tiêu đề đề xuất
 "Dùng Gemini Miễn Phí Ngay Trên Điện Thoại — Không Cần Máy Tính"
