@@ -1,5 +1,7 @@
 # Pipeline sản xuất video tự động (Gemini API — Veo + TTS)
 
+> **Có tài khoản AutoScene (hoặc tool tương tự) còn credit?** Dùng luôn tool đó trước — nhanh hơn, không cần setup gì. Mở `channels/ai-de-dung/dashboard.html`, copy "Lời thoại thuần" dán vào *Tạo giọng đọc*, copy "Bảng cảnh AI" dán vào *Tạo video* (ô "Nội dung lệnh, mỗi dòng 1 lệnh"). Chi tiết ở `channels/ai-de-dung/strategy/05-quy-trinh-lam-video-nhanh.md` (Option A). Pipeline dưới đây là **Option B** — tự host bằng Gemini API trực tiếp, dùng khi không có/hết credit AutoScene hoặc muốn kiểm soát nhiều hơn.
+
 Bộ script Python gọi thẳng API của Google để tự động hoá tối đa phần sản xuất: **giọng đọc AI (Gemini TTS)** và **cảnh video AI (Veo)**. Phần duy nhất còn cần tay người: chụp vài tấm ảnh màn hình thao tác thật (không phải quay), vì AI-video không thể tái tạo chính xác giao diện phần mềm thật.
 
 Dùng chung cho **mọi kênh** trong `channels/` — không cần sửa gì khi thêm kênh mới, chỉ cần trỏ đúng đường dẫn file kịch bản.
@@ -59,3 +61,4 @@ done
 | `generate_scenes.py` | Gọi Veo cho từng cảnh "AI text-to-video", xuất `assets/<slug>/scenes/NN.mp4` |
 | `assemble.py` | Ráp voice + scenes + screenshots bằng ffmpeg thành `assets/<slug>/draft.mp4` |
 | `run_all.py` | Chạy cả 3 bước trên theo đúng thứ tự cho 1 video |
+| `export_dashboard_data.py` | Xuất lời thoại + bảng cảnh của mọi kịch bản thành JSON, dùng để cập nhật `dashboard.html` |

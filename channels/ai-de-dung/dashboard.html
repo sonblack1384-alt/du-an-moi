@@ -1,0 +1,1116 @@
+<title>Bảng sản xuất AI Dễ Dùng</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F3F4F7;
+    --surface: #FFFFFF;
+    --surface-2: #ECEEF2;
+    --border: #E0E3E9;
+    --text: #171B21;
+    --text-muted: #5B6472;
+    --accent: #A8681A;
+    --accent-ink: #FFFFFF;
+    --accent-soft: #F3E6D0;
+    --good: #1F7A55;
+    --good-soft: #DFF2E9;
+    --bad: #B23A2A;
+    --bad-soft: #FBE6E1;
+    --mono-pill: #565F6E;
+    --mono-pill-soft: #E7E9ED;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12151A;
+      --surface: #181C23;
+      --surface-2: #1F242C;
+      --border: #2A313C;
+      --text: #ECEEF1;
+      --text-muted: #8A93A1;
+      --accent: #E8A33D;
+      --accent-ink: #16130A;
+      --accent-soft: #3A2C13;
+      --good: #4FA37D;
+      --good-soft: #123322;
+      --bad: #E2604F;
+      --bad-soft: #3A1712;
+      --mono-pill: #A7B0BE;
+      --mono-pill-soft: #242B35;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12151A;
+    --surface: #181C23;
+    --surface-2: #1F242C;
+    --border: #2A313C;
+    --text: #ECEEF1;
+    --text-muted: #8A93A1;
+    --accent: #E8A33D;
+    --accent-ink: #16130A;
+    --accent-soft: #3A2C13;
+    --good: #4FA37D;
+    --good-soft: #123322;
+    --bad: #E2604F;
+    --bad-soft: #3A1712;
+    --mono-pill: #A7B0BE;
+    --mono-pill-soft: #242B35;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Manrope", system-ui, sans-serif;
+    padding-inline: 16px;
+    padding-block: 28px 60px;
+  }
+  h1, h2, h3, .display { font-family: "Sora", system-ui, sans-serif; }
+  code, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px; }
+
+  /* header */
+  header { display: flex; flex-direction: column; gap: 4px; }
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  h1 { font-size: clamp(24px, 4vw, 32px); margin: 2px 0 4px; text-wrap: balance; }
+  .sub { color: var(--text-muted); font-size: 15px; max-width: 65ch; }
+
+  /* stat row */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .stat .n { font-family: "Sora", sans-serif; font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .stat .l { font-size: 12.5px; color: var(--text-muted); }
+  .stat.bad-tile { border-color: color-mix(in srgb, var(--bad) 40%, var(--border)); }
+  .stat.bad-tile .n { color: var(--bad); }
+
+  /* blocker banner */
+  .banner {
+    background: var(--bad-soft);
+    border: 1px solid color-mix(in srgb, var(--bad) 35%, var(--bad-soft));
+    border-radius: 14px;
+    padding: 14px 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .banner .dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--bad);
+    margin-top: 6px; flex: none;
+  }
+  .banner b { color: var(--bad); }
+  .banner.good { background: var(--good-soft); border-color: color-mix(in srgb, var(--good) 35%, var(--good-soft)); }
+  .banner.good .dot { background: var(--good); }
+  .banner.good b { color: var(--good); }
+  .banner code {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+    padding: 1px 6px; font-size: 12.5px;
+  }
+
+  /* pipeline steps */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
+  .step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .step .num {
+    width: 26px; height: 26px; border-radius: 8px;
+    background: var(--accent-soft); color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-family: "JetBrains Mono", monospace; font-weight: 600; font-size: 13px;
+  }
+  .step h3 { font-size: 15px; margin: 0; }
+  .step p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.5; flex: 1; }
+  .pill {
+    align-self: flex-start;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-weight: 500;
+  }
+  .pill.done { background: var(--good-soft); color: var(--good); }
+  .pill.blocked { background: var(--bad-soft); color: var(--bad); }
+  .pill.partial { background: var(--accent-soft); color: var(--accent); }
+
+  /* video board */
+  .board { display: grid; grid-template-columns: 300px 1fr; gap: 16px; align-items: start; }
+  @media (max-width: 820px) { .board { grid-template-columns: 1fr; } }
+
+  .video-list { display: flex; flex-direction: column; gap: 8px; }
+  .video-card {
+    text-align: left;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font: inherit;
+    color: inherit;
+  }
+  .video-card:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
+  .video-card.active { border-color: var(--accent); background: var(--accent-soft); }
+  .video-card .idx {
+    font-family: "JetBrains Mono", monospace; font-weight: 600; font-size: 13px;
+    color: var(--text-muted); flex: none; padding-top: 1px;
+  }
+  .video-card.active .idx { color: var(--accent); }
+  .video-card .t { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .video-card .t .title { font-size: 13.5px; font-weight: 600; line-height: 1.35; }
+  .video-card .t .meta { font-size: 11.5px; color: var(--text-muted); display: flex; gap: 6px; flex-wrap: wrap; }
+  .tag {
+    font-family: "JetBrains Mono", monospace; font-size: 10.5px;
+    background: var(--surface-2); color: var(--text-muted);
+    border-radius: 6px; padding: 1px 6px;
+  }
+
+  .detail {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+  }
+  .detail-head { display: flex; flex-direction: column; gap: 6px; }
+  .detail-head h2 { font-size: 19px; margin: 0; text-wrap: balance; }
+  .detail-head .meta-row { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  .block { display: flex; flex-direction: column; gap: 10px; }
+  .block-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .block-head h3 { font-size: 13.5px; margin: 0; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); }
+
+  .copy-btn {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11.5px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 8px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .copy-btn.copied { background: var(--good-soft); color: var(--good); border-color: transparent; }
+
+  .narration-box {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    max-height: 260px;
+    overflow-y: auto;
+    white-space: pre-line;
+  }
+
+  .scene-table { display: flex; flex-direction: column; gap: 8px; }
+  .scene-row {
+    display: grid;
+    grid-template-columns: 68px 1fr;
+    gap: 10px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 12px;
+    align-items: start;
+  }
+  @media (max-width: 520px) { .scene-row { grid-template-columns: 1fr; } }
+  .scene-row .time {
+    font-family: "JetBrains Mono", monospace; font-size: 11.5px; color: var(--text-muted);
+    padding-top: 2px;
+  }
+  .scene-row .body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .scene-row .desc { font-size: 13.5px; line-height: 1.45; }
+  .source-pill { font-family: "JetBrains Mono", monospace; font-size: 10.5px; padding: 2px 7px; border-radius: 999px; align-self: flex-start; }
+  .source-pill.ai { background: var(--accent-soft); color: var(--accent); }
+  .source-pill.shot { background: var(--mono-pill-soft); color: var(--mono-pill); }
+  .prompt-line { display: flex; gap: 8px; align-items: flex-start; }
+  .prompt-line code {
+    flex: 1; font-size: 12px; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 6px 9px; line-height: 1.5; word-break: break-word;
+  }
+
+  footer { font-size: 12.5px; color: var(--text-muted); text-align: center; padding-top: 8px; }
+  footer code { background: var(--surface-2); border-radius: 6px; padding: 1px 6px; }
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Kênh demo · AI Dễ Dùng</span>
+    <h1>Bảng điều khiển sản xuất — zero‑filming</h1>
+    <p class="sub">8 video đầu tiên, kịch bản đã viết sẵn. Chọn 1 video bên dưới để lấy lời thoại dán vào công cụ giọng đọc AI, và prompt cho từng cảnh AI‑video — hoặc chạy thẳng qua <code class="mono">pipeline/</code> để tự động hoá toàn bộ.</p>
+  </header>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="banner good">
+    <div class="dot"></div>
+    <div>
+      <b>Có thể làm ngay:</b> bạn đã có tài khoản AutoScene còn credit — dán "Lời thoại thuần" vào <b>Tạo giọng đọc</b> và "Copy tất cả prompt" vào <b>Tạo hình ảnh</b>/<b>Tạo video</b> (ô "Nội dung lệnh, mỗi dòng 1 lệnh"), không cần chờ gì thêm.
+    </div>
+  </div>
+  <div class="banner">
+    <div class="dot"></div>
+    <div>
+      <b>Tuỳ chọn dự phòng:</b> pipeline tự host bằng Gemini API (<code>pipeline/</code>) cần thêm <code>GEMINI_API_KEY</code> vào environment secrets (không dán key vào chat) — dùng khi muốn không phụ thuộc credit AutoScene.
+    </div>
+  </div>
+
+  <section>
+    <div class="steps" id="steps"></div>
+  </section>
+
+  <section class="board">
+    <div class="video-list" id="video-list"></div>
+    <div class="detail" id="detail"></div>
+  </section>
+
+  <footer>Dữ liệu lấy trực tiếp từ <code>channels/ai-de-dung/scripts/*.md</code> · xem <code>pipeline/README.md</code> và <code>WORKLOG.md</code> ở gốc repo để chạy tự động thật.</footer>
+</div>
+
+<script id="video-data" type="application/json">
+[
+  {
+    "slug": "01-chatgpt-la-gi",
+    "title": "ChatGPT là gì, dùng để làm gì trong 5 phút",
+    "suggestedTitle": "ChatGPT Là Gì? Dùng Để Làm Gì Trong 5 Phút (Cho Người Mới)",
+    "pillar": "Công cụ & Hướng dẫn",
+    "format": "Long-form ~5 phút",
+    "status": "Sẵn sàng dựng (zero-filming — xem `../strategy/05-quy-trinh-lam-video-nhanh.md`)",
+    "narration": "Nếu bạn vẫn đang làm báo cáo, viết email, soạn bài mà chưa dùng AI — bạn đang mất ít nhất 1 tiếng mỗi ngày một cách vô ích. Video này sẽ chỉ bạn cách bắt đầu với ChatGPT trong đúng 5 phút, không cần biết gì về công nghệ. Mình cũng từng thấy AI phức tạp và bỏ qua suốt cả năm — cho tới khi thử và tiết kiệm được hẳn 5 tiếng mỗi tuần. Trong video này: ChatGPT là gì, cách tạo tài khoản miễn phí, và 3 việc đầu tiên nên thử ngay. Trước tiên, ChatGPT là gì? Nó giống như một trợ lý biết gõ chữ cực nhanh, đọc hiểu và trả lời gần như mọi câu hỏi bạn đưa ra — bạn gõ yêu cầu, gọi là \"prompt\", nó trả lời ngay lập tức. Cứ tưởng tượng như bạn có một đồng nghiệp siêu nhanh nhẹn, sẵn sàng giúp soạn thảo, tính toán, tóm tắt bất cứ lúc nào bạn cần. Giờ mình sẽ chỉ cách bắt đầu. Vào trang chatgpt.com, đăng ký bằng email hoặc tài khoản Google, hoàn toàn miễn phí. Giao diện rất đơn giản: chỉ có một ô để gõ câu hỏi, một nút gửi, và nơi xem lại các cuộc trò chuyện trước đó. Bây giờ thử ngay 3 việc thực tế. Đầu tiên, xin ChatGPT viết một email xin nghỉ phép 2 ngày, lý do gia đình, giọng lịch sự, gửi cho quản lý trực tiếp. Chỉ vài giây là có ngay một email hoàn chỉnh. Tiếp theo, dán một đoạn văn bản dài vào và xin tóm tắt thành 5 gạch đầu dòng — cực kỳ hữu ích khi cần đọc nhanh tài liệu dài. Cuối cùng, thử xin gợi ý 5 món quà sinh nhật cho bạn nữ 25 tuổi thích đọc sách, ngân sách 500 nghìn — chỉ trong tích tắc đã có danh sách đầy đủ để chọn. Chỉ với 3 việc này, bạn đã tiết kiệm được ít nhất 20 phút ngay hôm nay. Tuần sau mình sẽ chỉ thêm 5 prompt nâng cao hơn giúp tiết kiệm cả 2 tiếng mỗi ngày — bấm đăng ký để không bỏ lỡ.",
+    "scenes": [
+      {
+        "index": 1,
+        "time": "0:00-0:10",
+        "description": "Cảnh mở đầu gây chú ý: đồng hồ chạy nhanh, đống giấy tờ/email chất đống trên bàn làm việc",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Cinematic shot, tired office worker's desk piled with papers, clock ticking fast, warm indoor lighting, slight motion blur, 4k",
+        "note": "\"Cinematic shot, tired office worker's desk piled with papers, clock ticking fast, warm indoor lighting, slight motion blur, 4k\""
+      },
+      {
+        "index": 2,
+        "time": "0:10-0:25",
+        "description": "Hình minh hoạ \"trước/sau\" khi biết dùng AI — người thư giãn có thời gian rảnh",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Split-screen concept, left side stressed person at messy desk, right side same person relaxed with clean desk and coffee, soft transition",
+        "note": "\"Split-screen concept, left side stressed person at messy desk, right side same person relaxed with clean desk and coffee, soft transition\""
+      },
+      {
+        "index": 3,
+        "time": "0:25-1:30",
+        "description": "Minh hoạ khái niệm ChatGPT như trợ lý ảo",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Abstract friendly AI assistant icon typing fast on a glowing chat bubble, minimal flat design, blue and white palette",
+        "note": "\"Abstract friendly AI assistant icon typing fast on a glowing chat bubble, minimal flat design, blue and white palette\""
+      },
+      {
+        "index": 4,
+        "time": "1:30-3:00",
+        "description": "Ảnh chụp màn hình trang đăng ký chatgpt.com và giao diện chat",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp: trang đăng nhập, giao diện chat trống"
+      },
+      {
+        "index": 5,
+        "time": "3:00-4:30",
+        "description": "Ảnh chụp màn hình 3 prompt thực tế và kết quả trả về",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp từng prompt + câu trả lời tương ứng (3 tấm)"
+      },
+      {
+        "index": 6,
+        "time": "4:30-5:00",
+        "description": "Cảnh kết, chữ CTA \"Đăng ký\" nổi lên nền động nhẹ",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Clean minimal outro background, soft moving gradient blue-white, subscribe button icon pulsing",
+        "note": "\"Clean minimal outro background, soft moving gradient blue-white, subscribe button icon pulsing\""
+      }
+    ]
+  },
+  {
+    "slug": "02-claude-vs-chatgpt",
+    "title": "Claude AI là gì — khác ChatGPT thế nào",
+    "suggestedTitle": "Claude AI Là Gì? Khác ChatGPT Thế Nào — Nên Dùng Cái Nào?",
+    "pillar": "So sánh & Đánh giá",
+    "format": "Long-form ~7 phút",
+    "status": "Sẵn sàng dựng (zero-filming — xem `../strategy/05-quy-trinh-lam-video-nhanh.md`)",
+    "narration": "Bạn chỉ biết ChatGPT mà chưa từng thử Claude? Có một việc Claude làm tốt hơn hẳn mà rất ít người Việt biết — xem hết video này bạn sẽ biết nên dùng cái nào cho từng việc. Cả hai đều là AI chat miễn phí, nhưng mỗi cái mạnh ở một điểm khác nhau. Video này: Claude là gì, điểm khác biệt chính, và mình sẽ demo trực tiếp để bạn tự thấy. Claude là AI trò chuyện của công ty Anthropic, cũng miễn phí dùng thử, giao diện tương tự ChatGPT. Điểm mạnh được nhắc tới nhiều nhất: xử lý văn bản dài rất tốt, giọng văn tự nhiên, và cẩn trọng hơn khi trả lời các câu hỏi nhạy cảm. Giờ mình sẽ chạy cùng một yêu cầu trên cả hai công cụ để bạn thấy sự khác biệt. Đầu tiên, tóm tắt một văn bản dài hơn 2000 từ — xem công cụ nào tóm gọn chính xác hơn mà không bị cắt mất ý quan trọng. Tiếp theo, viết lại một đoạn văn theo giọng văn chuyên nghiệp — so sánh chất lượng câu chữ giữa hai bên. Cuối cùng, thử hỏi một câu kiến thức có thể gây tranh cãi, để xem cách mỗi AI xử lý tình huống nhạy cảm. Nhìn vào bảng so sánh nhanh: cả hai đều miễn phí dùng thử và phản hồi nhanh. Nhưng Claude vượt trội hơn khi xử lý văn bản dài, còn ChatGPT phù hợp hơn cho các việc đa dụng hàng ngày. Một ví dụ thực tế: mình từng dùng Claude để tóm tắt một hợp đồng dài 10 trang chỉ trong 30 giây, thay vì mất 20 phút tự đọc và gạch chân từng điều khoản. Không cần chọn 1 trong 2 — dùng cả hai cho đúng việc mới là tối ưu nhất. Tuần sau mình sẽ chỉ 5 prompt giúp tiết kiệm 2 tiếng mỗi ngày — đăng ký để xem tiếp.",
+    "scenes": [
+      {
+        "index": 1,
+        "time": "0:00-0:10",
+        "description": "Hai logo/icon AI đối đầu nhau kiểu \"VS\"",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Two glowing abstract AI orb icons facing each other, VS text in the middle, dark tech background, dramatic lighting",
+        "note": "\"Two glowing abstract AI orb icons facing each other, VS text in the middle, dark tech background, dramatic lighting\""
+      },
+      {
+        "index": 2,
+        "time": "0:10-0:25",
+        "description": "Minh hoạ 2 công cụ AI chat song song",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Split screen two chat interfaces glowing softly, minimal flat UI style, blue vs orange color contrast",
+        "note": "\"Split screen two chat interfaces glowing softly, minimal flat UI style, blue vs orange color contrast\""
+      },
+      {
+        "index": 3,
+        "time": "0:25-1:15",
+        "description": "Minh hoạ Claude/Anthropic — hình tượng trưng \"cẩn trọng, xử lý văn bản dài\"",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Abstract icon of a document scroll being read carefully by a glowing AI assistant, calm blue tones",
+        "note": "\"Abstract icon of a document scroll being read carefully by a glowing AI assistant, calm blue tones\""
+      },
+      {
+        "index": 4,
+        "time": "1:15-4:30",
+        "description": "Ảnh chụp màn hình chạy song song 3 prompt trên ChatGPT và Claude",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp từng cặp kết quả (3 cặp = 6 tấm)"
+      },
+      {
+        "index": 5,
+        "time": "4:30-5:30",
+        "description": "Bảng so sánh dạng đồ hoạ text overlay",
+        "source": "Ảnh chụp màn hình (dựng trong CapCut/Canva)",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Không cần AI-video, dựng bảng trực tiếp trong tool dựng"
+      },
+      {
+        "index": 6,
+        "time": "5:30-6:30",
+        "description": "Minh hoạ case study hợp đồng 10 trang được tóm tắt nhanh",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Stack of paper documents transforming into a short glowing summary card, fast motion, clean minimal style",
+        "note": "\"Stack of paper documents transforming into a short glowing summary card, fast motion, clean minimal style\""
+      },
+      {
+        "index": 7,
+        "time": "6:30-7:00",
+        "description": "Cảnh kết, chữ CTA",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Clean minimal outro background, soft moving gradient, subscribe icon pulsing",
+        "note": "\"Clean minimal outro background, soft moving gradient, subscribe icon pulsing\""
+      }
+    ]
+  },
+  {
+    "slug": "03-5-prompt-tiet-kiem-thoi-gian",
+    "title": "5 prompt ChatGPT giúp tiết kiệm 2 giờ mỗi ngày",
+    "suggestedTitle": "5 Prompt ChatGPT Giúp Dân Văn Phòng Tiết Kiệm 2 Giờ Mỗi Ngày",
+    "pillar": "Công cụ & Hướng dẫn",
+    "format": "Long-form ~8 phút",
+    "status": "Sẵn sàng dựng (zero-filming — xem `../strategy/05-quy-trinh-lam-video-nhanh.md`)",
+    "narration": "5 câu lệnh này sẽ giúp bạn lấy lại đúng 2 tiếng mỗi ngày — thời gian đủ để tập gym, ngủ thêm, hoặc làm việc mình thích. Xem hết video, làm theo, mình cam kết bạn thấy khác biệt ngay hôm nay. Đây là 5 prompt mình dùng thật mỗi ngày, không phải lý thuyết. Copy nguyên văn, đổi vài từ theo hoàn cảnh của bạn là dùng được ngay. Prompt đầu tiên, viết email nhanh: chỉ cần nói rõ tình huống, giọng điệu mong muốn, và giới hạn số từ, AI sẽ viết ra ngay một email hoàn chỉnh, tiết kiệm khoảng 10 phút mỗi email. Prompt thứ hai, tóm tắt cuộc họp hoặc tài liệu dài thành 5 gạch đầu dòng kèm việc cần làm tiếp theo — tiết kiệm khoảng 20 phút mỗi tài liệu. Prompt thứ ba, lên kế hoạch công việc trong ngày: liệt kê hết các việc cần làm, để AI sắp xếp thứ tự ưu tiên theo mức độ khẩn cấp và thời gian cần, chia rõ buổi sáng và buổi chiều — tiết kiệm khoảng 15 phút lập kế hoạch mỗi sáng. Prompt thứ tư, soạn báo cáo nhanh từ dữ liệu thô: dán số liệu vào, xin AI viết thành một đoạn báo cáo ngắn gọn chuyên nghiệp, nêu rõ xu hướng chính — tiết kiệm khoảng 30 phút mỗi báo cáo. Prompt thứ năm, brainstorm nhanh khi bí ý tưởng: xin AI gợi ý 10 ý tưởng đa dạng góc nhìn chỉ trong một câu lệnh — tiết kiệm khoảng 20 phút mỗi lần brainstorm. Cộng lại, 5 prompt này tiết kiệm cho bạn gần 95 phút mỗi ngày — gần đúng 2 tiếng đồng hồ. Lưu lại video này để dùng dần, và bấm đăng ký — tuần sau mình sẽ chỉ công thức viết prompt để bạn tự tạo ra prompt riêng cho công việc của mình.",
+    "scenes": [
+      {
+        "index": 1,
+        "time": "0:00-0:10",
+        "description": "Đồng hồ bấm giờ đếm ngược, hình ảnh 2 tiếng được \"lấy lại\"",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Stopwatch counting down fast, glowing clock hands reversing, energetic warm lighting, motivational feel",
+        "note": "\"Stopwatch counting down fast, glowing clock hands reversing, energetic warm lighting, motivational feel\""
+      },
+      {
+        "index": 2,
+        "time": "0:25-1:30",
+        "description": "Ảnh chụp màn hình prompt 1 + kết quả email",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp prompt và email AI trả về"
+      },
+      {
+        "index": 3,
+        "time": "1:30-2:45",
+        "description": "Ảnh chụp màn hình prompt 2 + kết quả tóm tắt",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp prompt và bản tóm tắt"
+      },
+      {
+        "index": 4,
+        "time": "2:45-4:00",
+        "description": "Ảnh chụp màn hình prompt 3 + kết quả lịch làm việc",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp prompt và bảng lịch AI sắp xếp"
+      },
+      {
+        "index": 5,
+        "time": "4:00-5:30",
+        "description": "Ảnh chụp màn hình prompt 4 + kết quả báo cáo",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp prompt và đoạn báo cáo"
+      },
+      {
+        "index": 6,
+        "time": "5:30-6:45",
+        "description": "Ảnh chụp màn hình prompt 5 + kết quả brainstorm",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp prompt và danh sách ý tưởng"
+      },
+      {
+        "index": 7,
+        "time": "6:45-7:30",
+        "description": "Đồ hoạ bảng tổng kết thời gian tiết kiệm",
+        "source": "Ảnh chụp màn hình (dựng trong CapCut/Canva)",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Dựng bảng trực tiếp trong tool dựng, không cần AI-video"
+      },
+      {
+        "index": 8,
+        "time": "7:30-8:00",
+        "description": "Cảnh kết, chữ CTA",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Clean minimal outro background, soft moving gradient blue-white, subscribe icon pulsing",
+        "note": "\"Clean minimal outro background, soft moving gradient blue-white, subscribe icon pulsing\""
+      }
+    ]
+  },
+  {
+    "slug": "04-cach-viet-prompt-hieu-qua",
+    "title": "Cách viết prompt AI hiệu quả cho người mới (công thức)",
+    "suggestedTitle": "Công Thức Viết Prompt AI Chuẩn — Không Cần Học Thuộc, Áp Dụng Được Ngay",
+    "pillar": "Công cụ & Hướng dẫn",
+    "format": "Long-form ~7 phút",
+    "status": "Sẵn sàng dựng (zero-filming — xem `../strategy/05-quy-trinh-lam-video-nhanh.md`)",
+    "narration": "Cùng một câu hỏi, người viết prompt đúng cách nhận câu trả lời chất lượng gấp 3 lần người viết sai. Video này chỉ bạn công thức 4 bước, áp dụng cho bất kỳ AI nào — ChatGPT, Claude, Gemini đều dùng được. Mình từng nghĩ AI trả lời dở vì AI kém — hoá ra là do mình hỏi chưa rõ. Sau video này bạn sẽ tự viết được prompt tốt cho bất kỳ việc gì, không cần nhớ mẫu có sẵn. Thử gõ đơn giản \"viết email\" vào AI — kết quả trả về chung chung, không dùng được ngay. Đó là lỗi phổ biến nhất. Giải pháp là công thức 4 bước, gọi tắt là VBYĐ: Vai trò, Bối cảnh, Yêu cầu, Định dạng. Đầu tiên, cho AI biết nó đang đóng vai trò gì — ví dụ \"bạn là chuyên gia nhân sự\" — để chọn đúng giọng văn và kiến thức chuyên môn. Tiếp theo, cung cấp bối cảnh: đối tượng, tình huống, mục đích cụ thể. Sau đó nói rõ yêu cầu — chính xác muốn AI làm gì, càng cụ thể càng tốt. Cuối cùng, chỉ rõ định dạng mong muốn — gạch đầu dòng, bảng, độ dài, giọng văn. Giờ áp dụng lại chính ví dụ viết email lúc nãy theo đúng 4 bước này — kết quả khác biệt hoàn toàn, một email hoàn chỉnh sẵn sàng gửi đi ngay. Thử thêm 2 ví dụ nữa: xin AI lên thực đơn giảm cân theo đúng công thức VBYĐ, và xin AI viết bài đăng bán hàng cũng theo công thức này — cả hai đều cho kết quả rõ ràng, dùng được ngay không cần chỉnh sửa nhiều. Có 3 lỗi thường gặp cần tránh: hỏi quá chung chung không có bối cảnh, không nói rõ định dạng mong muốn khiến AI trả lời dài dòng, và không yêu cầu AI hỏi lại khi thiếu thông tin — chỉ cần thêm một câu \"nếu thiếu thông tin, hãy hỏi lại tôi trước khi trả lời\" là khắc phục được ngay. Lưu công thức VBYĐ này lại, dùng cho mọi prompt từ giờ trở đi. Tuần sau mình sẽ tổng hợp AI miễn phí tốt nhất hiện tại — đăng ký để không bỏ lỡ.",
+    "scenes": [
+      {
+        "index": 1,
+        "time": "0:00-0:10",
+        "description": "Sơ đồ 4 khối công thức xuất hiện lần lượt",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Minimal flat animation, 4 glowing blocks appearing in sequence forming a formula diagram, clean tech style, blue accent",
+        "note": "\"Minimal flat animation, 4 glowing blocks appearing in sequence forming a formula diagram, clean tech style, blue accent\""
+      },
+      {
+        "index": 2,
+        "time": "0:25-1:00",
+        "description": "Ảnh chụp màn hình prompt cộc lốc \"viết email\" + kết quả chung chung",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp prompt ngắn và kết quả AI mờ nhạt"
+      },
+      {
+        "index": 3,
+        "time": "1:00-4:00",
+        "description": "Ảnh chụp màn hình prompt đầy đủ theo VBYĐ + kết quả tốt hơn",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp prompt 4 phần và email hoàn chỉnh"
+      },
+      {
+        "index": 4,
+        "time": "4:00-5:30",
+        "description": "Ảnh chụp màn hình 2 ví dụ thêm (thực đơn, bài bán hàng)",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp prompt + kết quả từng ví dụ (2 cặp)"
+      },
+      {
+        "index": 5,
+        "time": "5:30-6:30",
+        "description": "Đồ hoạ liệt kê 3 lỗi thường gặp",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Three warning icons with short text labels appearing one by one, flat minimal red-orange accent on dark background",
+        "note": "\"Three warning icons with short text labels appearing one by one, flat minimal red-orange accent on dark background\""
+      },
+      {
+        "index": 6,
+        "time": "6:30-7:00",
+        "description": "Cảnh kết, chữ CTA",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Clean minimal outro background, soft moving gradient, subscribe icon pulsing",
+        "note": "\"Clean minimal outro background, soft moving gradient, subscribe icon pulsing\""
+      }
+    ]
+  },
+  {
+    "slug": "05-ai-mien-phi-tot-nhat",
+    "title": "AI miễn phí tốt nhất 2026 cho dân văn phòng",
+    "suggestedTitle": "Top 5 AI Miễn Phí Tốt Nhất 2026 Cho Dân Văn Phòng (Không Tốn 1 Đồng)",
+    "pillar": "So sánh & Đánh giá",
+    "format": "Long-form ~9 phút",
+    "status": "Sẵn sàng dựng (zero-filming — xem `../strategy/05-quy-trinh-lam-video-nhanh.md`)",
+    "narration": "5 công cụ AI này hoàn toàn miễn phí nhưng làm được việc mà nhiều người đang trả tiền oan — dùng hết cả 5 cái này, công việc văn phòng của bạn sẽ nhẹ nhàng hơn hẳn. Mình đã test hàng chục công cụ AI trong 2 tháng qua, chọn ra đúng 5 cái đáng dùng nhất cho dân văn phòng, xếp theo mức độ hữu ích. Đầu tiên là ChatGPT bản miễn phí — mạnh nhất ở viết lách và trả lời câu hỏi nhanh, gần như việc gì cũng dùng được. Thứ hai là Claude bản miễn phí — nổi bật khi xử lý văn bản và tài liệu dài, tóm tắt cực nhanh mà vẫn giữ đúng ý chính. Thứ ba là Canva AI, hay còn gọi Magic Studio — cho phép thiết kế nhanh mà không cần biết gì về đồ hoạ, chỉ cần mô tả ý tưởng là ra ngay bản thiết kế. Thứ tư là Google Gemini bản miễn phí — tiện lợi vì tích hợp thẳng vào Google Docs và Google Sheets, ai đã quen dùng hệ sinh thái Google sẽ thấy rất mượt. Thứ năm là Notion AI — bản dùng thử miễn phí giới hạn nhưng rất hữu ích cho việc ghi chú và quản lý công việc có AI hỗ trợ. Nhìn qua bảng tổng hợp: mỗi công cụ mạnh ở một điểm riêng — ChatGPT cho viết lách đa dụng, Claude cho văn bản dài, Canva AI cho thiết kế nhanh, Gemini cho hệ sinh thái Google, và Notion AI cho quản lý công việc. Tất cả đều có giới hạn nhất định ở bản miễn phí nhưng vẫn quá đủ cho nhu cầu hàng ngày. Dùng thử cả 5 cái trong tuần này, để lại bình luận cho mình biết cái nào bạn thấy hữu ích nhất. Video sau mình sẽ chỉ cách dùng AI viết CV xin việc trong 10 phút — đăng ký để không bỏ lỡ.",
+    "scenes": [
+      {
+        "index": 1,
+        "time": "0:00-0:10",
+        "description": "5 icon công cụ AI xuất hiện lần lượt trên nền tối",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Five glowing app icons appearing one by one on dark tech background, clean minimal motion, blue-purple accent lighting",
+        "note": "\"Five glowing app icons appearing one by one on dark tech background, clean minimal motion, blue-purple accent lighting\""
+      },
+      {
+        "index": 2,
+        "time": "0:25-1:45",
+        "description": "Ảnh chụp màn hình demo ChatGPT",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp 1 ví dụ thực tế đang chạy"
+      },
+      {
+        "index": 3,
+        "time": "1:45-3:00",
+        "description": "Ảnh chụp màn hình demo Claude tóm tắt file dài",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp thao tác tóm tắt"
+      },
+      {
+        "index": 4,
+        "time": "3:00-4:15",
+        "description": "Ảnh chụp màn hình demo Canva AI tạo slide/poster",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp thao tác tạo thiết kế"
+      },
+      {
+        "index": 5,
+        "time": "4:15-5:30",
+        "description": "Ảnh chụp màn hình demo Gemini trong Google Sheets",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp thao tác trong Sheets"
+      },
+      {
+        "index": 6,
+        "time": "5:30-6:45",
+        "description": "Ảnh chụp màn hình demo Notion AI tạo ghi chú",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp thao tác tạo ghi chú"
+      },
+      {
+        "index": 7,
+        "time": "6:45-8:00",
+        "description": "Bảng tổng hợp 5 công cụ dạng đồ hoạ",
+        "source": "Ảnh chụp màn hình (dựng trong CapCut/Canva)",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Dựng bảng trực tiếp trong tool dựng"
+      },
+      {
+        "index": 8,
+        "time": "8:00-9:00",
+        "description": "Cảnh kết, chữ CTA",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Clean minimal outro background, soft moving gradient blue-white, subscribe icon pulsing",
+        "note": "\"Clean minimal outro background, soft moving gradient blue-white, subscribe icon pulsing\""
+      }
+    ]
+  },
+  {
+    "slug": "06-ai-viet-cv",
+    "title": "Dùng AI viết CV xin việc trong 10 phút",
+    "suggestedTitle": "Viết CV Xin Việc Bằng AI Trong 10 Phút — Nhà Tuyển Dụng Đọc Là Muốn Gọi Ngay",
+    "pillar": "Công cụ & Hướng dẫn",
+    "format": "Long-form ~7 phút",
+    "status": "Sẵn sàng dựng (zero-filming — xem `../strategy/05-quy-trinh-lam-video-nhanh.md`)",
+    "narration": "Bạn mất cả buổi tối vật lộn với CV mà vẫn thấy chưa ổn? AI có thể giúp bạn ra một bản CV chuyên nghiệp trong đúng 10 phút — video này chỉ từng bước luôn. CV không cần màu mè, chỉ cần đúng trọng tâm nhà tuyển dụng muốn thấy. Mình sẽ chỉ cách dùng AI để làm đúng việc đó, từng bước một. Bước đầu tiên, chuẩn bị thông tin: liệt kê nhanh kinh nghiệm làm việc, kỹ năng, và thành tích cụ thể — càng có số liệu càng tốt. Bước hai, dùng AI viết phần kinh nghiệm làm việc: cho AI biết nó đang đóng vai chuyên gia tuyển dụng, dán vào thông tin đã chuẩn bị, yêu cầu viết mỗi công việc thành 3 gạch đầu dòng có số liệu cụ thể, giọng văn chuyên nghiệp, không dùng từ sáo rỗng. Chỉ vài giây là có ngay một đoạn kinh nghiệm được viết rất chỉn chu. Bước ba, viết đoạn tóm tắt bản thân: xin AI viết 3 câu ngắn gọn nêu bật thế mạnh chính, phù hợp với vị trí ứng tuyển, giọng tự tin nhưng không phóng đại. Bước bốn, đưa toàn bộ nội dung vào một mẫu CV có sẵn trên Canva — chỉ cần dán chữ vào đúng chỗ và chỉnh bố cục một chút là xong. Một lưu ý quan trọng: AI chỉ giúp viết chữ, phần thông tin phải là sự thật của bạn — đừng bịa thành tích, nhà tuyển dụng hỏi lại là lộ ngay. Chỉ 10 phút, bạn đã có một CV chuyên nghiệp sẵn sàng gửi đi. Video sau mình sẽ chỉ cách viết email chuyên nghiệp chỉ trong một câu lệnh — đăng ký để xem tiếp.",
+    "scenes": [
+      {
+        "index": 1,
+        "time": "0:00-0:10",
+        "description": "Cảnh người ngồi khuya vật lộn với CV, giấy nháp xung quanh",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Tired person at desk late at night surrounded by crumpled paper, laptop glow lighting, cinematic mood",
+        "note": "\"Tired person at desk late at night surrounded by crumpled paper, laptop glow lighting, cinematic mood\""
+      },
+      {
+        "index": 2,
+        "time": "0:25-1:15",
+        "description": "Danh sách checklist thông tin cần chuẩn bị",
+        "source": "Ảnh chụp màn hình (dựng trong CapCut/Canva)",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Dựng checklist trực tiếp trong tool dựng"
+      },
+      {
+        "index": 3,
+        "time": "1:15-3:30",
+        "description": "Ảnh chụp màn hình prompt viết kinh nghiệm + kết quả",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp prompt và đoạn kinh nghiệm AI viết"
+      },
+      {
+        "index": 4,
+        "time": "3:30-4:30",
+        "description": "Ảnh chụp màn hình prompt tóm tắt bản thân + kết quả",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp prompt và đoạn tóm tắt"
+      },
+      {
+        "index": 5,
+        "time": "4:30-5:45",
+        "description": "Ảnh chụp màn hình thao tác dán nội dung vào template Canva",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp quá trình chỉnh CV trên Canva"
+      },
+      {
+        "index": 6,
+        "time": "5:45-6:30",
+        "description": "Hình cảnh báo nhẹ nhàng về việc không bịa thông tin",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Simple warning icon with checkmark vs cross, flat minimal style, honest/trustworthy tone",
+        "note": "\"Simple warning icon with checkmark vs cross, flat minimal style, honest/trustworthy tone\""
+      },
+      {
+        "index": 7,
+        "time": "6:30-7:00",
+        "description": "Cảnh kết, chữ CTA",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Clean minimal outro background, soft moving gradient, subscribe icon pulsing",
+        "note": "\"Clean minimal outro background, soft moving gradient, subscribe icon pulsing\""
+      }
+    ]
+  },
+  {
+    "slug": "07-ai-viet-email",
+    "title": "Dùng AI viết email chuyên nghiệp chỉ trong 1 câu lệnh",
+    "suggestedTitle": "1 Câu Lệnh AI Viết Email Chuyên Nghiệp — Không Cần Nghĩ Câu Chữ Nữa",
+    "pillar": "Công cụ & Hướng dẫn",
+    "format": "Long-form ~6 phút",
+    "status": "Sẵn sàng dựng (zero-filming — xem `../strategy/05-quy-trinh-lam-video-nhanh.md`)",
+    "narration": "Bạn ngồi 15 phút chỉ để viết một email vì sợ sai giọng điệu với sếp hoặc khách hàng? Chỉ cần một câu lệnh AI, xong trong 30 giây — xem ngay. Email công việc khó nhất ở chỗ chọn đúng giọng điệu — quá thân mật thì mất chuyên nghiệp, quá cứng thì xa cách. AI xử lý phần đó cực tốt, mình chỉ cách dùng ngay đây. Công thức câu lệnh chuẩn cho email rất đơn giản: nói rõ mục đích email, đối tượng nhận, giọng điệu mong muốn, nội dung chính cần truyền đạt, và độ dài mong muốn. Thử tình huống đầu tiên: viết email xin gia hạn deadline gửi sếp. Chạy prompt, đọc kết quả — chỉ cần chỉnh sửa vài chi tiết nhỏ là gửi được ngay. Tình huống thứ hai: viết email từ chối khéo một lời mời hợp tác. So sánh với cách tự viết tay thường mất bao lâu để chọn đúng từ ngữ — AI làm việc này gần như ngay lập tức. Tình huống thứ ba: viết email nhắc thanh toán, cần lịch sự nhưng vẫn dứt khoát — đây là loại email khó viết tay nhất vì dễ bị lệch tông giọng, nhưng AI giữ đúng mức cân bằng rất tốt. Một mẹo nâng cao: thêm câu \"giữ dưới 80 từ\" hoặc \"thêm một câu hỏi cuối email để khuyến khích phản hồi\" — AI sẽ tinh chỉnh đúng theo ý bạn muốn. Từ giờ không còn ngồi vật lộn với từng câu chữ nữa. Video sau mình sẽ chỉ cách dùng Gemini miễn phí ngay trên điện thoại — đăng ký để xem tiếp.",
+    "scenes": [
+      {
+        "index": 1,
+        "time": "0:00-0:10",
+        "description": "Người nhìn đồng hồ sốt ruột trước màn hình email trống",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Person staring anxiously at blank email screen, clock ticking overlay, office lighting, stressed mood",
+        "note": "\"Person staring anxiously at blank email screen, clock ticking overlay, office lighting, stressed mood\""
+      },
+      {
+        "index": 2,
+        "time": "0:25-1:15",
+        "description": "Đồ hoạ công thức câu lệnh 5 phần",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Minimal flat diagram, 5 labeled blocks connecting in sequence, clean tech style, blue accent",
+        "note": "\"Minimal flat diagram, 5 labeled blocks connecting in sequence, clean tech style, blue accent\""
+      },
+      {
+        "index": 3,
+        "time": "1:15-2:30",
+        "description": "Ảnh chụp màn hình prompt + email xin gia hạn deadline",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp prompt và kết quả"
+      },
+      {
+        "index": 4,
+        "time": "2:30-3:45",
+        "description": "Ảnh chụp màn hình prompt + email từ chối khéo",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp prompt và kết quả"
+      },
+      {
+        "index": 5,
+        "time": "3:45-5:00",
+        "description": "Ảnh chụp màn hình prompt + email nhắc thanh toán",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp prompt và kết quả"
+      },
+      {
+        "index": 6,
+        "time": "5:00-5:40",
+        "description": "Đồ hoạ mẹo nâng cao (câu thêm vào cuối prompt)",
+        "source": "Ảnh chụp màn hình (dựng trong CapCut/Canva)",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Dựng text overlay trực tiếp"
+      },
+      {
+        "index": 7,
+        "time": "5:40-6:00",
+        "description": "Cảnh kết, chữ CTA",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Clean minimal outro background, soft moving gradient, subscribe icon pulsing",
+        "note": "\"Clean minimal outro background, soft moving gradient, subscribe icon pulsing\""
+      }
+    ]
+  },
+  {
+    "slug": "08-gemini-tren-dien-thoai",
+    "title": "Cách dùng Gemini miễn phí trên điện thoại",
+    "suggestedTitle": "Dùng Gemini Miễn Phí Ngay Trên Điện Thoại — Không Cần Máy Tính",
+    "pillar": "Công cụ & Hướng dẫn",
+    "format": "Long-form ~6 phút",
+    "status": "Sẵn sàng dựng (zero-filming — xem `../strategy/05-quy-trinh-lam-video-nhanh.md`)",
+    "narration": "Không cần mở máy tính, chỉ cần điện thoại là bạn đã có một trợ lý AI miễn phí ngay trong túi — video này chỉ cách cài và dùng Gemini trong 6 phút. Gemini là AI của Google, dùng miễn phí, tích hợp thẳng vào điện thoại Android và có app riêng cho iPhone. Mình sẽ chỉ cách cài đặt và 3 việc nên thử ngay. Trên Android, Gemini có thể đã cài sẵn hoặc tải từ Play Store. Trên iPhone, tải app Gemini từ App Store. Đăng nhập bằng tài khoản Google có sẵn, không cần tạo mới. Giao diện rất đơn giản: một ô để gõ câu hỏi, một nút micro để nói thay vì gõ, và một nút camera để hỏi bằng hình ảnh. Thử ngay việc đầu tiên: hỏi bằng giọng nói khi đang di chuyển. Ví dụ, nhờ Gemini nhắc 3 việc cần làm chiều nay dựa trên lịch bạn đọc ra. Việc thứ hai, rất mạnh trên điện thoại: chụp ảnh hỏi AI. Chụp một hoá đơn, thực đơn, hay biển hiệu tiếng nước ngoài, rồi hỏi AI dịch hoặc giải thích ngay lập tức. Việc thứ ba: dùng làm trợ lý nhanh khi rảnh tay. Ví dụ đang nấu ăn, chỉ cần hỏi bằng giọng nói để xin gợi ý chế biến với nguyên liệu đang có. So với dùng trên máy tính: điện thoại tiện hơn hẳn cho việc hỏi nhanh, dùng giọng nói, chụp ảnh — máy tính vẫn tốt hơn khi cần viết nội dung dài. Cài ngay hôm nay, để điện thoại của bạn thành trợ lý AI di động miễn phí. Cảm ơn đã theo dõi 8 video đầu tiên — để lại bình luận cho mình biết bạn muốn xem chủ đề nào tiếp theo.",
+    "scenes": [
+      {
+        "index": 1,
+        "time": "0:00-0:10",
+        "description": "Điện thoại phát sáng trong túi/tay, cảm giác tiện lợi",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Close-up of a smartphone glowing softly in a hand, warm cozy lighting, minimal modern aesthetic",
+        "note": "\"Close-up of a smartphone glowing softly in a hand, warm cozy lighting, minimal modern aesthetic\""
+      },
+      {
+        "index": 2,
+        "time": "0:25-1:30",
+        "description": "Ảnh chụp màn hình điện thoại: cài đặt Gemini từ Play Store/App Store",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp màn hình điện thoại (không phải quay), 1-2 tấm"
+      },
+      {
+        "index": 3,
+        "time": "1:30-2:15",
+        "description": "Ảnh chụp màn hình giao diện Gemini cơ bản",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp giao diện chính"
+      },
+      {
+        "index": 4,
+        "time": "2:15-3:15",
+        "description": "Ảnh chụp màn hình demo hỏi bằng giọng nói",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp lúc đang dùng micro + kết quả trả lời"
+      },
+      {
+        "index": 5,
+        "time": "3:15-4:15",
+        "description": "Ảnh chụp màn hình demo chụp ảnh hỏi AI (hoá đơn/thực đơn)",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp ảnh input + kết quả AI dịch/giải thích"
+      },
+      {
+        "index": 6,
+        "time": "4:15-5:15",
+        "description": "Ảnh chụp màn hình demo hỏi rảnh tay khi nấu ăn",
+        "source": "Ảnh chụp màn hình",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Chụp câu hỏi giọng nói + gợi ý món ăn"
+      },
+      {
+        "index": 7,
+        "time": "5:15-5:45",
+        "description": "Đồ hoạ so sánh nhanh điện thoại vs máy tính",
+        "source": "Ảnh chụp màn hình (dựng trong CapCut/Canva)",
+        "isAiVideo": false,
+        "prompt": "",
+        "note": "Dựng bảng so sánh ngắn trực tiếp trong tool dựng"
+      },
+      {
+        "index": 8,
+        "time": "5:45-6:00",
+        "description": "Cảnh kết, chữ hỏi ý kiến khán giả",
+        "source": "AI text-to-video",
+        "isAiVideo": true,
+        "prompt": "Clean minimal outro background, soft moving gradient, comment bubble icon appearing",
+        "note": "\"Clean minimal outro background, soft moving gradient, comment bubble icon appearing\""
+      }
+    ]
+  }
+]
+
+</script>
+
+<script>
+(function () {
+  var videos = JSON.parse(document.getElementById('video-data').textContent);
+
+  var totalAi = 0, totalShots = 0;
+  videos.forEach(function (v) {
+    v.scenes.forEach(function (s) { s.isAiVideo ? totalAi++ : totalShots++; });
+  });
+
+  var statsEl = document.getElementById('stats');
+  var stats = [
+    { n: videos.length + '/' + videos.length, l: 'Kịch bản sẵn sàng' },
+    { n: totalAi, l: 'Cảnh AI‑video cần tạo' },
+    { n: totalShots, l: 'Ảnh cần chụp màn hình' },
+    { n: '0', l: 'Video đã render thật', bad: true }
+  ];
+  stats.forEach(function (s) {
+    var d = document.createElement('div');
+    d.className = 'stat' + (s.bad ? ' bad-tile' : '');
+    d.innerHTML = '<div class="n">' + s.n + '</div><div class="l">' + s.l + '</div>';
+    statsEl.appendChild(d);
+  });
+
+  var steps = [
+    { t: 'Kịch bản có sẵn', d: '8 video đã viết đầy đủ lời thoại + bảng cảnh, không cần nhập tay.', status: 'done', label: 'Đã có 8/8' },
+    { t: 'AI chia cảnh & dựng hình', d: 'Ảnh chụp màn hình cho demo thật + Veo tạo cảnh AI cho hook/B‑roll. Dán khối prompt vào AutoScene → Tạo video (model Veo 3.1), hoặc pipeline/generate_scenes.py.', status: 'done', label: 'Dán vào AutoScene' },
+    { t: 'Lồng tiếng & phụ đề', d: 'Dán lời thoại vào AutoScene → Tạo giọng đọc (Azure Speech), hoặc Gemini TTS qua pipeline/generate_voice.py; phụ đề bật auto‑caption.', status: 'done', label: 'Dán vào AutoScene' },
+    { t: 'Xuất MP4 & đăng', d: 'AutoScene/StoryFlow xuất MP4 hoàn chỉnh. Đăng tự động lên YouTube/TikTok qua AutoScene → Quản lý kênh → Thêm mới (kết nối kênh thật — chỉ bạn làm được bước này).', status: 'partial', label: 'Cần kết nối kênh' }
+  ];
+  var stepsEl = document.getElementById('steps');
+  steps.forEach(function (s, i) {
+    var el = document.createElement('div');
+    el.className = 'step';
+    el.innerHTML =
+      '<div class="num">' + (i + 1) + '</div>' +
+      '<h3>' + s.t + '</h3>' +
+      '<p>' + s.d + '</p>' +
+      '<span class="pill ' + s.status + '">' + s.label + '</span>';
+    stepsEl.appendChild(el);
+  });
+
+  var listEl = document.getElementById('video-list');
+  var detailEl = document.getElementById('detail');
+
+  function copy(btn, text) {
+    function ok() {
+      var old = btn.textContent;
+      btn.textContent = 'Đã copy';
+      btn.classList.add('copied');
+      setTimeout(function () { btn.textContent = old; btn.classList.remove('copied'); }, 1400);
+    }
+    try {
+      navigator.clipboard.writeText(text).then(ok, function () { fallback(); });
+    } catch (e) { fallback(); }
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); ok(); } catch (e2) {}
+      document.body.removeChild(ta);
+    }
+  }
+
+  function renderDetail(v) {
+    var aiCount = v.scenes.filter(function (s) { return s.isAiVideo; }).length;
+    var shotCount = v.scenes.length - aiCount;
+
+    var head = document.createElement('div');
+    head.className = 'detail-head';
+    head.innerHTML =
+      '<h2>' + v.title + '</h2>' +
+      '<div class="meta-row">' +
+        '<span class="tag">' + v.pillar + '</span>' +
+        '<span class="tag">' + v.format + '</span>' +
+        '<span class="tag">' + aiCount + ' cảnh AI‑video</span>' +
+        '<span class="tag">' + shotCount + ' ảnh chụp màn hình</span>' +
+      '</div>';
+
+    var narrationBlock = document.createElement('div');
+    narrationBlock.className = 'block';
+    var narrHead = document.createElement('div');
+    narrHead.className = 'block-head';
+    var narrH3 = document.createElement('h3');
+    narrH3.textContent = 'Lời thoại thuần (dán vào TTS)';
+    var narrBtn = document.createElement('button');
+    narrBtn.className = 'copy-btn';
+    narrBtn.textContent = 'Copy lời thoại';
+    narrBtn.addEventListener('click', function () { copy(narrBtn, v.narration); });
+    narrHead.appendChild(narrH3);
+    narrHead.appendChild(narrBtn);
+    var narrBox = document.createElement('div');
+    narrBox.className = 'narration-box';
+    narrBox.textContent = v.narration;
+    narrationBlock.appendChild(narrHead);
+    narrationBlock.appendChild(narrBox);
+
+    var sceneBlock = document.createElement('div');
+    sceneBlock.className = 'block';
+    var sceneHead = document.createElement('div');
+    sceneHead.className = 'block-head';
+    var sceneH3 = document.createElement('h3');
+    sceneH3.textContent = 'Bảng cảnh AI';
+    var allPromptsBtn = document.createElement('button');
+    allPromptsBtn.className = 'copy-btn';
+    var aiPrompts = v.scenes.filter(function (s) { return s.isAiVideo; }).map(function (s) { return s.prompt; });
+    allPromptsBtn.textContent = 'Copy tất cả prompt (' + aiPrompts.length + ', mỗi dòng 1 lệnh)';
+    allPromptsBtn.addEventListener('click', function () { copy(allPromptsBtn, aiPrompts.join('\n')); });
+    sceneHead.appendChild(sceneH3);
+    sceneHead.appendChild(allPromptsBtn);
+    sceneBlock.appendChild(sceneHead);
+    var sceneHint = document.createElement('p');
+    sceneHint.style.cssText = 'font-size:12px;color:var(--text-muted);margin:0;';
+    sceneHint.textContent = 'Dán nguyên khối vào ô "Nội dung lệnh (mỗi dòng là 1 lệnh)" của AutoScene → Tạo hình ảnh / Tạo video, hoặc dán từng dòng vào pipeline/generate_scenes.py.';
+    sceneBlock.appendChild(sceneHint);
+    var sceneTable = document.createElement('div');
+    sceneTable.className = 'scene-table';
+    v.scenes.forEach(function (s) {
+      var row = document.createElement('div');
+      row.className = 'scene-row';
+      var body = document.createElement('div');
+      body.className = 'body';
+      var pill = document.createElement('span');
+      pill.className = 'source-pill ' + (s.isAiVideo ? 'ai' : 'shot');
+      pill.textContent = s.isAiVideo ? 'AI text-to-video' : 'Ảnh chụp màn hình';
+      var desc = document.createElement('div');
+      desc.className = 'desc';
+      desc.textContent = s.description;
+      body.appendChild(pill);
+      body.appendChild(desc);
+
+      if (s.isAiVideo) {
+        var pl = document.createElement('div');
+        pl.className = 'prompt-line';
+        var codeEl = document.createElement('code');
+        codeEl.textContent = s.prompt;
+        var pbtn = document.createElement('button');
+        pbtn.className = 'copy-btn';
+        pbtn.textContent = 'Copy';
+        pbtn.addEventListener('click', function () { copy(pbtn, s.prompt); });
+        pl.appendChild(codeEl);
+        pl.appendChild(pbtn);
+        body.appendChild(pl);
+      } else {
+        var note = document.createElement('div');
+        note.style.fontSize = '12px';
+        note.style.color = 'var(--text-muted)';
+        note.textContent = s.note;
+        body.appendChild(note);
+      }
+
+      var time = document.createElement('div');
+      time.className = 'time mono';
+      time.textContent = s.time;
+
+      row.appendChild(time);
+      row.appendChild(body);
+      sceneTable.appendChild(row);
+    });
+    sceneBlock.appendChild(sceneTable);
+
+    detailEl.innerHTML = '';
+    detailEl.appendChild(head);
+    detailEl.appendChild(narrationBlock);
+    detailEl.appendChild(sceneBlock);
+  }
+
+  function selectVideo(slug) {
+    var v = videos.find(function (x) { return x.slug === slug; });
+    if (!v) return;
+    Array.prototype.forEach.call(listEl.children, function (card) {
+      card.classList.toggle('active', card.dataset.slug === slug);
+    });
+    renderDetail(v);
+    try { localStorage.setItem('aidedung.selectedSlug', slug); } catch (e) {}
+  }
+
+  videos.forEach(function (v, i) {
+    var aiCount = v.scenes.filter(function (s) { return s.isAiVideo; }).length;
+    var card = document.createElement('button');
+    card.className = 'video-card';
+    card.dataset.slug = v.slug;
+    card.innerHTML =
+      '<span class="idx mono">' + String(i + 1).padStart(2, '0') + '</span>' +
+      '<span class="t">' +
+        '<span class="title">' + v.title + '</span>' +
+        '<span class="meta"><span class="tag">' + v.format + '</span><span class="tag">' + aiCount + ' AI‑video</span></span>' +
+      '</span>';
+    card.addEventListener('click', function () { selectVideo(v.slug); });
+    listEl.appendChild(card);
+  });
+
+  var initial = videos[0] && videos[0].slug;
+  try {
+    var saved = localStorage.getItem('aidedung.selectedSlug');
+    if (saved && videos.some(function (v) { return v.slug === saved; })) initial = saved;
+  } catch (e) {}
+  if (initial) selectVideo(initial);
+})();
+</script>

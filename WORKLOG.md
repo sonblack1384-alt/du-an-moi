@@ -5,37 +5,49 @@
 ---
 
 ## TRẠNG THÁI HIỆN TẠI
-*(cập nhật lần cuối: mốc #4 — 2026-09-25)*
+*(cập nhật lần cuối: mốc #5 — 2026-09-25)*
 
 ### Đã có
 - **Khung sườn dùng chung** (`framework/`) — 8 file template + hướng dẫn tạo kênh mới, mặc định zero-filming.
-- **Kênh demo "AI Dễ Dùng"** (`channels/ai-de-dung/`) — 8 file chiến lược, backlog 100 ý tưởng, lịch đăng 4 tuần, **8/8 kịch bản đầy đủ** — mỗi kịch bản giờ có thêm mục "Lời thoại thuần" (dán thẳng vào TTS) và "Bảng cảnh AI" (từng cảnh: ảnh chụp màn hình hay prompt AI-video).
-- **`pipeline/` — automation thật gọi Google Gemini API** (Veo tạo video + Gemini TTS tạo giọng đọc + ffmpeg ráp): đã viết `common.py`, `generate_voice.py`, `generate_scenes.py`, `assemble.py`, `run_all.py`. Đã kiểm chứng kỹ thuật: parsing kịch bản chạy đúng (test với video #1), toàn bộ chuỗi ráp video (ffmpeg: scale/Ken Burns/concat/mux audio) chạy thành công end-to-end với dữ liệu giả lập (voice.wav giả, scene video giả, screenshot giả) → ra đúng file 1920x1080 H.264+AAC khớp độ dài giọng đọc.
-- Đã xác nhận qua test mạng thật: `generativelanguage.googleapis.com` (Gemini API) gọi được từ môi trường này; `api.elevenlabs.io` và `api.runwayml.com` bị chặn bởi chính sách mạng — đây là lý do chọn Google Gemini API làm nền tảng automation thay vì các dịch vụ khác.
+- **Kênh demo "AI Dễ Dùng"** (`channels/ai-de-dung/`) — 8 file chiến lược, backlog 100 ý tưởng, lịch đăng 4 tuần, **8/8 kịch bản đầy đủ** — mỗi kịch bản có "Lời thoại thuần" (dán thẳng vào TTS) và "Bảng cảnh AI" (từng cảnh: ảnh chụp màn hình hay prompt AI-video).
+- **`channels/ai-de-dung/dashboard.html`** — bảng điều khiển sản xuất (đã publish làm Artifact: https://claude.ai/artifact/QYNAmM9rAe6LZBw7WfTZRF): liệt kê 8 video, mỗi video có nút copy "Lời thoại thuần" và copy "tất cả prompt cảnh AI" (mỗi dòng 1 lệnh) — dán thẳng vào bất kỳ tool nào. Sinh từ `pipeline/export_dashboard_data.py` (đọc trực tiếp từ `scripts/*.md`, không hand-transcribe).
+- **Option A — AutoScene (người dùng đã có tài khoản, còn credit):** xác nhận qua ảnh chụp thật từ tài khoản người dùng rằng AutoScene dùng model **Veo 3.1** (Tạo video, "Nội dung lệnh mỗi dòng 1 lệnh" — khớp thẳng với "Bảng cảnh AI") và **Azure Speech** (Tạo giọng đọc, nhận nguyên khối text — khớp thẳng với "Lời thoại thuần"); có cả *Quản lý kênh* để tự đăng lên YouTube/TikTok sau khi người dùng tự kết nối kênh thật. Đây là đường nhanh nhất hiện tại — không cần setup gì thêm, chỉ cần copy/paste từ dashboard.
+- **Option B — `pipeline/` tự host bằng Google Gemini API** (Veo + Gemini TTS + ffmpeg ráp): `common.py`, `generate_voice.py`, `generate_scenes.py`, `assemble.py`, `run_all.py`, `export_dashboard_data.py`. Đã kiểm chứng kỹ thuật (parsing + toàn bộ chuỗi ffmpeg end-to-end với dữ liệu giả lập ra đúng file 1920x1080 H.264+AAC khớp độ dài giọng đọc) — dùng khi hết credit AutoScene hoặc muốn kiểm soát nhiều hơn. Xác nhận mạng: `generativelanguage.googleapis.com` gọi được, `api.elevenlabs.io`/`api.runwayml.com` bị chặn.
+- `channels/ai-de-dung/strategy/05-quy-trinh-lam-video-nhanh.md` đã viết lại theo đúng 2 Option này.
 
-### Đang thiếu / chưa làm — ĐIỂM NGHẼN HIỆN TẠI
-- **Chưa gọi API Veo/TTS thật lần nào** (không có key) — code gọi API dựa trên tài liệu Gemini API tại thời điểm viết, tên model (`veo-3.0-generate-001`, `gemini-2.5-flash-preview-tts`) và cách gọi SDK **chưa được xác minh với request thật**, có thể cần chỉnh khi chạy lần đầu.
-- **Cần người dùng thêm `GEMINI_API_KEY` vào environment secrets** (cloud environment menu → Edit) — Claude không được yêu cầu dán key vào chat. Chưa có key này thì pipeline chỉ chạy được ở chế độ `--dry-run`.
-- Sau khi có key: nên chạy thử 1 cảnh (`generate_scenes.py ... --only 1`) trước để xác nhận API hoạt động đúng, rồi mới chạy `run_all.py` cho từng video.
-- Vẫn cần người dùng tự chụp vài tấm ảnh màn hình thao tác thật cho mỗi video (không phải quay, chỉ vài giây/tấm) — `run_all.py` sẽ liệt kê chính xác cần chụp gì.
+### Đang thiếu / chưa làm
+- **Chưa có video nào render thật** — cả Option A (người dùng tự thao tác trên AutoScene) lẫn Option B (cần `GEMINI_API_KEY`) đều chưa chạy thật lần nào.
+- Option B: code gọi Veo/TTS (`veo-3.0-generate-001`, `gemini-2.5-flash-preview-tts`) chưa xác minh với API thật — cần chạy thử 1 cảnh trước khi tin tưởng chạy hàng loạt.
+- Vẫn cần người dùng tự chụp vài tấm ảnh màn hình thao tác thật cho mỗi video (không phải quay, chỉ vài giây/tấm) ở cả 2 Option.
 - Chưa kiểm tra tên/handle "AI Dễ Dùng" có bị trùng trên YouTube ngoài đời chưa.
-- Kịch bản video #9 trở đi chưa viết — viết tiếp sau khi có số liệu thật hoặc khi chạy hết 8 video hiện có.
+- Kịch bản video #9 trở đi chưa viết.
 - Chưa có kênh thứ 2 (chủ đề khác).
 
 ### Câu hỏi đang chờ người dùng quyết định
-**Cần người dùng thêm `GEMINI_API_KEY` vào environment secrets để pipeline chạy được thật** (không phải câu hỏi cần trả lời trong chat — là 1 thao tác cần làm trong settings). Sau khi thêm key, báo lại cho Claude (ở phiên này hoặc phiên khác, WORKLOG này sẽ giúp phiên mới hiểu ngay bối cảnh) để chạy thử 1 cảnh trước khi chạy hàng loạt.
+Không có câu hỏi chặn tiến độ. Việc tiếp theo là của người dùng (tự thao tác trên AutoScene bằng dashboard, hoặc tự thêm `GEMINI_API_KEY` nếu muốn dùng Option B) — cả hai đều là thao tác ngoài chat, không phải quyết định cần trả lời ở đây.
 
 ### Việc tiếp theo nên làm (theo thứ tự ưu tiên)
-1. **Cần người dùng:** thêm `GEMINI_API_KEY` vào environment secrets.
-2. Sau khi có key: Claude chạy thử `generate_scenes.py --only 1` + `generate_voice.py` cho 1 video để xác nhận API hoạt động đúng, chỉnh code nếu API đã đổi.
-3. Chạy `run_all.py` cho từng video trong 8 video hiện có — mỗi lần sẽ dừng lại xin ảnh chụp màn hình nếu thiếu.
-4. Người dùng chụp ảnh màn hình theo đúng danh sách được liệt kê, chạy lại để ra `draft.mp4`.
-5. Mở draft trong CapCut bật auto-caption, xuất bản.
-6. Sau khi có số liệu thật, viết tiếp kịch bản #9+ và/hoặc mở kênh thứ 2 từ `framework/template/`.
+1. **Người dùng:** mở dashboard, làm thử trọn 1 video (ví dụ video #1) qua Option A (AutoScene) để xác nhận luồng chạy mượt — copy lời thoại vào Tạo giọng đọc, copy prompt vào Tạo video, chụp 2 ảnh màn hình còn thiếu, ráp bằng StoryFlow.
+2. Nếu Option A ổn: lặp lại cho video #2-8, rồi kết nối kênh YouTube thật ở *Quản lý kênh* nếu muốn đăng tự động.
+3. Song song/dự phòng: nếu muốn Option B, thêm `GEMINI_API_KEY` vào environment secrets rồi báo Claude chạy thử `generate_scenes.py --only 1`.
+4. Sau khi có video thật + số liệu, viết tiếp kịch bản #9+ và/hoặc mở kênh thứ 2 từ `framework/template/`.
 
 ---
 
 ## LOG CHI TIẾT (mới nhất ở trên)
+
+### Mốc #5 — 2026-09-25 — Dashboard + phát hiện người dùng đã có AutoScene (Veo 3.1 + Azure Speech)
+**Diễn biến:** người dùng hỏi có nên làm "1 quy trình html" không, dẫn nguồn https://www.autoscene.app/tao-video-ai-tu-dong (không fetch được, bị chặn mạng). Sau đó người dùng gửi liên tiếp nhiều ảnh chụp màn hình **từ chính tài khoản AutoScene của họ** (tên "Huynh", còn 2.000 credit): trang StoryFlow, trang Tạo hình ảnh, trang Tạo video (model **Veo 3.1 - Lite**, ô "Nội dung lệnh — mỗi dòng 1 lệnh"), trang Tạo giọng đọc (nền tảng **Azure Speech**, ô nhận nguyên khối văn bản), và trang Quản lý kênh (kết nối YouTube/TikTok để đăng tự động).
+
+**Đã làm:**
+1. Viết `pipeline/export_dashboard_data.py` — parse tất cả kịch bản thành JSON (phát hiện và fix luôn 1 lỗi: video #8 bị thiếu mục "Lời thoại thuần"/"Bảng cảnh AI" do bỏ dở lúc bị ngắt giữa chừng ở mốc trước).
+2. Build `channels/ai-de-dung/dashboard.html` — trang gốc (không sao chép autoscene.app), thiết kế theo mô hình sản xuất mà cả 2 bên đều dùng: danh sách 8 video, mỗi video có nút copy "Lời thoại thuần" và nút copy "tất cả prompt cảnh AI" (mỗi dòng 1 lệnh — đúng định dạng ô nhập của AutoScene). Publish làm Artifact: https://claude.ai/artifact/QYNAmM9rAe6LZBw7WfTZRF, gửi file cho người dùng qua SendUserFile.
+3. Viết lại `channels/ai-de-dung/strategy/05-quy-trinh-lam-video-nhanh.md` thành 2 Option rõ ràng: **A = AutoScene** (đã có tài khoản, dùng ngay, không cần setup) và **B = pipeline/ tự host** (dự phòng, cần `GEMINI_API_KEY`). Cập nhật `pipeline/README.md` trỏ ngược về Option A ở đầu file.
+4. Cập nhật 4 bước hiển thị trên dashboard để phản ánh đúng: bước 2-3 (chia cảnh, lồng tiếng) đã "Dán vào AutoScene" được ngay (không còn "blocked"), bước 4 (đăng) ghi rõ cần người dùng tự kết nối kênh thật ở *Quản lý kênh*.
+
+**Kết quả:** người dùng có đường đi nhanh nhất tới video thật — không cần chờ API key nào — nhờ tài khoản AutoScene có sẵn. Pipeline Gemini API tự host (mốc #4) vẫn giữ nguyên làm phương án B.
+
+---
 
 ### Mốc #4 — 2026-09-25 — Zero-filming + pipeline automation thật (Gemini API)
 **Người dùng yêu cầu (2 tin nhắn liên tiếp):** không có thời gian quay, hỏi có dùng được ảnh-chuyển-video/text-to-video không; và nhấn mạnh đã làm thì phải chất lượng, ra kết quả tốt nhất, kể cả tốn phí dùng "flow của Google" cũng được; cũng hỏi có nên làm 1 quy trình HTML không.
