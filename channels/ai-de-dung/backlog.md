@@ -15,14 +15,14 @@ Trụ cột: **C** = Công cụ & Hướng dẫn · **K** = Case study & Kiếm 
 | 6 | Dùng AI viết CV xin việc trong 10 phút | C | Đã có kịch bản | [scripts/06-ai-viet-cv.md](./scripts/06-ai-viet-cv.md) |
 | 7 | Dùng AI viết email chuyên nghiệp chỉ trong 1 câu lệnh | C | Đã có kịch bản | [scripts/07-ai-viet-email.md](./scripts/07-ai-viet-email.md) |
 | 8 | Cách dùng Gemini miễn phí trên điện thoại | C | Đã có kịch bản | [scripts/08-gemini-tren-dien-thoai.md](./scripts/08-gemini-tren-dien-thoai.md) |
-| 9 | AI dịch thuật chính xác hơn Google Translate? | S | Chưa làm | — |
-| 10 | Dùng ChatGPT làm bài tập nhanh mà không bị phát hiện đạo văn | C | Chưa làm | — |
-| 11 | 3 công cụ AI giúp sinh viên làm luận văn nhanh hơn | C | Chưa làm | — |
-| 12 | Dùng AI tạo slide thuyết trình trong 5 phút | C | Chưa làm | — |
-| 13 | AI tóm tắt file PDF/Word dài trong 1 nốt nhạc | C | Chưa làm | — |
-| 14 | Cách dùng Canva AI tạo poster đẹp không cần biết thiết kế | C | Chưa làm | — |
-| 15 | AI tạo ảnh miễn phí — so sánh Midjourney vs các công cụ free | S | Chưa làm | — |
-| 16 | Dùng Suno AI tạo nhạc miễn phí trong 2 phút | C | Chưa làm | — |
+| 9 | AI dịch thuật chính xác hơn Google Translate? | S | Đã có kịch bản | [scripts/09-ai-dich-thuat.md](./scripts/09-ai-dich-thuat.md) |
+| 10 | Dùng ChatGPT hỗ trợ học tập & viết bài đúng cách (không lo bị nhắc đạo văn) | C | Đã có kịch bản | [scripts/10-ai-ho-tro-hoc-tap.md](./scripts/10-ai-ho-tro-hoc-tap.md) |
+| 11 | 3 công cụ AI giúp sinh viên làm luận văn nhanh hơn | C | Đã có kịch bản | [scripts/11-cong-cu-lam-luan-van.md](./scripts/11-cong-cu-lam-luan-van.md) |
+| 12 | Dùng AI tạo slide thuyết trình trong 5 phút | C | Đã có kịch bản | [scripts/12-ai-tao-slide.md](./scripts/12-ai-tao-slide.md) |
+| 13 | AI tóm tắt file PDF/Word dài trong 1 nốt nhạc | C | Đã có kịch bản | [scripts/13-ai-tom-tat-pdf.md](./scripts/13-ai-tom-tat-pdf.md) |
+| 14 | Cách dùng Canva AI tạo poster đẹp không cần biết thiết kế | C | Đã có kịch bản | [scripts/14-canva-ai-poster.md](./scripts/14-canva-ai-poster.md) |
+| 15 | AI tạo ảnh miễn phí — so sánh Midjourney vs các công cụ free | S | Đã có kịch bản | [scripts/15-so-sanh-ai-tao-anh.md](./scripts/15-so-sanh-ai-tao-anh.md) |
+| 16 | Dùng Suno AI tạo nhạc miễn phí trong 2 phút | C | Đã có kịch bản | [scripts/16-suno-ai-tao-nhac.md](./scripts/16-suno-ai-tao-nhac.md) |
 | 17 | Cách dùng AI viết content bán hàng trên Facebook/TikTok | K | Chưa làm | — |
 | 18 | AI giúp trả lời tin nhắn khách hàng tự động | K | Chưa làm | — |
 | 19 | Kiếm tiền online với AI — sự thật và ảo tưởng | K | Chưa làm | — |
