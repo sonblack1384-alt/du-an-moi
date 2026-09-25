@@ -38,6 +38,37 @@
 **[5:45-6:00] Kết quả + CTA**
 > "Cài ngay hôm nay, để điện thoại của bạn thành trợ lý AI di động miễn phí. Cảm ơn đã theo dõi 8 video đầu tiên — comment cho mình biết bạn muốn xem chủ đề nào tiếp theo."
 
+## Lời thoại thuần (dán vào tool giọng đọc AI / text-to-video)
+> Không cần mở máy tính, chỉ cần điện thoại là bạn đã có một trợ lý AI miễn phí ngay trong túi — video này chỉ cách cài và dùng Gemini trong 6 phút.
+>
+> Gemini là AI của Google, dùng miễn phí, tích hợp thẳng vào điện thoại Android và có app riêng cho iPhone. Mình sẽ chỉ cách cài đặt và 3 việc nên thử ngay.
+>
+> Trên Android, Gemini có thể đã cài sẵn hoặc tải từ Play Store. Trên iPhone, tải app Gemini từ App Store. Đăng nhập bằng tài khoản Google có sẵn, không cần tạo mới.
+>
+> Giao diện rất đơn giản: một ô để gõ câu hỏi, một nút micro để nói thay vì gõ, và một nút camera để hỏi bằng hình ảnh.
+>
+> Thử ngay việc đầu tiên: hỏi bằng giọng nói khi đang di chuyển. Ví dụ, nhờ Gemini nhắc 3 việc cần làm chiều nay dựa trên lịch bạn đọc ra.
+>
+> Việc thứ hai, rất mạnh trên điện thoại: chụp ảnh hỏi AI. Chụp một hoá đơn, thực đơn, hay biển hiệu tiếng nước ngoài, rồi hỏi AI dịch hoặc giải thích ngay lập tức.
+>
+> Việc thứ ba: dùng làm trợ lý nhanh khi rảnh tay. Ví dụ đang nấu ăn, chỉ cần hỏi bằng giọng nói để xin gợi ý chế biến với nguyên liệu đang có.
+>
+> So với dùng trên máy tính: điện thoại tiện hơn hẳn cho việc hỏi nhanh, dùng giọng nói, chụp ảnh — máy tính vẫn tốt hơn khi cần viết nội dung dài.
+>
+> Cài ngay hôm nay, để điện thoại của bạn thành trợ lý AI di động miễn phí. Cảm ơn đã theo dõi 8 video đầu tiên — để lại bình luận cho mình biết bạn muốn xem chủ đề nào tiếp theo.
+
+## Bảng cảnh AI
+| Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |
+|---|---|---|---|
+| 0:00-0:10 | Điện thoại phát sáng trong túi/tay, cảm giác tiện lợi | AI text-to-video | "Close-up of a smartphone glowing softly in a hand, warm cozy lighting, minimal modern aesthetic" |
+| 0:25-1:30 | Ảnh chụp màn hình điện thoại: cài đặt Gemini từ Play Store/App Store | Ảnh chụp màn hình | Chụp màn hình điện thoại (không phải quay), 1-2 tấm |
+| 1:30-2:15 | Ảnh chụp màn hình giao diện Gemini cơ bản | Ảnh chụp màn hình | Chụp giao diện chính |
+| 2:15-3:15 | Ảnh chụp màn hình demo hỏi bằng giọng nói | Ảnh chụp màn hình | Chụp lúc đang dùng micro + kết quả trả lời |
+| 3:15-4:15 | Ảnh chụp màn hình demo chụp ảnh hỏi AI (hoá đơn/thực đơn) | Ảnh chụp màn hình | Chụp ảnh input + kết quả AI dịch/giải thích |
+| 4:15-5:15 | Ảnh chụp màn hình demo hỏi rảnh tay khi nấu ăn | Ảnh chụp màn hình | Chụp câu hỏi giọng nói + gợi ý món ăn |
+| 5:15-5:45 | Đồ hoạ so sánh nhanh điện thoại vs máy tính | Ảnh chụp màn hình (dựng trong CapCut/Canva) | Dựng bảng so sánh ngắn trực tiếp trong tool dựng |
+| 5:45-6:00 | Cảnh kết, chữ hỏi ý kiến khán giả | AI text-to-video | "Clean minimal outro background, soft moving gradient, comment bubble icon appearing" |
+
 ## Ghi chú sản xuất
-- Quay bằng chính điện thoại thật (screen recording di động) để tăng độ chân thực.
+- Ảnh chụp màn hình lấy trực tiếp từ điện thoại thật (chụp, không quay) để tăng độ chân thực.
 - Đây là video kết thúc chuỗi 8 video đầu — CTA cuối đổi thành hỏi ý kiến khán giả thay vì dẫn sang video cụ thể, để thu thập dữ liệu cho việc lên kịch bản tuần 5+ (xem `../content-calendar.md`).
