@@ -25,7 +25,7 @@
 - Chưa có kênh thứ 2 (chủ đề khác).
 
 ### Câu hỏi đang chờ người dùng quyết định
-Không có câu hỏi chặn tiến độ. Việc tiếp theo là của người dùng (tự thao tác trên AutoScene bằng dashboard, hoặc tự thêm `GEMINI_API_KEY` nếu muốn dùng Option B) — cả hai đều là thao tác ngoài chat, không phải quyết định cần trả lời ở đây.
+**Đang chờ người dùng thêm `GEMINI_API_KEY` qua Environment Secrets (không qua chat).** Người dùng từng dán 1 key trực tiếp vào chat — hệ thống tự chặn lệnh Bash có chứa key đó ("Credential Leakage"), không chạy được. Đã báo người dùng: coi key đó là lộ, cần thu hồi/tạo key mới tại Google AI Studio và thêm qua menu môi trường cloud → Edit → Environment Secrets. Chưa test được API thật vì lý do này — phiên sau nếu thấy `GEMINI_API_KEY` đã có trong env, thử ngay `generate_voice.py`/`generate_scenes.py --only 1` cho video #1.
 
 ### Việc tiếp theo nên làm (theo thứ tự ưu tiên)
 1. **Người dùng:** mở dashboard, làm thử trọn 1 video (ví dụ video #1) qua Option A (AutoScene) để xác nhận luồng chạy mượt — copy lời thoại vào Tạo giọng đọc, copy prompt vào Tạo video, chụp 2 ảnh màn hình còn thiếu, ráp bằng StoryFlow.
