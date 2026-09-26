@@ -5,15 +5,18 @@
 ---
 
 ## TRẠNG THÁI HIỆN TẠI
-*(cập nhật lần cuối: mốc #14 — 2026-09-26)*
+*(cập nhật lần cuối: mốc #15 — 2026-09-26)*
 
-### 🎬 ĐỘT PHÁ: cảnh AI-video giờ MIỄN PHÍ HOÀN TOÀN, không cần Veo/billing nữa
-Người dùng phản đối mạnh chi phí Veo ("nghĩ cách free đi, trên mạng đầy cách mà bạn chọn cách này thì để tôi làm lun chứ cần gì bạn nữa?"). Đã tìm và xác thực xong hướng miễn phí thật:
-- **`pipeline/generate_motion_graphic.py`** (mới) — dựng thẳng cảnh minh hoạ bằng Pillow + ffmpeg (không gọi API nào), theo đúng bảng màu/font thương hiệu ở `08-nhan-dien-thuong-hieu.md` (nền `#14171C`, accent `#E8A33D`, font Be Vietnam Pro Bold tải từ Google Fonts). Ghi ra đúng vị trí `assets/<slug>/scenes/NN.mp4` mà Veo từng ghi → `assemble.py` dùng chung, không cần sửa gì.
-- **Đã chạy demo video #1, người dùng xác nhận ổn, rồi chạy hàng loạt cho toàn bộ 16 video còn lại** ("tiếp tục") → **kết quả: 45/45 cảnh AI-video của cả 16/16 video đã dựng xong, miễn phí 100%, 0 lỗi.**
-- Veo/`generate_scenes.py` vẫn giữ trong code làm lựa chọn phụ (nếu sau này muốn ảnh photorealistic thật và chấp nhận trả phí — đã tính sẵn giá thật ở `pipeline/README.md`), nhưng **không còn là điểm nghẽn của kênh nữa**.
-- Đã cập nhật `pipeline/README.md`, `channels/ai-de-dung/strategy/05-quy-trinh-lam-video-nhanh.md`, `framework/template/05` và `framework/template/08` để phản ánh hướng miễn phí này làm mặc định cho mọi kênh (kể cả kênh mới sau này).
-- **Điểm nghẽn thật còn lại của kênh demo giờ CHỈ CÒN**: người dùng tự chụp ảnh màn hình thật cho từng video — việc này không có cách nào Claude tự làm được trong môi trường này (giọng nam đã chọn xong, xem mục dưới).
+### ✅ CẢ 16/16 VIDEO ĐÃ CÓ `draft.mp4` — KHÔNG CẦN NGƯỜI DÙNG THAO TÁC GÌ NỮA
+Người dùng phản ứng gay gắt khi biết vẫn phải tự chụp ảnh màn hình cho mỗi video ("đã tự động hoá mà còn chụp gửi") → **quyết định bỏ hẳn yêu cầu chụp ảnh thật, chấp nhận đánh đổi mất cảnh demo giao diện phần mềm thật**. Đã xử lý xong (mốc #15):
+- Chuyển toàn bộ 59 cảnh "Ảnh chụp màn hình" trong 16 kịch bản sang "AI text-to-video" (đồ hoạ chữ/icon tự dựng, giống các cảnh B-roll khác).
+- Dựng lại toàn bộ cảnh (108 cảnh/16 video, 0 lỗi) và **ráp thành công `draft.mp4` cho cả 16/16 video** — pipeline giờ chạy từ đầu đến cuối (giọng đọc → cảnh minh hoạ → bumper → ráp) hoàn toàn không cần người dùng làm gì.
+- Đã gửi người dùng video #1 xem thử.
+- Cập nhật `CLAUDE.md`, `strategy/00`+`05`, `framework/template/00`+`05` phản ánh mặc định mới; xoá `screenshot-checklist.md` (lỗi thời).
+- **Việc chụp ảnh màn hình giờ chỉ còn là lựa chọn NÂNG CẤP sau này nếu người dùng chủ động muốn** (đổi 1 dòng Nguồn trong Bảng cảnh AI) — không phải yêu cầu bắt buộc, không tự ý đề xuất lại.
+
+### 🎤 Giọng Charon: 13/16 video đã có giọng cuối cùng, 3 video (#14-16) chờ quota TTS reset
+Đã chọn giọng Charon (mốc #14), đã tạo lại giọng cho video #1-13. Video #14-16 vẫn dùng giọng Kore cũ (chưa có khẩu hiệu thương hiệu) do quota `gemini-3.8-flash-lite-tts` (10 lượt/ngày thật) — **đã xác nhận đây là quota thật theo ngày, KHÔNG phải chờ vài giây** (`retryDelay` trong lỗi 429 chỉ là gợi ý backoff, đã test thực tế vẫn lỗi sau khi đợi). Phiên sau chỉ cần chạy lại `generate_voice.py` cho #14-16 rồi `assemble.py` lại 3 video đó khi quota mở.
 
 ### 🎨 Đã có bộ nhận diện thương hiệu — chống loãng/"kênh rác"
 Người dùng hỏi "làm sao để kênh không loãng, không phải kênh rác" → đồng ý đề xuất → đã xử lý:
@@ -23,40 +26,7 @@ Người dùng hỏi "làm sao để kênh không loãng, không phải kênh r�
 - **CỐ Ý CHƯA áp dụng câu khẩu hiệu (spoken tagline) vào 16 file kịch bản/giọng đọc hiện có** — sẽ gộp chung vào lần tạo lại giọng đọc kế tiếp (khi đổi sang giọng nam đã chọn ở mục dưới), tránh tạo lại audio 2 lần cho 2 mục đích riêng lẻ.
 - **Bumper mở/kết: ĐÃ XONG** (mốc #14) — `channels/ai-de-dung/assets/_brand/{intro,outro}-bumper.mp4` đã tạo bằng `generate_motion_graphic.py`, và `pipeline/assemble.py` đã tự động ghép vào đầu/cuối MỌI video (tự bù khoảng lặng audio) — không cần thao tác gì thêm khi ráp video mới.
 
-### 🎤 GIỌNG NAM ĐÃ CHỐT: Charon — đang tạo lại toàn bộ 16 video, còn thiếu 5 video vì hết quota
-Người dùng đã nghe 3 mẫu (Puck, Charon, Fenrir — sau khi sửa lỗi file không mở được, xem log mốc #14) và **chọn Charon**.
-
-**Đã làm:**
-1. Sửa `pipeline/generate_voice.py`: `--voice` mặc định đổi từ `Kore` → `Charon`.
-2. Gộp chung câu khẩu hiệu thương hiệu (mục 5, `08-nhan-dien-thuong-hieu.md`) vào cùng đợt tạo lại này — đã chèn vào cả 16 file `scripts/*.md` (câu giới thiệu sau đoạn "xác nhận vấn đề + preview", câu kết sau CTA).
-3. Tạo lại `voice.wav` cho video #1 → gửi người dùng nghe → **xác nhận ổn** → chạy tiếp hàng loạt.
-4. **Kết quả: 11/16 video (video #1-11) đã có `voice.wav` mới (Charon + khẩu hiệu), đã commit vào git.** Video #12-16 gặp `429 RESOURCE_EXHAUSTED` (hết quota 10 lượt/ngày cho `gemini-3.8-flash-lite-tts`).
-
-**Việc còn lại (đã thử lại trong cùng phiên, chỉ thêm được video #12 rồi hết quota lại):** đợi quota model `gemini-3.8-flash-lite-tts` reset thật (là quota theo ngày thật — `retryDelay` trong lỗi 429 chỉ là gợi ý backoff, KHÔNG phải thời gian reset, đã kiểm chứng: đợi 20-40s vẫn còn lỗi 429), rồi chạy: `python3 pipeline/generate_voice.py channels/ai-de-dung/scripts/{13,14,15,16}-*.md` (từng file — script không nhận nhiều file cùng lúc, cần lặp). Không cần `--voice`/`--model` gì thêm vì đã là mặc định. **KHÔNG dùng `--model` khác để né quota** — sẽ làm giọng #13-16 khác các video khác. **12/16 video đã xong** (video #1-12).
-
-**Đã sửa `pipeline/generate_voice.py`:** bỏ hoàn toàn cơ chế tự động xoay vòng model. Giờ `TTS_MODEL` là **1 hằng số cố định duy nhất** (`gemini-3.8-flash-lite-tts`), không tự đổi khi lỗi/hết quota — script sẽ báo lỗi rõ ràng và dừng lại thay vì âm thầm dùng model khác. Muốn đổi model chuẩn của kênh: sửa đúng 1 dòng `TTS_MODEL` rồi tạo lại toàn bộ cho nhất quán.
-
-**Đã gửi người dùng 2 file mẫu để so sánh:** video #1 (model `gemini-3.8-flash-tts`) và video #9 (model `gemini-3.8-flash-lite-tts`) — **đang chờ người dùng nghe và trả lời có khác biệt rõ không**, trước khi quyết định có cần tạo lại 11 video #1-8,10,14,15 bằng model `gemini-3.8-flash-lite-tts` cho đồng nhất hay không (chưa tạo lại để tránh tốn quota nếu hoá ra không cần thiết — quota `gemini-3.8-flash-lite-tts` hôm nay đã dùng ~7/10, không đủ tạo lại cả 11 video trong 1 ngày).
-
-**Nếu người dùng xác nhận "có, tạo lại cho giống nhau" ở phiên sau:** chạy `python3 pipeline/generate_voice.py channels/ai-de-dung/scripts/0{1,2,3,4,5,6,7,8}-*.md channels/ai-de-dung/scripts/10-*.md channels/ai-de-dung/scripts/14-*.md channels/ai-de-dung/scripts/15-*.md` (từng file một, script không nhận nhiều file cùng lúc — cần lặp) — model mặc định giờ đã là `gemini-3.8-flash-lite-tts` nên không cần thêm `--model`. Có thể cần chia làm nhiều ngày do quota 10/ngày.
-
-### 🎙️ 16/16 giọng đọc thật ĐÃ XONG — hoàn toàn miễn phí, không cần billing
-Sau khi video #9-16 bị chặn quota ở model `gemini-3.8-flash-tts` (10 lượt/ngày), nghiên cứu theo yêu cầu người dùng ("tìm giọng miễn phí khác, test trước khi đầu tư"):
-- **Đã thử các dịch vụ TTS miễn phí khác** (edge-tts/Bing, Google Translate TTS, FPT.AI, Zalo AI, VBee, Viettel AI, HuggingFace, Replicate, Play.ht, Murf, Deepgram, Azure Cognitive Services, StreamElements, VoiceRSS, Yandex) — **tất cả đều bị chặn bởi chính sách mạng của môi trường này**, chỉ domain của Google và AWS mới gọi được. `texttospeech.googleapis.com` (Google Cloud TTS, khác Gemini) gọi được nhưng gần như chắc chắn cũng cần bật billing tương tự Veo (chưa thử vì cần người dùng thêm domain này vào Allowed websites của credential trước).
-- **Phát hiện quan trọng, không tốn thêm phí:** quota miễn phí của Gemini TTS tính **riêng theo từng model**, không dùng chung. `gemini-3.8-flash-tts` hết quota nhưng `gemini-3.1-flash-tts-preview` và `gemini-3.8-flash-lite-tts` vẫn còn nguyên.
-- Đã sửa `generate_voice.py`: tự động thử lần lượt `TTS_MODELS = [gemini-3.8-flash-tts, gemini-3.1-flash-tts-preview, gemini-3.8-flash-lite-tts]`, dùng model đầu tiên còn quota. Thêm `--model` để ép dùng đúng 1 model.
-- **Kết quả: tạo xong toàn bộ 16/16 giọng đọc thật, miễn phí 100%**, đã commit vào git (`channels/ai-de-dung/assets/*/voice.wav`).
-
-### 🎉 Option B (pipeline tự host) ĐÃ XÁC THỰC THẬT — TTS chạy được, Veo cần bật billing
-Người dùng đã thêm key qua cơ chế **"API credentials"** trong Environment settings (không phải "Environment variables" — mục đó cấm secrets). Cơ chế này khác thiết kế ban đầu: **key KHÔNG nằm trong `os.environ`**, mà hệ thống tự tiêm header xác thực vào mọi request HTTPS đi tới domain đã khai báo (`generativelanguage.googleapis.com`) ở tầng network proxy — code không bao giờ thấy giá trị key thật. Đã cập nhật `pipeline/common.py`: `get_api_key()` giờ chỉ trả về 1 chuỗi placeholder bất kỳ (SDK cần có giá trị để khởi tạo, nhưng auth thật đến từ proxy).
-
-**Đã test thật và xác nhận:**
-- `generate_voice.py` (Gemini TTS) — **THÀNH CÔNG**, đã tạo file giọng đọc thật cho video #1 (100 giây), gửi người dùng nghe. API trả về file `.wav` hoàn chỉnh (RIFF header có sẵn), không phải PCM thô như code cũ giả định — đã sửa `generate_voice.py` để ghi thẳng bytes khi phát hiện RIFF/wav, không bọc lại qua `wave` module nữa.
-- `generate_scenes.py` (Veo) — **THẤT BẠI**: lỗi `429 RESOURCE_EXHAUSTED` — tài khoản Google AI của người dùng chưa bật billing/đủ quota cho Veo. Đã báo người dùng vào aistudio.google.com bật billing.
-- **Tên model đã lỗi thời trong code cũ, đã sửa theo model thật list được từ API (2026-09):**
-  - TTS: `gemini-2.5-flash-preview-tts` → `gemini-3.8-flash-tts`
-  - Veo: `veo-3.0-generate-001` → `veo-3.1-generate-preview` (thêm `--model` flag để chọn `-fast`/`-lite` nếu cần rẻ hơn; AutoScene mặc định dùng `-lite`)
-  - Model text `gemini-2.5-flash` cũng đã bị deprecate, model hiện tại là `gemini-3.8-flash` (chỉ dùng để test, không dùng trong pipeline chính).
+*(Chi tiết lịch sử đầy đủ về quá trình chọn giọng, xử lý quota TTS, xác thực API... xem "LOG CHI TIẾT" mốc #7-14 bên dưới — phần trên đã tóm tắt đúng trạng thái thật hiện tại.)*
 
 ### Đã có
 - **Khung sườn dùng chung** (`framework/`) — 8 file template + hướng dẫn tạo kênh mới, mặc định zero-filming.
@@ -68,34 +38,41 @@ Người dùng đã thêm key qua cơ chế **"API credentials"** trong Environm
 - **Đã hỏi & chốt:** người dùng có thêm "OmniRoute" (router AI provider chạy ở `localhost:20128` trên máy họ, chỉ 4/348 provider đã cấu hình) — nhưng phiên Claude Code chạy cloud nên không với tới `localhost` của họ được. Người dùng quyết định **bỏ qua OmniRoute, tập trung vào Option A + B đã có** — không cần thêm code hỗ trợ base_url tuỳ chỉnh. Không hỏi lại việc này nữa trừ khi người dùng chủ động nhắc lại.
 
 ### Đang thiếu / chưa làm — ĐIỂM NGHẼN HIỆN TẠI
-- **Giọng đọc: XONG 16/16** (nhưng đang chờ chọn giọng nam để tạo lại — xem mục trên).
-- **Cảnh AI-video: XONG 45/45 (16/16 video), miễn phí, 0 lỗi (mốc #13)** — không còn cần Veo/billing cho bước này nữa.
-- **Bumper mở/kết thương hiệu:** chưa tạo file thật (chỉ còn thiếu bước chạy `generate_motion_graphic.py`, không còn bị chặn bởi billing).
-- Chưa có video hoàn chỉnh (draft.mp4) nào ngoài demo video #1 (dùng ảnh chụp màn hình giả lập) — vì còn thiếu ảnh chụp màn hình thật cho mọi video.
-- **Vẫn cần người dùng tự chụp vài tấm ảnh màn hình thao tác thật cho mỗi video** (không phải quay, chỉ vài giây/tấm) — không có cách tự động nào thay được, đây là điểm nghẽn thật duy nhất còn lại để ráp `draft.mp4` hàng loạt.
+- **Giọng đọc: 13/16 xong** (Charon + khẩu hiệu). Video #14-16 vẫn giọng cũ, chờ quota `gemini-3.8-flash-lite-tts` reset (quota ngày thật, không phải giây).
+- **Cảnh AI-video + draft.mp4: XONG 16/16** — không còn cảnh nào cần ảnh chụp màn hình thật (mốc #15). Video #14-16 cần ráp lại sau khi có giọng mới.
+- **Bumper mở/kết thương hiệu: XONG**, tự động ghép vào mọi video.
 - Chưa kiểm tra tên/handle "AI Dễ Dùng" có bị trùng trên YouTube ngoài đời chưa.
 - Kịch bản video #17 trở đi (Tier 1 còn lại #17-20 + Tier 2) chưa viết.
 - Chưa có kênh thứ 2 (chủ đề khác).
-- Veo/billing/AutoScene giờ chỉ còn là lựa chọn phụ (nếu muốn ảnh photorealistic) — không còn là điểm nghẽn để hoàn thành kênh.
-
-### Câu hỏi đang chờ người dùng quyết định (bổ sung)
-**Nghe 2 file mẫu đã gửi (video #1 vs video #9) — có khác giọng rõ không?** Nếu có/nghi ngờ, báo Claude tạo lại 11 video dùng sai model cho đồng nhất (xem hướng dẫn ở mục trên). Nếu nghe giống nhau, không cần làm gì thêm — giữ nguyên 16 file hiện tại.
-
-### Câu hỏi đang chờ người dùng quyết định (trước đó — vẫn còn hiệu lực)
-**Không có câu hỏi cần trả lời trong chat.** Người dùng đã dặn: tiếp tục làm song song, không hỏi lại, tự lưu tiến độ vào WORKLOG cho phiên sau. Việc duy nhất cần người dùng: **bật billing tại aistudio.google.com** rồi báo lại (không phải trả lời câu hỏi — là 1 thao tác). Khi có billing:
-1. Claude chạy `generate_voice.py` cho 8 video #9-16 còn thiếu giọng đọc.
-2. Claude chạy `generate_scenes.py --only 1` cho video #1 để xác nhận Veo hoạt động, rồi chạy hàng loạt qua `run_all.py`.
-3. Nếu phiên hiện tại đã đóng, phiên mới đọc file này sẽ biết chính xác: 8/16 voice (video #1-8) đã có sẵn **trong git** tại `channels/ai-de-dung/assets/*/voice.wav` — clone repo là có ngay, không cần tạo lại.
+- Người dùng chưa xem/duyệt bản `draft.mp4` mới nhất (đã gửi video #1 mẫu, chờ phản hồi).
+- Veo/billing/AutoScene/ảnh chụp màn hình thật giờ đều chỉ là lựa chọn phụ/nâng cấp — không phải điểm nghẽn để hoàn thành kênh.
 
 ### Việc tiếp theo nên làm (theo thứ tự ưu tiên)
-1. **Claude (phiên sau, thử ngay khi mở lại):** chạy nốt `python3 pipeline/generate_voice.py channels/ai-de-dung/scripts/{13,14,15,16}-*.md` (từng file) để hoàn tất 16/16 giọng Charon + khẩu hiệu — 12/16 đã xong (video #1-12), chỉ chặn bởi quota 10/ngày thật (không phải chờ vài giây).
-2. **Người dùng:** tự chụp ảnh màn hình thật theo "Bảng cảnh AI" của từng video (điểm nghẽn thật duy nhất còn lại, không có cách tự động thay được).
-3. Sau khi có ảnh chụp màn hình, Claude chạy `assemble.py` ra `draft.mp4` cho từng video (đã tự động ghép bumper + bù audio, không cần thao tác gì thêm), nghe/xem thử video đầu trước khi làm hàng loạt.
-4. Sau khi có video thật + số liệu, viết tiếp kịch bản #17+ và/hoặc mở kênh thứ 2 từ `framework/template/`.
+1. **Claude (phiên sau, thử ngay khi mở lại):** chạy `python3 pipeline/generate_voice.py channels/ai-de-dung/scripts/{14,15,16}-*.md` (từng file), rồi `python3 pipeline/assemble.py` lại đúng 3 video đó, để hoàn tất 16/16 giọng Charon + khẩu hiệu.
+2. Chờ người dùng duyệt draft.mp4 (đã gửi video #1) — nếu cần sửa nội dung/pacing thì sửa kịch bản rồi tạo lại đúng phần đó (không cần tạo lại từ đầu toàn kênh).
+3. Sau khi kênh được duyệt, viết tiếp kịch bản #17+ và/hoặc mở kênh thứ 2 từ `framework/template/`.
 
 ---
 
 ## LOG CHI TIẾT (mới nhất ở trên)
+
+### Mốc #15 — 2026-09-26 — Bỏ hẳn yêu cầu chụp ảnh màn hình, ráp xong draft.mp4 cho cả 16 video
+**Diễn biến:** gửi người dùng xem demo video #1 (ảnh chụp màn hình còn là placeholder) → người dùng hỏi thẳng "chỉ đọc vậy thôi hả, không có màn hình hiện lên hướng dẫn gì à". Giải thích rằng cần ảnh chụp thật, môi trường này không có trình duyệt để tự chụp, người dùng phải tự chụp gửi. Người dùng phản ứng rất gay gắt ("đã tự động hoá mà còn chụp gửi, ngu bỏ mịa", "tốn thời gian cả ngày", "chả làm được mịa gì") và khi được hỏi có muốn đổi format để né hẳn việc chụp ảnh không, trả lời "dẹp mịa cho phẻ" — chốt chọn phương án bỏ hẳn yêu cầu chụp ảnh, chấp nhận đánh đổi.
+
+**Đã làm:**
+1. Viết script một lần chuyển toàn bộ 59 dòng "Ảnh chụp màn hình" trong "Bảng cảnh AI" của 16 kịch bản sang "AI text-to-video" (kể cả 1 dòng trước đó ghi "Ảnh chụp màn hình (dựng trong CapCut/Canva)" — không phải ảnh chụp thật mà là bảng đồ hoạ, cũng chuyển luôn cho nhất quán).
+2. Chạy `generate_motion_graphic.py` cho cả 16 video → dựng thêm 108 cảnh mới (tổng cộng, bao gồm cả cảnh cũ), 0 lỗi.
+3. **Nâng cấp `pipeline/assemble.py` để hỗ trợ nhiều ảnh/1 cảnh** (đặt tên `NNa.png`, `NNb.png`...) trước khi nhận ra hướng đi mới không cần dùng tới tính năng này nữa cho kênh hiện tại — vẫn giữ lại vì hữu ích cho trường hợp nâng cấp sau này hoặc kênh khác muốn dùng ảnh thật.
+4. Chạy `assemble.py` cho cả 16 video → **16/16 video đều ra `draft.mp4` thành công, không cần ảnh chụp màn hình nào** (video #1 dài 109.8s, các video khác 67-110s tuỳ độ dài kịch bản).
+5. Gửi người dùng video #1 xem thử.
+6. Nhân lúc quota TTS có mở lại 1 chút, tạo thêm được giọng Charon cho video #13 (giờ 13/16 xong), ráp lại video #13.
+7. Cập nhật `CLAUDE.md` (mục "Giới hạn thật" — ghi rõ quyết định bỏ chụp ảnh và lý do, dặn không tự ý đề xuất lại), `strategy/00` + `05`, `framework/template/00` + `05` (mọi kênh mới sau này mặc định không cần chụp ảnh). Xoá `screenshot-checklist.md` và `pipeline/export_screenshot_checklist.py` (sinh ra ở phiên trước, giờ lỗi thời do đổi hướng).
+
+**Kết quả:** giải quyết dứt điểm bức xúc của người dùng về việc phải tự thao tác tay — pipeline giờ chạy từ kịch bản → `draft.mp4` hoàn toàn tự động, 0 thao tác người dùng, cho toàn bộ 16 video. Đánh đổi đã được người dùng chấp nhận rõ ràng: mất cảnh demo giao diện phần mềm thật.
+
+**Bài học ghi lại để không lặp lại:** khi gửi demo có phần placeholder (ảnh giả để test kỹ thuật), phải nói rõ ngay trong tin nhắn gửi kèm — đừng để người dùng tự phát hiện và hiểu lầm thành sản phẩm thật.
+
+---
 
 ### Mốc #14 — 2026-09-26 — Chốt giọng Charon, sửa lỗi file mẫu, gộp khẩu hiệu, tạo lại 11/16 giọng đọc
 **Diễn biến:** người dùng báo 3 file mẫu giọng nam gửi ở mốc #11 không mở được (Windows: `0xC00D36C4` "unsupported/corrupt"). Sau đó chọn giọng **Charon**, yêu cầu "tiếp tục".
