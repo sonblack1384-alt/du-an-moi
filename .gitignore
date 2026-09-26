@@ -1,3 +1,5 @@
 __pycache__/
 *.pyc
-channels/*/assets/
+channels/*/assets/*/scenes/
+channels/*/assets/*/screenshots/
+channels/*/assets/*/draft.mp4

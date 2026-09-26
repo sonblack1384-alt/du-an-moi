@@ -5,7 +5,10 @@
 ---
 
 ## TRẠNG THÁI HIỆN TẠI
-*(cập nhật lần cuối: mốc #7 — 2026-09-26)*
+*(cập nhật lần cuối: mốc #8 — 2026-09-26)*
+
+### 🎙️ 8/16 giọng đọc thật đã tạo xong — 8 video còn lại chờ bật billing
+Chạy `generate_voice.py` hàng loạt cho video #2-16 (video #1 đã có từ trước): **video #1-8 thành công** (file `.wav` thật trong `channels/ai-de-dung/assets/<slug>/voice.wav`, **đã commit vào git** — tốn phí/quota thật để tạo nên giữ lại thay vì để mất khi container bị huỷ; đã sửa `.gitignore` để chỉ loại `scenes/`, `screenshots/`, `draft.mp4` — những thứ tạo lại được rẻ/miễn phí, giữ lại `voice.wav` vì tốn quota/tiền thật), **video #9-16 thất bại** vì lỗi `429 RESOURCE_EXHAUSTED — GenerateRequestsPerDayPerProjectPerModel-FreeTier, quotaValue: 10` — tài khoản đang ở **gói miễn phí hoàn toàn**, giới hạn 10 lần gọi/ngày cho model `gemini-3.8-flash-tts`, đã dùng hết (tính cả vài lần test trước đó). Xác nhận thêm: đây không phải vấn đề riêng của Veo — **cả tài khoản chưa bật billing**.
 
 ### 🎉 Option B (pipeline tự host) ĐÃ XÁC THỰC THẬT — TTS chạy được, Veo cần bật billing
 Người dùng đã thêm key qua cơ chế **"API credentials"** trong Environment settings (không phải "Environment variables" — mục đó cấm secrets). Cơ chế này khác thiết kế ban đầu: **key KHÔNG nằm trong `os.environ`**, mà hệ thống tự tiêm header xác thực vào mọi request HTTPS đi tới domain đã khai báo (`generativelanguage.googleapis.com`) ở tầng network proxy — code không bao giờ thấy giá trị key thật. Đã cập nhật `pipeline/common.py`: `get_api_key()` giờ chỉ trả về 1 chuỗi placeholder bất kỳ (SDK cần có giá trị để khởi tạo, nhưng auth thật đến từ proxy).
@@ -28,16 +31,20 @@ Người dùng đã thêm key qua cơ chế **"API credentials"** trong Environm
 - **Đã hỏi & chốt:** người dùng có thêm "OmniRoute" (router AI provider chạy ở `localhost:20128` trên máy họ, chỉ 4/348 provider đã cấu hình) — nhưng phiên Claude Code chạy cloud nên không với tới `localhost` của họ được. Người dùng quyết định **bỏ qua OmniRoute, tập trung vào Option A + B đã có** — không cần thêm code hỗ trợ base_url tuỳ chỉnh. Không hỏi lại việc này nữa trừ khi người dùng chủ động nhắc lại.
 
 ### Đang thiếu / chưa làm — ĐIỂM NGHẼN HIỆN TẠI
-- **Cần người dùng bật billing cho Veo tại aistudio.google.com** — đây là chặn duy nhất còn lại để Option B chạy trọn vẹn. TTS đã chạy tốt không cần thêm gì.
-- Chưa có video hoàn chỉnh (draft.mp4) nào — cần Veo hoạt động trước (hoặc dùng ảnh chụp màn hình cho toàn bộ cảnh, bỏ qua AI-video, nhưng sẽ kém sinh động hơn).
+- **Cần người dùng bật billing tại aistudio.google.com** (Billing/Plan) — chặn cả Veo (mọi video) lẫn TTS (video #9-16 còn lại). Đây là chặn duy nhất còn lại cho Option B.
+- Giọng đọc thật: 8/16 xong (video #1-8), 8/16 còn lại (#9-16) chờ quota TTS reset hoặc billing bật.
+- Chưa có video hoàn chỉnh (draft.mp4) nào — cần Veo hoạt động trước.
 - Vẫn cần người dùng tự chụp vài tấm ảnh màn hình thao tác thật cho mỗi video (không phải quay, chỉ vài giây/tấm).
 - Chưa kiểm tra tên/handle "AI Dễ Dùng" có bị trùng trên YouTube ngoài đời chưa.
 - Kịch bản video #17 trở đi (Tier 1 còn lại #17-20 + Tier 2) chưa viết.
 - Chưa có kênh thứ 2 (chủ đề khác).
-- Option A (AutoScene) người dùng chưa báo lại đã thử hay chưa — có thể vẫn là đường thay thế nếu Veo qua Gemini API tiếp tục vướng billing.
+- Option A (AutoScene) người dùng chưa báo lại đã thử hay chưa — vẫn là đường thay thế nếu billing Google AI tiếp tục vướng.
 
 ### Câu hỏi đang chờ người dùng quyết định
-**Đang chờ người dùng bật billing cho Veo** (aistudio.google.com → Billing/Plan) rồi báo lại. Sau đó Claude chạy lại `generate_scenes.py --only 1` cho video #1 để xác nhận, rồi chạy `run_all.py` hàng loạt cho cả 16 video. Trong lúc chờ, Claude có thể tự tạo trước toàn bộ giọng đọc (TTS) cho 16 video vì phần đó đã chạy tốt — hỏi người dùng có muốn vậy không trước khi tốn thêm phí TTS cho 15 video còn lại.
+**Không có câu hỏi cần trả lời trong chat.** Người dùng đã dặn: tiếp tục làm song song, không hỏi lại, tự lưu tiến độ vào WORKLOG cho phiên sau. Việc duy nhất cần người dùng: **bật billing tại aistudio.google.com** rồi báo lại (không phải trả lời câu hỏi — là 1 thao tác). Khi có billing:
+1. Claude chạy `generate_voice.py` cho 8 video #9-16 còn thiếu giọng đọc.
+2. Claude chạy `generate_scenes.py --only 1` cho video #1 để xác nhận Veo hoạt động, rồi chạy hàng loạt qua `run_all.py`.
+3. Nếu phiên hiện tại đã đóng, phiên mới đọc file này sẽ biết chính xác: 8/16 voice (video #1-8) đã có sẵn **trong git** tại `channels/ai-de-dung/assets/*/voice.wav` — clone repo là có ngay, không cần tạo lại.
 
 ### Việc tiếp theo nên làm (theo thứ tự ưu tiên)
 1. **Người dùng:** bật billing cho Veo tại aistudio.google.com, báo lại Claude.
