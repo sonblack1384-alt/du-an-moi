@@ -5,7 +5,10 @@ Yêu cầu trước khi chạy (xem pipeline/README.md):
   assets/<slug>/voice.wav              <- từ generate_voice.py
   assets/<slug>/scenes/NN.mp4          <- từ generate_scenes.py (các cảnh AI-video)
   assets/<slug>/screenshots/NN.png|jpg <- bạn tự chụp, đặt theo đúng số thứ tự
-                                           cảnh trong "Bảng cảnh AI" của kịch bản
+                                           cảnh trong "Bảng cảnh AI" của kịch bản.
+                                           Cảnh cần NHIỀU ảnh (ghi chú "X tấm"):
+                                           đặt tên NNa.png, NNb.png, NNc.png...
+                                           -- sẽ tự chia đều thời lượng cho từng ảnh.
 
 Độ dài mỗi cảnh được co giãn theo tỉ lệ thời lượng đã ghi trong kịch bản, rồi
 scale lại cho khớp đúng độ dài thật của file giọng đọc (voice.wav) -- vì giọng
@@ -35,12 +38,16 @@ def ffprobe_duration(path: Path) -> float:
     return float(out.stdout.strip())
 
 
-def find_screenshot(screenshots_dir: Path, index: int) -> Path | None:
+def find_screenshots(screenshots_dir: Path, index: int) -> list[Path]:
+    """Tìm ảnh cho cảnh #index -- hỗ trợ NHIỀU ảnh cho 1 cảnh (đặt tên 04a.png,
+    04b.png, 04c.png...) khi "Bảng cảnh AI" yêu cầu nhiều tấm cho cùng 1 khoảng
+    thời gian (ví dụ "chụp từng prompt + kết quả, 3 tấm"). Vẫn nhận tên đơn giản
+    04.png nếu chỉ có 1 ảnh. Trả về danh sách đã sắp xếp, rỗng nếu chưa có ảnh nào.
+    """
+    matches: list[Path] = []
     for ext in IMAGE_EXTS:
-        p = screenshots_dir / f"{index:02d}{ext}"
-        if p.exists():
-            return p
-    return None
+        matches.extend(screenshots_dir.glob(f"{index:02d}*{ext}"))
+    return sorted(matches)
 
 
 def run(cmd: list[str]):
@@ -55,7 +62,7 @@ def build_ai_video_clip(src: Path, duration: float, out_path: Path):
     ])
 
 
-def build_screenshot_clip(src: Path, duration: float, out_path: Path):
+def build_single_screenshot_clip(src: Path, duration: float, out_path: Path):
     frames = max(1, int(duration * FPS))
     run([
         "ffmpeg", "-y", "-loop", "1", "-i", str(src), "-t", f"{duration:.3f}",
@@ -64,6 +71,25 @@ def build_screenshot_clip(src: Path, duration: float, out_path: Path):
         f"zoompan=z='min(zoom+0.0008,1.15)':d={frames}:s={W}x{H}:fps={FPS}",
         "-c:v", "libx264", "-pix_fmt", "yuv420p", str(out_path),
     ])
+
+
+def build_screenshot_clip(srcs: list[Path], duration: float, out_path: Path, tmp: Path, tag: str):
+    """Ráp 1 hoặc nhiều ảnh chụp màn hình thành 1 clip dài `duration` giây --
+    nếu nhiều ảnh, chia đều thời lượng cho từng ảnh (mỗi ảnh 1 đoạn Ken Burns
+    riêng) thay vì chỉ hiện đứng yên 1 ảnh cho cả khoảng thời gian dài.
+    """
+    if len(srcs) == 1:
+        build_single_screenshot_clip(srcs[0], duration, out_path)
+        return
+    per_duration = duration / len(srcs)
+    sub_clips = []
+    for i, src in enumerate(srcs):
+        sub_path = tmp / f"{tag}_sub{i:02d}.mp4"
+        build_single_screenshot_clip(src, per_duration, sub_path)
+        sub_clips.append(sub_path)
+    sub_filelist = tmp / f"{tag}_filelist.txt"
+    sub_filelist.write_text("\n".join(f"file '{p}'" for p in sub_clips), encoding="utf-8")
+    run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(sub_filelist), "-c", "copy", str(out_path)])
 
 
 def build_bumper_clip(src: Path, out_path: Path):
@@ -127,14 +153,15 @@ def main():
                 print(f"  Cảnh #{s.index}: AI-video, {duration:.1f}s <- {src.name}")
                 build_ai_video_clip(src, duration, clip_path)
             else:
-                src = find_screenshot(screenshots_dir, s.index)
-                if src is None:
+                srcs = find_screenshots(screenshots_dir, s.index)
+                if not srcs:
                     sys.exit(
                         f"Thiếu ảnh chụp màn hình cho cảnh #{s.index} trong {screenshots_dir} "
-                        f"(đặt tên {s.index:02d}.png hoặc .jpg). Mô tả cảnh cần chụp: {s.description}"
+                        f"(đặt tên {s.index:02d}.png, hoặc {s.index:02d}a.png/{s.index:02d}b.png... "
+                        f"nếu cần nhiều ảnh cho cảnh này). Mô tả cảnh cần chụp: {s.description}"
                     )
-                print(f"  Cảnh #{s.index}: ảnh chụp màn hình, {duration:.1f}s <- {src.name}")
-                build_screenshot_clip(src, duration, clip_path)
+                print(f"  Cảnh #{s.index}: ảnh chụp màn hình ({len(srcs)} tấm), {duration:.1f}s <- {', '.join(p.name for p in srcs)}")
+                build_screenshot_clip(srcs, duration, clip_path, tmp, f"scene{s.index:02d}")
             clip_paths.append(clip_path)
 
         if outro_bumper.exists():
