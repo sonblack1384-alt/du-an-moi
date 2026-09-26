@@ -43,6 +43,8 @@ số liệu quan trọng (nếu có) và kết luận/đề xuất của tài li
 >
 > Không cần đọc hết, không cần lướt từng trang. Mình chỉ cách dùng Claude tóm tắt file dài chính xác, giữ đúng ý quan trọng.
 >
+> Đây là AI Dễ Dùng — kênh giúp bạn dùng AI thật đơn giản, không cần biết code, không lý thuyết dài dòng.
+>
 > Bước một, tải file PDF hoặc Word lên Claude — chỉ cần kéo thả file vào khung chat, không cần copy dán nội dung.
 >
 > Bước hai, dùng đúng câu lệnh tóm tắt: xin tóm tắt file thành các gạch đầu dòng theo từng phần chính, nêu rõ số liệu quan trọng nếu có, và kết luận hoặc đề xuất của tài liệu. Chỉ vài giây là có ngay bản tóm tắt đầy đủ ý chính.
@@ -54,6 +56,8 @@ số liệu quan trọng (nếu có) và kết luận/đề xuất của tài li
 > Một lưu ý quan trọng: với văn bản pháp lý hoặc hợp đồng quan trọng, luôn đọc lại bản gốc phần liên quan trước khi ký. AI tóm tắt giúp bạn nắm nhanh, không thay thế việc đọc kỹ khi cần đưa ra quyết định quan trọng.
 >
 > Từ giờ không còn ngại nhận file dài nữa. Đăng ký để xem thêm mẹo AI tiết kiệm thời gian mỗi tuần.
+>
+> AI Dễ Dùng — dễ thật mà. Hẹn gặp lại ở video sau!
 
 ## Bảng cảnh AI
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |

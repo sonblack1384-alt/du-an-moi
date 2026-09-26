@@ -45,7 +45,7 @@ def pcm_to_wav_bytes(pcm_bytes: bytes, sample_rate: int = 24000, channels: int =
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("script", type=Path, help="Đường dẫn file kịch bản .md")
-    ap.add_argument("--voice", default="Kore", help="Tên giọng đọc prebuilt của Gemini TTS (mặc định: Kore)")
+    ap.add_argument("--voice", default="Charon", help="Tên giọng đọc prebuilt của Gemini TTS (mặc định: Charon -- người dùng đã chọn, giọng nam, 2026-09-26)")
     ap.add_argument("--out", type=Path, default=None, help="Đường dẫn file .wav xuất ra (mặc định: assets/<slug>/voice.wav)")
     ap.add_argument("--model", default=TTS_MODEL, help=f"Model TTS (mặc định cố định: {TTS_MODEL} -- không tự đổi sang model khác)")
     ap.add_argument("--dry-run", action="store_true", help="Chỉ in ra, không gọi API")

@@ -43,6 +43,8 @@
 >
 > Mình đã test hàng chục công cụ AI trong 2 tháng qua, chọn ra đúng 5 cái đáng dùng nhất cho dân văn phòng, xếp theo mức độ hữu ích.
 >
+> Đây là AI Dễ Dùng — kênh giúp bạn dùng AI thật đơn giản, không cần biết code, không lý thuyết dài dòng.
+>
 > Đầu tiên là ChatGPT bản miễn phí — mạnh nhất ở viết lách và trả lời câu hỏi nhanh, gần như việc gì cũng dùng được.
 >
 > Thứ hai là Claude bản miễn phí — nổi bật khi xử lý văn bản và tài liệu dài, tóm tắt cực nhanh mà vẫn giữ đúng ý chính.
@@ -56,6 +58,8 @@
 > Nhìn qua bảng tổng hợp: mỗi công cụ mạnh ở một điểm riêng — ChatGPT cho viết lách đa dụng, Claude cho văn bản dài, Canva AI cho thiết kế nhanh, Gemini cho hệ sinh thái Google, và Notion AI cho quản lý công việc. Tất cả đều có giới hạn nhất định ở bản miễn phí nhưng vẫn quá đủ cho nhu cầu hàng ngày.
 >
 > Dùng thử cả 5 cái trong tuần này, để lại bình luận cho mình biết cái nào bạn thấy hữu ích nhất. Video sau mình sẽ chỉ cách dùng AI viết CV xin việc trong 10 phút — đăng ký để không bỏ lỡ.
+>
+> AI Dễ Dùng — dễ thật mà. Hẹn gặp lại ở video sau!
 
 ## Bảng cảnh AI
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |

@@ -43,6 +43,8 @@ Sơ đồ 4 khối đơn giản (Vai trò → Bối cảnh → Yêu cầu → Đ
 >
 > Mình từng nghĩ AI trả lời dở vì AI kém — hoá ra là do mình hỏi chưa rõ. Sau video này bạn sẽ tự viết được prompt tốt cho bất kỳ việc gì, không cần nhớ mẫu có sẵn.
 >
+> Đây là AI Dễ Dùng — kênh giúp bạn dùng AI thật đơn giản, không cần biết code, không lý thuyết dài dòng.
+>
 > Thử gõ đơn giản "viết email" vào AI — kết quả trả về chung chung, không dùng được ngay. Đó là lỗi phổ biến nhất.
 >
 > Giải pháp là công thức 4 bước, gọi tắt là VBYĐ: Vai trò, Bối cảnh, Yêu cầu, Định dạng. Đầu tiên, cho AI biết nó đang đóng vai trò gì — ví dụ "bạn là chuyên gia nhân sự" — để chọn đúng giọng văn và kiến thức chuyên môn. Tiếp theo, cung cấp bối cảnh: đối tượng, tình huống, mục đích cụ thể. Sau đó nói rõ yêu cầu — chính xác muốn AI làm gì, càng cụ thể càng tốt. Cuối cùng, chỉ rõ định dạng mong muốn — gạch đầu dòng, bảng, độ dài, giọng văn.
@@ -54,6 +56,8 @@ Sơ đồ 4 khối đơn giản (Vai trò → Bối cảnh → Yêu cầu → Đ
 > Có 3 lỗi thường gặp cần tránh: hỏi quá chung chung không có bối cảnh, không nói rõ định dạng mong muốn khiến AI trả lời dài dòng, và không yêu cầu AI hỏi lại khi thiếu thông tin — chỉ cần thêm một câu "nếu thiếu thông tin, hãy hỏi lại tôi trước khi trả lời" là khắc phục được ngay.
 >
 > Lưu công thức VBYĐ này lại, dùng cho mọi prompt từ giờ trở đi. Tuần sau mình sẽ tổng hợp AI miễn phí tốt nhất hiện tại — đăng ký để không bỏ lỡ.
+>
+> AI Dễ Dùng — dễ thật mà. Hẹn gặp lại ở video sau!
 
 ## Bảng cảnh AI
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |

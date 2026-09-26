@@ -43,6 +43,8 @@
 >
 > Gemini là AI của Google, dùng miễn phí, tích hợp thẳng vào điện thoại Android và có app riêng cho iPhone. Mình sẽ chỉ cách cài đặt và 3 việc nên thử ngay.
 >
+> Đây là AI Dễ Dùng — kênh giúp bạn dùng AI thật đơn giản, không cần biết code, không lý thuyết dài dòng.
+>
 > Trên Android, Gemini có thể đã cài sẵn hoặc tải từ Play Store. Trên iPhone, tải app Gemini từ App Store. Đăng nhập bằng tài khoản Google có sẵn, không cần tạo mới.
 >
 > Giao diện rất đơn giản: một ô để gõ câu hỏi, một nút micro để nói thay vì gõ, và một nút camera để hỏi bằng hình ảnh.
@@ -56,6 +58,8 @@
 > So với dùng trên máy tính: điện thoại tiện hơn hẳn cho việc hỏi nhanh, dùng giọng nói, chụp ảnh — máy tính vẫn tốt hơn khi cần viết nội dung dài.
 >
 > Cài ngay hôm nay, để điện thoại của bạn thành trợ lý AI di động miễn phí. Cảm ơn đã theo dõi 8 video đầu tiên — để lại bình luận cho mình biết bạn muốn xem chủ đề nào tiếp theo.
+>
+> AI Dễ Dùng — dễ thật mà. Hẹn gặp lại ở video sau!
 
 ## Bảng cảnh AI
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |

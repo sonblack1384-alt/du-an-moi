@@ -39,6 +39,8 @@ Sóng âm nhạc phát sáng + icon nốt nhạc, chữ "2 PHÚT CÓ NHẠC" đ�
 >
 > Suno là công cụ AI tạo nhạc, chỉ cần mô tả ý tưởng hoặc dán lời bài hát, AI tự sáng tác giai điệu và hát luôn. Mình sẽ chỉ cách dùng và vài ứng dụng thực tế.
 >
+> Đây là AI Dễ Dùng — kênh giúp bạn dùng AI thật đơn giản, không cần biết code, không lý thuyết dài dòng.
+>
 > Bước một, tạo tài khoản Suno miễn phí — chỉ cần đăng ký bằng email hoặc Google, có ngay số lượt tạo nhạc miễn phí mỗi ngày.
 >
 > Bước hai, tạo nhạc từ một mô tả đơn giản. Ví dụ: bài hát vui tươi về cà phê buổi sáng, phong cách acoustic nhẹ nhàng. Chỉ vài chục giây sau, AI cho ra một bài hát hoàn chỉnh có cả giai điệu và lời hát.
@@ -50,6 +52,8 @@ Sóng âm nhạc phát sáng + icon nốt nhạc, chữ "2 PHÚT CÓ NHẠC" đ�
 > Một lưu ý quan trọng: nếu định dùng nhạc AI để kiếm tiền, hãy kiểm tra kỹ điều khoản sử dụng thương mại của Suno, vì quy định có thể khác nhau tuỳ gói tài khoản.
 >
 > Ai cũng có thể tạo nhạc riêng chỉ trong vài phút. Đăng ký để xem thêm công cụ AI thú vị mỗi tuần.
+>
+> AI Dễ Dùng — dễ thật mà. Hẹn gặp lại ở video sau!
 
 ## Bảng cảnh AI
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |

@@ -45,6 +45,8 @@ Chia đôi màn hình: logo Claude bên trái / logo ChatGPT bên phải, dấu 
 >
 > Cả hai đều là AI chat miễn phí, nhưng mỗi cái mạnh ở một điểm khác nhau. Video này: Claude là gì, điểm khác biệt chính, và mình sẽ demo trực tiếp để bạn tự thấy.
 >
+> Đây là AI Dễ Dùng — kênh giúp bạn dùng AI thật đơn giản, không cần biết code, không lý thuyết dài dòng.
+>
 > Claude là AI trò chuyện của công ty Anthropic, cũng miễn phí dùng thử, giao diện tương tự ChatGPT. Điểm mạnh được nhắc tới nhiều nhất: xử lý văn bản dài rất tốt, giọng văn tự nhiên, và cẩn trọng hơn khi trả lời các câu hỏi nhạy cảm.
 >
 > Giờ mình sẽ chạy cùng một yêu cầu trên cả hai công cụ để bạn thấy sự khác biệt. Đầu tiên, tóm tắt một văn bản dài hơn 2000 từ — xem công cụ nào tóm gọn chính xác hơn mà không bị cắt mất ý quan trọng. Tiếp theo, viết lại một đoạn văn theo giọng văn chuyên nghiệp — so sánh chất lượng câu chữ giữa hai bên. Cuối cùng, thử hỏi một câu kiến thức có thể gây tranh cãi, để xem cách mỗi AI xử lý tình huống nhạy cảm.
@@ -54,6 +56,8 @@ Chia đôi màn hình: logo Claude bên trái / logo ChatGPT bên phải, dấu 
 > Một ví dụ thực tế: mình từng dùng Claude để tóm tắt một hợp đồng dài 10 trang chỉ trong 30 giây, thay vì mất 20 phút tự đọc và gạch chân từng điều khoản.
 >
 > Không cần chọn 1 trong 2 — dùng cả hai cho đúng việc mới là tối ưu nhất. Tuần sau mình sẽ chỉ 5 prompt giúp tiết kiệm 2 tiếng mỗi ngày — đăng ký để xem tiếp.
+>
+> AI Dễ Dùng — dễ thật mà. Hẹn gặp lại ở video sau!
 
 ## Bảng cảnh AI
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |

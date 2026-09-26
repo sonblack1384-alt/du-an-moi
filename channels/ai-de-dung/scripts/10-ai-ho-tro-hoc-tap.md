@@ -38,6 +38,8 @@ Hình quyển sách + icon ChatGPT, chữ "HỌC ĐÚNG CÁCH" đậm màu xanh 
 >
 > AI là công cụ học tập cực tốt nếu dùng đúng — giúp hiểu bài nhanh hơn, không phải để chép nguyên văn. Mình sẽ chỉ 3 cách dùng an toàn và hiệu quả nhất.
 >
+> Đây là AI Dễ Dùng — kênh giúp bạn dùng AI thật đơn giản, không cần biết code, không lý thuyết dài dòng.
+>
 > Cách đầu tiên: dùng AI để hiểu bài, không phải để chép. Khi gặp một khái niệm khó, xin AI giải thích bằng ví dụ đơn giản, dễ hiểu. Sau đó, việc quan trọng nhất là tự viết lại bằng lời của chính mình — đây là bước biến kiến thức từ AI thành kiến thức thật của bạn.
 >
 > Cách thứ hai: dùng AI kiểm tra lại bài viết của chính mình. Viết bài xong, dán vào AI và xin góp ý về logic, ngữ pháp, cách diễn đạt — không xin viết lại toàn bộ bài. Bạn vẫn giữ được giọng văn và ý tưởng của mình, chỉ cải thiện phần trình bày.
@@ -47,6 +49,8 @@ Hình quyển sách + icon ChatGPT, chữ "HỌC ĐÚNG CÁCH" đậm màu xanh 
 > Ngoài chuyện đạo văn, chép nguyên văn AI còn khiến bạn không thực sự học được gì — mất luôn cơ hội hiểu sâu kiến thức, điều quan trọng hơn điểm số rất nhiều.
 >
 > Dùng đúng cách, AI giúp bạn học nhanh hơn mà vẫn là kiến thức thật của mình. Đăng ký để xem thêm 3 công cụ AI giúp sinh viên làm luận văn nhanh hơn ở video sau.
+>
+> AI Dễ Dùng — dễ thật mà. Hẹn gặp lại ở video sau!
 
 ## Bảng cảnh AI
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |

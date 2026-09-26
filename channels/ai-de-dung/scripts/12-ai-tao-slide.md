@@ -36,6 +36,8 @@ Slide đẹp bên phải, đồng hồ "5 PHÚT" góc trái, chữ đậm "SLIDE
 >
 > Không cần biết thiết kế, không cần chọn màu — chỉ cần biết nội dung muốn nói. Mình sẽ chỉ cách dùng AI tạo dàn ý và cách đưa vào công cụ thiết kế tự động.
 >
+> Đây là AI Dễ Dùng — kênh giúp bạn dùng AI thật đơn giản, không cần biết code, không lý thuyết dài dòng.
+>
 > Bước một, dùng AI lên dàn ý nội dung slide. Mô tả chủ đề thuyết trình của bạn, xin AI chia thành các slide, mỗi slide có tiêu đề và vài gạch đầu dòng ngắn gọn — không cần viết đoạn văn dài, slide tốt luôn ngắn gọn.
 >
 > Bước hai, đưa dàn ý vừa có vào một công cụ tạo slide bằng AI như Gamma hoặc tính năng Magic Design của Canva. Dán nguyên dàn ý vào, công cụ sẽ tự động tạo ra cả bộ slide có bố cục, màu sắc, hình ảnh minh hoạ đồng bộ.
@@ -45,6 +47,8 @@ Slide đẹp bên phải, đồng hồ "5 PHÚT" góc trái, chữ đậm "SLIDE
 > Một mẹo nâng cao: xin AI viết luôn phần ghi chú thuyết trình cho từng slide, để khi trình bày bạn không bị quên ý hay nói lan man.
 >
 > Chỉ 5 phút, bạn đã có một bộ slide chuyên nghiệp sẵn sàng trình bày. Đăng ký để xem thêm mẹo AI tiết kiệm thời gian mỗi tuần.
+>
+> AI Dễ Dùng — dễ thật mà. Hẹn gặp lại ở video sau!
 
 ## Bảng cảnh AI
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |

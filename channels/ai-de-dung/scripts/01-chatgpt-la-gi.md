@@ -38,6 +38,8 @@ Nền xanh dương-trắng tương phản cao, icon ChatGPT phóng to + chữ "5
 >
 > Mình cũng từng thấy AI phức tạp và bỏ qua suốt cả năm — cho tới khi thử và tiết kiệm được hẳn 5 tiếng mỗi tuần. Trong video này: ChatGPT là gì, cách tạo tài khoản miễn phí, và 3 việc đầu tiên nên thử ngay.
 >
+> Đây là AI Dễ Dùng — kênh giúp bạn dùng AI thật đơn giản, không cần biết code, không lý thuyết dài dòng.
+>
 > Trước tiên, ChatGPT là gì? Nó giống như một trợ lý biết gõ chữ cực nhanh, đọc hiểu và trả lời gần như mọi câu hỏi bạn đưa ra — bạn gõ yêu cầu, gọi là "prompt", nó trả lời ngay lập tức. Cứ tưởng tượng như bạn có một đồng nghiệp siêu nhanh nhẹn, sẵn sàng giúp soạn thảo, tính toán, tóm tắt bất cứ lúc nào bạn cần.
 >
 > Giờ mình sẽ chỉ cách bắt đầu. Vào trang chatgpt.com, đăng ký bằng email hoặc tài khoản Google, hoàn toàn miễn phí. Giao diện rất đơn giản: chỉ có một ô để gõ câu hỏi, một nút gửi, và nơi xem lại các cuộc trò chuyện trước đó.
@@ -45,6 +47,8 @@ Nền xanh dương-trắng tương phản cao, icon ChatGPT phóng to + chữ "5
 > Bây giờ thử ngay 3 việc thực tế. Đầu tiên, xin ChatGPT viết một email xin nghỉ phép 2 ngày, lý do gia đình, giọng lịch sự, gửi cho quản lý trực tiếp. Chỉ vài giây là có ngay một email hoàn chỉnh. Tiếp theo, dán một đoạn văn bản dài vào và xin tóm tắt thành 5 gạch đầu dòng — cực kỳ hữu ích khi cần đọc nhanh tài liệu dài. Cuối cùng, thử xin gợi ý 5 món quà sinh nhật cho bạn nữ 25 tuổi thích đọc sách, ngân sách 500 nghìn — chỉ trong tích tắc đã có danh sách đầy đủ để chọn.
 >
 > Chỉ với 3 việc này, bạn đã tiết kiệm được ít nhất 20 phút ngay hôm nay. Tuần sau mình sẽ chỉ thêm 5 prompt nâng cao hơn giúp tiết kiệm cả 2 tiếng mỗi ngày — bấm đăng ký để không bỏ lỡ.
+>
+> AI Dễ Dùng — dễ thật mà. Hẹn gặp lại ở video sau!
 
 ## Bảng cảnh AI
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |

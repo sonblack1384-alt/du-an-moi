@@ -36,6 +36,8 @@
 >
 > Mình từng mất cả tuần chỉ để tìm tài liệu tham khảo và sắp xếp dàn ý. 3 công cụ này giải quyết đúng 2 vấn đề đó, cộng thêm phần trình bày.
 >
+> Đây là AI Dễ Dùng — kênh giúp bạn dùng AI thật đơn giản, không cần biết code, không lý thuyết dài dòng.
+>
 > Công cụ đầu tiên: AI tìm và tóm tắt tài liệu học thuật. Dán một bài báo khoa học dài vào, xin AI tóm tắt điểm chính và phương pháp nghiên cứu — thay vì đọc hết vài chục trang, bạn nắm được ý chính chỉ trong vài phút, rồi quyết định bài nào đáng đọc kỹ.
 >
 > Công cụ thứ hai: AI hỗ trợ xây dàn ý luận văn theo chuẩn học thuật. Mô tả đề tài đang làm, xin AI gợi ý cấu trúc chương mục theo đúng chuẩn — mở đầu, tổng quan nghiên cứu, phương pháp, kết quả, kết luận. Bạn có ngay một khung sườn để triển khai thay vì ngồi nghĩ từ đầu.
@@ -45,6 +47,8 @@
 > Một lưu ý rất quan trọng: AI chỉ hỗ trợ tìm hiểu và trình bày, còn lập luận và kết quả nghiên cứu phải là của chính bạn. Luôn trích dẫn nguồn đầy đủ, và kiểm tra lại yêu cầu cụ thể của trường hoặc khoa mình trước khi nộp.
 >
 > 3 công cụ này giúp tiết kiệm hàng chục giờ mà vẫn giữ đúng chất lượng học thuật. Đăng ký để xem thêm các mẹo AI hữu ích mỗi tuần.
+>
+> AI Dễ Dùng — dễ thật mà. Hẹn gặp lại ở video sau!
 
 ## Bảng cảnh AI
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |

@@ -42,6 +42,8 @@ nội dung chính: [tóm tắt ý cần truyền đạt], độ dài [ngắn/v�
 >
 > Email công việc khó nhất ở chỗ chọn đúng giọng điệu — quá thân mật thì mất chuyên nghiệp, quá cứng thì xa cách. AI xử lý phần đó cực tốt, mình chỉ cách dùng ngay đây.
 >
+> Đây là AI Dễ Dùng — kênh giúp bạn dùng AI thật đơn giản, không cần biết code, không lý thuyết dài dòng.
+>
 > Công thức câu lệnh chuẩn cho email rất đơn giản: nói rõ mục đích email, đối tượng nhận, giọng điệu mong muốn, nội dung chính cần truyền đạt, và độ dài mong muốn.
 >
 > Thử tình huống đầu tiên: viết email xin gia hạn deadline gửi sếp. Chạy prompt, đọc kết quả — chỉ cần chỉnh sửa vài chi tiết nhỏ là gửi được ngay.
@@ -53,6 +55,8 @@ nội dung chính: [tóm tắt ý cần truyền đạt], độ dài [ngắn/v�
 > Một mẹo nâng cao: thêm câu "giữ dưới 80 từ" hoặc "thêm một câu hỏi cuối email để khuyến khích phản hồi" — AI sẽ tinh chỉnh đúng theo ý bạn muốn.
 >
 > Từ giờ không còn ngồi vật lộn với từng câu chữ nữa. Video sau mình sẽ chỉ cách dùng Gemini miễn phí ngay trên điện thoại — đăng ký để xem tiếp.
+>
+> AI Dễ Dùng — dễ thật mà. Hẹn gặp lại ở video sau!
 
 ## Bảng cảnh AI
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |

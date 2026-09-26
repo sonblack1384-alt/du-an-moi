@@ -47,6 +47,8 @@ vị trí [tên vị trí], giọng tự tin nhưng không phóng đại.
 >
 > CV không cần màu mè, chỉ cần đúng trọng tâm nhà tuyển dụng muốn thấy. Mình sẽ chỉ cách dùng AI để làm đúng việc đó, từng bước một.
 >
+> Đây là AI Dễ Dùng — kênh giúp bạn dùng AI thật đơn giản, không cần biết code, không lý thuyết dài dòng.
+>
 > Bước đầu tiên, chuẩn bị thông tin: liệt kê nhanh kinh nghiệm làm việc, kỹ năng, và thành tích cụ thể — càng có số liệu càng tốt.
 >
 > Bước hai, dùng AI viết phần kinh nghiệm làm việc: cho AI biết nó đang đóng vai chuyên gia tuyển dụng, dán vào thông tin đã chuẩn bị, yêu cầu viết mỗi công việc thành 3 gạch đầu dòng có số liệu cụ thể, giọng văn chuyên nghiệp, không dùng từ sáo rỗng. Chỉ vài giây là có ngay một đoạn kinh nghiệm được viết rất chỉn chu.
@@ -58,6 +60,8 @@ vị trí [tên vị trí], giọng tự tin nhưng không phóng đại.
 > Một lưu ý quan trọng: AI chỉ giúp viết chữ, phần thông tin phải là sự thật của bạn — đừng bịa thành tích, nhà tuyển dụng hỏi lại là lộ ngay.
 >
 > Chỉ 10 phút, bạn đã có một CV chuyên nghiệp sẵn sàng gửi đi. Video sau mình sẽ chỉ cách viết email chuyên nghiệp chỉ trong một câu lệnh — đăng ký để xem tiếp.
+>
+> AI Dễ Dùng — dễ thật mà. Hẹn gặp lại ở video sau!
 
 ## Bảng cảnh AI
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |

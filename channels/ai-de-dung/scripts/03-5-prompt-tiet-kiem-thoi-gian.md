@@ -67,6 +67,8 @@ Gợi ý 10 ý tưởng cho [chủ đề], mỗi ý tưởng 1 câu ngắn gọn
 >
 > Đây là 5 prompt mình dùng thật mỗi ngày, không phải lý thuyết. Copy nguyên văn, đổi vài từ theo hoàn cảnh của bạn là dùng được ngay.
 >
+> Đây là AI Dễ Dùng — kênh giúp bạn dùng AI thật đơn giản, không cần biết code, không lý thuyết dài dòng.
+>
 > Prompt đầu tiên, viết email nhanh: chỉ cần nói rõ tình huống, giọng điệu mong muốn, và giới hạn số từ, AI sẽ viết ra ngay một email hoàn chỉnh, tiết kiệm khoảng 10 phút mỗi email.
 >
 > Prompt thứ hai, tóm tắt cuộc họp hoặc tài liệu dài thành 5 gạch đầu dòng kèm việc cần làm tiếp theo — tiết kiệm khoảng 20 phút mỗi tài liệu.
@@ -80,6 +82,8 @@ Gợi ý 10 ý tưởng cho [chủ đề], mỗi ý tưởng 1 câu ngắn gọn
 > Cộng lại, 5 prompt này tiết kiệm cho bạn gần 95 phút mỗi ngày — gần đúng 2 tiếng đồng hồ.
 >
 > Lưu lại video này để dùng dần, và bấm đăng ký — tuần sau mình sẽ chỉ công thức viết prompt để bạn tự tạo ra prompt riêng cho công việc của mình.
+>
+> AI Dễ Dùng — dễ thật mà. Hẹn gặp lại ở video sau!
 
 ## Bảng cảnh AI
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |

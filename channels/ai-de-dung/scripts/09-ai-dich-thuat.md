@@ -36,6 +36,8 @@ Hai đoạn văn bản dịch đặt cạnh nhau (1 bên "Google Translate", 1 b
 >
 > Google Translate dịch từng câu khá tốt nhưng hay dịch sai ngữ cảnh, sai văn phong. Video này mình test 3 đoạn văn thật, so sánh Google Translate với ChatGPT để xem cái nào đáng tin hơn.
 >
+> Đây là AI Dễ Dùng — kênh giúp bạn dùng AI thật đơn giản, không cần biết code, không lý thuyết dài dòng.
+>
 > Test đầu tiên: một email công việc trang trọng dịch từ tiếng Anh sang tiếng Việt. Google Translate ra câu đúng nghĩa nhưng văn phong khá cứng, đôi khi mất lịch sự. ChatGPT giữ đúng giọng trang trọng, đọc tự nhiên như người Việt viết.
 >
 > Test thứ hai: một đoạn hội thoại đời thường có dùng tiếng lóng. Google Translate dịch từng từ nên nhiều chỗ khó hiểu hoặc sai nghĩa hoàn toàn. ChatGPT hiểu được ngữ cảnh, dịch ra câu tự nhiên, đúng ý người nói.
@@ -45,6 +47,8 @@ Hai đoạn văn bản dịch đặt cạnh nhau (1 bên "Google Translate", 1 b
 > Vậy có nên bỏ hẳn Google Translate không? Không cần. Google Translate vẫn nhanh hơn khi cần dịch nhanh một từ, một câu ngắn, và có tính năng dịch bằng camera rất tiện khi đi du lịch, đọc biển hiệu.
 >
 > Kết luận: với văn bản dài, quan trọng, cần đúng văn phong và thuật ngữ — dùng AI chat sẽ chính xác hơn hẳn. Đăng ký để xem thêm mẹo dùng AI mỗi tuần.
+>
+> AI Dễ Dùng — dễ thật mà. Hẹn gặp lại ở video sau!
 
 ## Bảng cảnh AI
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |

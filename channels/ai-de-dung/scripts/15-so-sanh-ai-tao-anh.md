@@ -44,6 +44,8 @@ Lưới 4 ảnh AI tạo từ 4 công cụ khác nhau, chữ "CÔNG CỤ NÀO Đ
 >
 > Mình chạy cùng một mô tả trên 4 công cụ: Midjourney, Canva AI, Bing Image Creator, và một công cụ miễn phí ít người biết — so sánh chất lượng và tốc độ thật.
 >
+> Đây là AI Dễ Dùng — kênh giúp bạn dùng AI thật đơn giản, không cần biết code, không lý thuyết dài dòng.
+>
 > Test đầu tiên, ảnh chân dung phong cách nghệ thuật. Midjourney cho kết quả đẹp nhất về chi tiết và ánh sáng, nhưng Bing Image Creator và công cụ thứ tư cũng cho kết quả khá ấn tượng, đủ dùng cho hầu hết nhu cầu.
 >
 > Test thứ hai, ảnh sản phẩm dùng cho bán hàng. Đây là chỗ Canva AI toả sáng — nhanh, dễ chỉnh sửa ngay trong luồng làm việc thiết kế, phù hợp cho người bán hàng online.
@@ -55,6 +57,8 @@ Lưới 4 ảnh AI tạo từ 4 công cụ khác nhau, chữ "CÔNG CỤ NÀO Đ
 > Một lưu ý quan trọng: luôn kiểm tra kỹ điều khoản sử dụng thương mại của từng công cụ trước khi dùng ảnh AI cho mục đích kinh doanh, vì mỗi công cụ có quy định khác nhau.
 >
 > Không cần trả phí ngay từ đầu — thử miễn phí trước, khi nào thật sự cần chất lượng cao nhất mới cân nhắc Midjourney. Đăng ký để xem thêm so sánh công cụ AI mỗi tuần.
+>
+> AI Dễ Dùng — dễ thật mà. Hẹn gặp lại ở video sau!
 
 ## Bảng cảnh AI
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |

@@ -36,6 +36,8 @@ Poster đẹp bật sáng giữa khung hình, chữ "0 KỸ NĂNG THIẾT KẾ" 
 >
 > Mình không biết gì về thiết kế nhưng vẫn làm được poster nhìn chuyên nghiệp nhờ Magic Design của Canva. Chỉ cần mô tả ý tưởng, AI tự lo phần còn lại.
 >
+> Đây là AI Dễ Dùng — kênh giúp bạn dùng AI thật đơn giản, không cần biết code, không lý thuyết dài dòng.
+>
 > Bước một, mở Magic Design và mô tả ý tưởng poster. Ví dụ: poster khuyến mãi giảm giá 30% cho quán cà phê, phong cách trẻ trung, màu ấm. AI sẽ tự tạo ra nhiều mẫu poster khác nhau dựa trên mô tả đó.
 >
 > Bước hai, chọn một mẫu AI gợi ý ưng ý nhất, rồi tuỳ chỉnh nội dung — đổi chữ tiêu đề, đổi hình sản phẩm cho đúng với thực tế của bạn.
@@ -45,6 +47,8 @@ Poster đẹp bật sáng giữa khung hình, chữ "0 KỸ NĂNG THIẾT KẾ" 
 > Một mẹo quan trọng khi chọn bố cục: ưu tiên một điểm nhấn chính, chữ tiêu đề đủ lớn, không nhồi quá nhiều thông tin vào một poster. Poster đẹp là poster người xem đọc hiểu được trong 3 giây đầu.
 >
 > Chỉ vài phút, bạn đã có một poster chuyên nghiệp sẵn sàng đăng. Đăng ký để xem thêm mẹo AI cho công việc mỗi tuần.
+>
+> AI Dễ Dùng — dễ thật mà. Hẹn gặp lại ở video sau!
 
 ## Bảng cảnh AI
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |
