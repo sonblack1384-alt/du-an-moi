@@ -17,7 +17,14 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import assets_dir_for, get_client, load_script  # noqa: E402
 
-TTS_MODEL = "gemini-3.8-flash-tts"
+# Đã kiểm chứng thật (2026-09): quota miễn phí tính RIÊNG theo từng model, không
+# dùng chung -- khi model đầu hết 10 lượt/ngày, các model khác vẫn còn nguyên.
+# Thứ tự ưu tiên: chất lượng cao nhất trước, model dự phòng sau.
+TTS_MODELS = [
+    "gemini-3.8-flash-tts",
+    "gemini-3.1-flash-tts-preview",
+    "gemini-3.8-flash-lite-tts",
+]
 
 
 def pcm_to_wav_bytes(pcm_bytes: bytes, sample_rate: int = 24000, channels: int = 1, sample_width: int = 2) -> bytes:
@@ -37,6 +44,7 @@ def main():
     ap.add_argument("script", type=Path, help="Đường dẫn file kịch bản .md")
     ap.add_argument("--voice", default="Kore", help="Tên giọng đọc prebuilt của Gemini TTS (mặc định: Kore)")
     ap.add_argument("--out", type=Path, default=None, help="Đường dẫn file .wav xuất ra (mặc định: assets/<slug>/voice.wav)")
+    ap.add_argument("--model", default=None, help="Chỉ dùng đúng 1 model này (bỏ qua cơ chế tự xoay vòng)")
     ap.add_argument("--dry-run", action="store_true", help="Chỉ in ra, không gọi API")
     args = ap.parse_args()
 
@@ -59,18 +67,37 @@ def main():
     from google.genai import types
 
     client = get_client()
-    response = client.models.generate_content(
-        model=TTS_MODEL,
-        contents=narration,
-        config=types.GenerateContentConfig(
-            response_modalities=["AUDIO"],
-            speech_config=types.SpeechConfig(
-                voice_config=types.VoiceConfig(
-                    prebuilt_voice_config=types.PrebuiltVoiceConfig(voice_name=args.voice)
-                )
-            ),
-        ),
-    )
+    models_to_try = [args.model] if args.model else TTS_MODELS
+    response = None
+    last_err = None
+    used_model = None
+    for m in models_to_try:
+        try:
+            response = client.models.generate_content(
+                model=m,
+                contents=narration,
+                config=types.GenerateContentConfig(
+                    response_modalities=["AUDIO"],
+                    speech_config=types.SpeechConfig(
+                        voice_config=types.VoiceConfig(
+                            prebuilt_voice_config=types.PrebuiltVoiceConfig(voice_name=args.voice)
+                        )
+                    ),
+                ),
+            )
+            if response.candidates[0].content and response.candidates[0].content.parts:
+                used_model = m
+                break
+            response = None
+        except Exception as e:  # noqa: BLE001 - thử model kế tiếp khi hết quota/lỗi model này
+            last_err = e
+            print(f"[generate_voice] Model {m} lỗi ({type(e).__name__}), thử model kế tiếp...")
+            continue
+
+    if response is None:
+        sys.exit(f"Tất cả model TTS đều lỗi/hết quota. Lỗi cuối: {last_err}")
+
+    print(f"[generate_voice] Dùng model: {used_model}")
     part = response.candidates[0].content.parts[0]
     audio_bytes = part.inline_data.data
     mime = getattr(part.inline_data, "mime_type", "") or ""

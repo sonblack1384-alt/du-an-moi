@@ -5,10 +5,14 @@
 ---
 
 ## TRẠNG THÁI HIỆN TẠI
-*(cập nhật lần cuối: mốc #8 — 2026-09-26)*
+*(cập nhật lần cuối: mốc #9 — 2026-09-26)*
 
-### 🎙️ 8/16 giọng đọc thật đã tạo xong — 8 video còn lại chờ bật billing
-Chạy `generate_voice.py` hàng loạt cho video #2-16 (video #1 đã có từ trước): **video #1-8 thành công** (file `.wav` thật trong `channels/ai-de-dung/assets/<slug>/voice.wav`, **đã commit vào git** — tốn phí/quota thật để tạo nên giữ lại thay vì để mất khi container bị huỷ; đã sửa `.gitignore` để chỉ loại `scenes/`, `screenshots/`, `draft.mp4` — những thứ tạo lại được rẻ/miễn phí, giữ lại `voice.wav` vì tốn quota/tiền thật), **video #9-16 thất bại** vì lỗi `429 RESOURCE_EXHAUSTED — GenerateRequestsPerDayPerProjectPerModel-FreeTier, quotaValue: 10` — tài khoản đang ở **gói miễn phí hoàn toàn**, giới hạn 10 lần gọi/ngày cho model `gemini-3.8-flash-tts`, đã dùng hết (tính cả vài lần test trước đó). Xác nhận thêm: đây không phải vấn đề riêng của Veo — **cả tài khoản chưa bật billing**.
+### 🎙️ 16/16 giọng đọc thật ĐÃ XONG — hoàn toàn miễn phí, không cần billing
+Sau khi video #9-16 bị chặn quota ở model `gemini-3.8-flash-tts` (10 lượt/ngày), nghiên cứu theo yêu cầu người dùng ("tìm giọng miễn phí khác, test trước khi đầu tư"):
+- **Đã thử các dịch vụ TTS miễn phí khác** (edge-tts/Bing, Google Translate TTS, FPT.AI, Zalo AI, VBee, Viettel AI, HuggingFace, Replicate, Play.ht, Murf, Deepgram, Azure Cognitive Services, StreamElements, VoiceRSS, Yandex) — **tất cả đều bị chặn bởi chính sách mạng của môi trường này**, chỉ domain của Google và AWS mới gọi được. `texttospeech.googleapis.com` (Google Cloud TTS, khác Gemini) gọi được nhưng gần như chắc chắn cũng cần bật billing tương tự Veo (chưa thử vì cần người dùng thêm domain này vào Allowed websites của credential trước).
+- **Phát hiện quan trọng, không tốn thêm phí:** quota miễn phí của Gemini TTS tính **riêng theo từng model**, không dùng chung. `gemini-3.8-flash-tts` hết quota nhưng `gemini-3.1-flash-tts-preview` và `gemini-3.8-flash-lite-tts` vẫn còn nguyên.
+- Đã sửa `generate_voice.py`: tự động thử lần lượt `TTS_MODELS = [gemini-3.8-flash-tts, gemini-3.1-flash-tts-preview, gemini-3.8-flash-lite-tts]`, dùng model đầu tiên còn quota. Thêm `--model` để ép dùng đúng 1 model.
+- **Kết quả: tạo xong toàn bộ 16/16 giọng đọc thật, miễn phí 100%**, đã commit vào git (`channels/ai-de-dung/assets/*/voice.wav`).
 
 ### 🎉 Option B (pipeline tự host) ĐÃ XÁC THỰC THẬT — TTS chạy được, Veo cần bật billing
 Người dùng đã thêm key qua cơ chế **"API credentials"** trong Environment settings (không phải "Environment variables" — mục đó cấm secrets). Cơ chế này khác thiết kế ban đầu: **key KHÔNG nằm trong `os.environ`**, mà hệ thống tự tiêm header xác thực vào mọi request HTTPS đi tới domain đã khai báo (`generativelanguage.googleapis.com`) ở tầng network proxy — code không bao giờ thấy giá trị key thật. Đã cập nhật `pipeline/common.py`: `get_api_key()` giờ chỉ trả về 1 chuỗi placeholder bất kỳ (SDK cần có giá trị để khởi tạo, nhưng auth thật đến từ proxy).
@@ -31,8 +35,8 @@ Người dùng đã thêm key qua cơ chế **"API credentials"** trong Environm
 - **Đã hỏi & chốt:** người dùng có thêm "OmniRoute" (router AI provider chạy ở `localhost:20128` trên máy họ, chỉ 4/348 provider đã cấu hình) — nhưng phiên Claude Code chạy cloud nên không với tới `localhost` của họ được. Người dùng quyết định **bỏ qua OmniRoute, tập trung vào Option A + B đã có** — không cần thêm code hỗ trợ base_url tuỳ chỉnh. Không hỏi lại việc này nữa trừ khi người dùng chủ động nhắc lại.
 
 ### Đang thiếu / chưa làm — ĐIỂM NGHẼN HIỆN TẠI
-- **Cần người dùng bật billing tại aistudio.google.com** (Billing/Plan) — chặn cả Veo (mọi video) lẫn TTS (video #9-16 còn lại). Đây là chặn duy nhất còn lại cho Option B.
-- Giọng đọc thật: 8/16 xong (video #1-8), 8/16 còn lại (#9-16) chờ quota TTS reset hoặc billing bật.
+- **Giọng đọc: XONG 16/16, không còn việc gì ở đây.**
+- **Cần người dùng bật billing tại aistudio.google.com** (Billing/Plan) — chặn duy nhất còn lại, chỉ ảnh hưởng tới **Veo** (tạo cảnh AI-video). Không có cách miễn phí nào thay Veo trong môi trường này (đã thử hết các domain TTS/AI khác, đều bị chặn mạng — xem log mốc #9).
 - Chưa có video hoàn chỉnh (draft.mp4) nào — cần Veo hoạt động trước.
 - Vẫn cần người dùng tự chụp vài tấm ảnh màn hình thao tác thật cho mỗi video (không phải quay, chỉ vài giây/tấm).
 - Chưa kiểm tra tên/handle "AI Dễ Dùng" có bị trùng trên YouTube ngoài đời chưa.
@@ -57,6 +61,26 @@ Người dùng đã thêm key qua cơ chế **"API credentials"** trong Environm
 ---
 
 ## LOG CHI TIẾT (mới nhất ở trên)
+
+### Mốc #9 — 2026-09-26 — Hoàn thành 16/16 giọng đọc miễn phí bằng xoay vòng model
+**Yêu cầu người dùng:** "Nghiên cứu thêm các giọng miễn phí khác đi, test thử nghiệm ok mới đầu tư nha."
+
+**Đã làm:**
+1. Test reachability hàng loạt domain TTS miễn phí phổ biến: edge-tts (speech.platform.bing.com), Google Translate TTS, FPT.AI, Zalo AI, VBee, Viettel AI, HuggingFace, Replicate, Play.ht, Murf, Deepgram, Azure Cognitive Services, AWS Polly, StreamElements, VoiceRSS, Yandex, Google Cloud Text-to-Speech. Kết quả: **chỉ domain Google (đã dùng) và AWS Polly gọi được** — mọi domain khác bị chặn bởi chính sách mạng môi trường này (không phải do tài khoản).
+2. Test `texttospeech.googleapis.com` (Cloud TTS, sản phẩm khác Gemini) — gọi được nhưng cần API key riêng scope vào domain này (credential hiện tại chỉ scope `generativelanguage.googleapis.com`) và gần chắc chắn cũng cần billing như mọi Cloud API khác — không theo đuổi tiếp vì lợi ích không rõ ràng so với công sức.
+3. AWS Polly gọi được nhưng cần chữ ký SigV4 (access key + secret, không phải header tĩnh) — cơ chế "API credentials" của môi trường này chỉ hỗ trợ header tĩnh, không ký được SigV4 → không khả thi mà không có thêm code phức tạp.
+4. **Phát hiện chính, giải quyết được vấn đề mà không cần domain mới:** quota miễn phí Gemini TTS tính riêng theo từng model. Test trực tiếp 4 model → `gemini-3.1-flash-tts-preview` và `gemini-3.8-flash-lite-tts` còn nguyên quota dù `gemini-3.8-flash-tts` đã hết.
+5. Sửa `pipeline/generate_voice.py`: đổi từ 1 model cố định sang danh sách `TTS_MODELS`, tự thử lần lượt tới khi có model thành công; thêm `--model` để ép dùng 1 model cụ thể.
+6. Chạy lại cho video #9 (test) rồi #10-16 (hàng loạt) → **tất cả 16/16 video giờ có giọng đọc thật**, không tốn thêm phí, không cần bật billing.
+
+**Kết quả:** đúng yêu cầu người dùng — tận dụng hết giải pháp miễn phí trước khi cần đầu tư. Billing giờ chỉ còn cần cho Veo (video AI), không còn cần cho giọng đọc.
+
+---
+
+### Mốc #8 — 2026-09-26 — 8/16 giọng đọc thật (video #1-8), phát hiện free-tier 10/ngày
+Chạy `generate_voice.py` hàng loạt cho video #2-16 (video #1 đã có từ trước): video #1-8 thành công, video #9-16 thất bại vì `429 RESOURCE_EXHAUSTED — GenerateRequestsPerDayPerProjectPerModel-FreeTier, quotaValue: 10` cho model `gemini-3.8-flash-tts` — xác nhận tài khoản đang ở gói miễn phí hoàn toàn (không chỉ Veo). Sửa `.gitignore` để giữ lại `voice.wav` trong git (tốn quota/tiền thật để tạo) nhưng vẫn loại `scenes/`, `screenshots/`, `draft.mp4` (rẻ/miễn phí để tạo lại). Commit 8 file `.wav` đầu tiên. (Vấn đề "10/ngày" này được giải quyết ngay sau đó ở Mốc #9.)
+
+---
 
 ### Mốc #7 — 2026-09-26 — Xác thực Option B thật: TTS chạy được, Veo cần billing
 **Diễn biến:** người dùng loay hoay thêm `GEMINI_API_KEY` qua UI Environment settings (đã gửi nhiều ảnh chụp màn hình thật). Hoá ra nền tảng này dùng cơ chế **"API credentials"** (khác "Environment variables") — tạo 1 credential tên "GEMINI API" áp cho domain `generativelanguage.googleapis.com`, hệ thống tự tiêm header xác thực ở tầng proxy, code không bao giờ thấy key thật.
