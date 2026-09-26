@@ -34,7 +34,7 @@ Minimal flat motion graphic, same dark navy background (#14171C), amber
 below it, clean tech aesthetic, calm and simple, 2 seconds
 ```
 
-**Cách áp dụng vào quy trình sản xuất (`05-quy-trinh-lam-video-nhanh.md`):** khi ráp video (CapCut hoặc `pipeline/assemble.py`), luôn ghép `intro-bumper.mp4` làm cảnh đầu tiên và `outro-bumper.mp4` làm cảnh cuối cùng của MỌI video — trước cảnh hook riêng của từng video, không thay thế hook (hook riêng vẫn cần để giữ chân người xem theo nội dung cụ thể). Tức là: **Bumper mở (2s, cố định) → Hook riêng của video (đặc thù nội dung) → ... → CTA → Bumper kết (2s, cố định)**.
+**Đã áp dụng tự động vào `pipeline/assemble.py`:** script tự phát hiện `assets/_brand/intro-bumper.mp4`/`outro-bumper.mp4`, ghép làm cảnh đầu tiên/cuối cùng của MỌI video — trước cảnh hook riêng của từng video, không thay thế hook (hook riêng vẫn cần để giữ chân người xem theo nội dung cụ thể) — và tự bù khoảng lặng vào audio cho khớp độ dài video mới. Nếu ráp thủ công bằng CapCut, làm tương tự bằng tay. Tức là: **Bumper mở (2s, cố định) → Hook riêng của video (đặc thù nội dung) → ... → CTA → Bumper kết (2s, cố định)**.
 
 ## 5. Câu khẩu hiệu đọc trong video (spoken tagline) — ÁP DỤNG Ở ĐỢT TẠO LẠI GIỌNG ĐỌC SẮP TỚI
 Để tránh tạo lại giọng đọc 2 lần liên tiếp (đang chờ người dùng chọn giọng nam), câu khẩu hiệu dưới đây **chưa được thêm vào 16 file kịch bản hiện tại** — sẽ gộp chung vào lần tạo lại giọng đọc kế tiếp (khi đổi sang giọng nam đã chọn). Ghi lại đây để không quên:

@@ -5,7 +5,7 @@
 ---
 
 ## TRẠNG THÁI HIỆN TẠI
-*(cập nhật lần cuối: mốc #13 — 2026-09-26)*
+*(cập nhật lần cuối: mốc #14 — 2026-09-26)*
 
 ### 🎬 ĐỘT PHÁ: cảnh AI-video giờ MIỄN PHÍ HOÀN TOÀN, không cần Veo/billing nữa
 Người dùng phản đối mạnh chi phí Veo ("nghĩ cách free đi, trên mạng đầy cách mà bạn chọn cách này thì để tôi làm lun chứ cần gì bạn nữa?"). Đã tìm và xác thực xong hướng miễn phí thật:
@@ -13,7 +13,7 @@ Người dùng phản đối mạnh chi phí Veo ("nghĩ cách free đi, trên m
 - **Đã chạy demo video #1, người dùng xác nhận ổn, rồi chạy hàng loạt cho toàn bộ 16 video còn lại** ("tiếp tục") → **kết quả: 45/45 cảnh AI-video của cả 16/16 video đã dựng xong, miễn phí 100%, 0 lỗi.**
 - Veo/`generate_scenes.py` vẫn giữ trong code làm lựa chọn phụ (nếu sau này muốn ảnh photorealistic thật và chấp nhận trả phí — đã tính sẵn giá thật ở `pipeline/README.md`), nhưng **không còn là điểm nghẽn của kênh nữa**.
 - Đã cập nhật `pipeline/README.md`, `channels/ai-de-dung/strategy/05-quy-trinh-lam-video-nhanh.md`, `framework/template/05` và `framework/template/08` để phản ánh hướng miễn phí này làm mặc định cho mọi kênh (kể cả kênh mới sau này).
-- **Điểm nghẽn thật còn lại của kênh demo giờ CHỈ CÒN**: (1) người dùng chọn giọng nam, (2) người dùng tự chụp ảnh màn hình thật cho từng video — 2 việc này không có cách nào Claude tự làm được trong môi trường này.
+- **Điểm nghẽn thật còn lại của kênh demo giờ CHỈ CÒN**: người dùng tự chụp ảnh màn hình thật cho từng video — việc này không có cách nào Claude tự làm được trong môi trường này (giọng nam đã chọn xong, xem mục dưới).
 
 ### 🎨 Đã có bộ nhận diện thương hiệu — chống loãng/"kênh rác"
 Người dùng hỏi "làm sao để kênh không loãng, không phải kênh rác" → đồng ý đề xuất → đã xử lý:
@@ -21,23 +21,18 @@ Người dùng hỏi "làm sao để kênh không loãng, không phải kênh r�
 - Cập nhật `strategy/00` (trỏ tới file mới) và `strategy/05` (tích hợp bumper cố định vào quy trình ráp video + checklist QC).
 - Đã nhân bản thành `framework/template/08-nhan-dien-thuong-hieu.md` để MỌI kênh sau này đều bắt buộc có bước này trước khi làm video đầu tiên.
 - **CỐ Ý CHƯA áp dụng câu khẩu hiệu (spoken tagline) vào 16 file kịch bản/giọng đọc hiện có** — sẽ gộp chung vào lần tạo lại giọng đọc kế tiếp (khi đổi sang giọng nam đã chọn ở mục dưới), tránh tạo lại audio 2 lần cho 2 mục đích riêng lẻ.
-- **Chưa tạo file `intro-bumper.mp4`/`outro-bumper.mp4` thật** — giờ KHÔNG cần Veo nữa, có thể tạo ngay bằng `generate_motion_graphic.py` (xem mốc #13) — chỉ còn thiếu bước soạn 2 câu mô tả ngắn cho mỗi bumper rồi chạy script, chưa làm vì đang ưu tiên xong 45 cảnh của 16 video trước.
+- **Bumper mở/kết: ĐÃ XONG** (mốc #14) — `channels/ai-de-dung/assets/_brand/{intro,outro}-bumper.mp4` đã tạo bằng `generate_motion_graphic.py`, và `pipeline/assemble.py` đã tự động ghép vào đầu/cuối MỌI video (tự bù khoảng lặng audio) — không cần thao tác gì thêm khi ráp video mới.
 
-### 🎤 Đang chờ người dùng chọn GIỌNG NAM — sẽ tạo lại toàn bộ 16 video sau khi chọn
-Người dùng yêu cầu đổi sang giọng nam (hiện đang dùng "Kore" — giọng nữ), và không muốn trộn nam/nữ giữa các video. Đã tạo 3 mẫu giọng nam bằng model `gemini-3.1-flash-tts-preview` (chỉ dùng để test giọng, không phải model chuẩn sản xuất) và gửi người dùng nghe: **Puck, Charon, Fenrir** — hết quota model test sau 3 mẫu này, chưa test thêm được (Orus, Algenib... để dành nếu người dùng muốn nghe thêm, đợi quota mai reset).
+### 🎤 GIỌNG NAM ĐÃ CHỐT: Charon — đang tạo lại toàn bộ 16 video, còn thiếu 5 video vì hết quota
+Người dùng đã nghe 3 mẫu (Puck, Charon, Fenrir — sau khi sửa lỗi file không mở được, xem log mốc #14) và **chọn Charon**.
 
-**Sự cố đã sửa (2026-09-26):** 3 file mẫu gửi lần đầu bị lỗi "không mở được" trên máy người dùng (Windows báo `0xC00D36C4`) — do file gốc là PCM thô ghi thẳng, thiếu hoàn toàn header RIFF/WAVE (khác với `generate_voice.py` — script chuẩn đã kiểm tra và bọc header đúng, 16 file `voice.wav` thật trong git không bị lỗi này). Đã bọc lại header WAV cho đúng 3 file mẫu từ dữ liệu PCM gốc (không cần gọi lại API, không tốn thêm quota) và gửi lại — xác nhận qua `ffmpeg -af volumedetect` là có âm thanh thật (không phải file rỗng/nhiễu).
+**Đã làm:**
+1. Sửa `pipeline/generate_voice.py`: `--voice` mặc định đổi từ `Kore` → `Charon`.
+2. Gộp chung câu khẩu hiệu thương hiệu (mục 5, `08-nhan-dien-thuong-hieu.md`) vào cùng đợt tạo lại này — đã chèn vào cả 16 file `scripts/*.md` (câu giới thiệu sau đoạn "xác nhận vấn đề + preview", câu kết sau CTA).
+3. Tạo lại `voice.wav` cho video #1 → gửi người dùng nghe → **xác nhận ổn** → chạy tiếp hàng loạt.
+4. **Kết quả: 11/16 video (video #1-11) đã có `voice.wav` mới (Charon + khẩu hiệu), đã commit vào git.** Video #12-16 gặp `429 RESOURCE_EXHAUSTED` (hết quota 10 lượt/ngày cho `gemini-3.8-flash-lite-tts`).
 
-**Đang chờ người dùng chọn 1 trong 3 (hoặc xin nghe thêm giọng khác).** Sau khi chọn xong:
-1. Sửa `pipeline/generate_voice.py`: đổi `--voice` mặc định (hiện đang hardcode "Kore" ở `argparse` default) sang tên giọng nam đã chọn.
-2. Tạo lại **toàn bộ 16/16 file `voice.wav`** bằng model chuẩn `gemini-3.8-flash-lite-tts` + giọng nam mới chọn — không chỉ 11 file bị lệch model như tính toán ở mốc #10 nữa, vì đằng nào cũng phải tạo lại hết do đổi giọng (nam thay nữ), nên bỏ luôn kế hoạch "chỉ tạo lại 11 file" ở mốc #10.
-3. Quota 10/ngày/model — 16 file có thể cần chia làm 2 ngày nếu dùng chung 1 model.
-
-### ⚠️ (Đã lỗi thời — xem mục trên) Giọng đọc 16/16 KHÔNG ĐỒNG NHẤT model — đang chờ người dùng nghe & quyết định
-Người dùng yêu cầu: "giữ 1 giọng đọc, đừng thay đổi liên tục khi đổi model". Đúng — do cơ chế tự xoay vòng ở mốc #9, hiện tại:
-- **Video #1-8, #10, #14, #15 (11 video)** dùng model `gemini-3.8-flash-tts`
-- **Video #9, #11, #12, #13, #16 (5 video)** dùng model `gemini-3.8-flash-lite-tts`
-- Cùng `voice_name="Kore"` nhưng khác model — có thể nghe hơi khác chất lượng/âm sắc.
+**Việc còn lại:** đợi quota model `gemini-3.8-flash-lite-tts` reset (thường theo ngày — thử lại sau, có thể đã reset ở phiên sau), rồi chạy: `python3 pipeline/generate_voice.py channels/ai-de-dung/scripts/{12,13,14,15,16}-*.md` (từng file — script không nhận nhiều file cùng lúc, cần lặp). Không cần `--voice`/`--model` gì thêm vì đã là mặc định. **KHÔNG dùng `--model` khác để né quota** — sẽ làm giọng #12-16 khác các video khác.
 
 **Đã sửa `pipeline/generate_voice.py`:** bỏ hoàn toàn cơ chế tự động xoay vòng model. Giờ `TTS_MODEL` là **1 hằng số cố định duy nhất** (`gemini-3.8-flash-lite-tts`), không tự đổi khi lỗi/hết quota — script sẽ báo lỗi rõ ràng và dừng lại thay vì âm thầm dùng model khác. Muốn đổi model chuẩn của kênh: sửa đúng 1 dòng `TTS_MODEL` rồi tạo lại toàn bộ cho nhất quán.
 
@@ -93,16 +88,36 @@ Người dùng đã thêm key qua cơ chế **"API credentials"** trong Environm
 3. Nếu phiên hiện tại đã đóng, phiên mới đọc file này sẽ biết chính xác: 8/16 voice (video #1-8) đã có sẵn **trong git** tại `channels/ai-de-dung/assets/*/voice.wav` — clone repo là có ngay, không cần tạo lại.
 
 ### Việc tiếp theo nên làm (theo thứ tự ưu tiên)
-1. **Người dùng:** chọn 1 trong 3 giọng nam đã gửi (Puck/Charon/Fenrir) hoặc xin nghe thêm.
-2. Sau khi chọn xong: Claude tạo lại toàn bộ 16/16 `voice.wav` với giọng mới + gộp luôn câu khẩu hiệu thương hiệu (xem mục "Đang chờ chọn giọng nam" ở trên) — có thể cần chia 2 ngày do quota 10/ngày/model.
-3. Claude tạo 2 file `intro-bumper.mp4`/`outro-bumper.mp4` bằng `generate_motion_graphic.py` (không còn bị chặn, chỉ cần soạn 2 câu mô tả ngắn).
-4. **Người dùng:** tự chụp ảnh màn hình thật theo "Bảng cảnh AI" của từng video (điểm nghẽn thật duy nhất còn lại).
-5. Sau khi có ảnh chụp màn hình, Claude chạy `assemble.py` ra `draft.mp4` cho từng video, nghe/xem thử video đầu trước khi làm hàng loạt.
-6. Sau khi có video thật + số liệu, viết tiếp kịch bản #17+ và/hoặc mở kênh thứ 2 từ `framework/template/`.
+1. **Claude (phiên sau, thử ngay khi mở lại):** chạy nốt `python3 pipeline/generate_voice.py channels/ai-de-dung/scripts/{12,13,14,15,16}-*.md` (từng file) để hoàn tất 16/16 giọng Charon + khẩu hiệu — 11/16 đã xong (video #1-11), chỉ chặn bởi quota 10/ngày, thường đã reset khi phiên sau mở lại.
+2. Claude tạo 2 file `intro-bumper.mp4`/`outro-bumper.mp4` bằng `generate_motion_graphic.py` (không còn bị chặn, chỉ cần soạn 2 câu mô tả ngắn theo `08-nhan-dien-thuong-hieu.md` mục 4).
+3. **Người dùng:** tự chụp ảnh màn hình thật theo "Bảng cảnh AI" của từng video (điểm nghẽn thật duy nhất còn lại, không có cách tự động thay được).
+4. Sau khi có ảnh chụp màn hình, Claude chạy `assemble.py` ra `draft.mp4` cho từng video, nghe/xem thử video đầu trước khi làm hàng loạt.
+5. Sau khi có video thật + số liệu, viết tiếp kịch bản #17+ và/hoặc mở kênh thứ 2 từ `framework/template/`.
 
 ---
 
 ## LOG CHI TIẾT (mới nhất ở trên)
+
+### Mốc #14 — 2026-09-26 — Chốt giọng Charon, sửa lỗi file mẫu, gộp khẩu hiệu, tạo lại 11/16 giọng đọc
+**Diễn biến:** người dùng báo 3 file mẫu giọng nam gửi ở mốc #11 không mở được (Windows: `0xC00D36C4` "unsupported/corrupt"). Sau đó chọn giọng **Charon**, yêu cầu "tiếp tục".
+
+**Đã làm:**
+1. Kiểm tra 3 file mẫu (`voice_test_*.wav`): phần dữ liệu âm thanh thật vẫn còn nguyên (kiểm chứng bằng `ffmpeg -af volumedetect` → mean/max volume hợp lý, không phải im lặng/nhiễu), nhưng file bị ghi **thiếu hoàn toàn header RIFF/WAVE** — do script test giọng lúc đó (chạy nhanh, không qua `generate_voice.py`) ghi thẳng PCM thô, không bọc header như hàm `pcm_to_wav_bytes` chuẩn. Đã bọc lại header đúng cho cả 3 file (không gọi lại API, không tốn quota) và gửi lại — người dùng nghe được, chọn Charon.
+2. Sửa `pipeline/generate_voice.py`: `--voice` mặc định `Kore` → `Charon`.
+3. Viết script một lần (`insert_tagline.py`, không lưu vào repo — chỉ chạy 1 lần) để chèn đúng vị trí 2 câu khẩu hiệu thương hiệu (mục 5, `08-nhan-dien-thuong-hieu.md`) vào mục "Lời thoại thuần" của cả 16 file kịch bản: câu giới thiệu kênh chèn ngay sau dòng "xác nhận vấn đề + preview" (luôn là dòng nội dung thứ 2 trong mọi kịch bản — đã kiểm tra cấu trúc đồng nhất của cả 16 file trước khi chạy), câu kết cố định thêm vào cuối cùng (sau CTA). Đã dry-run kiểm tra trước khi áp dụng thật.
+4. Tạo lại `voice.wav` video #1 bằng Charon + khẩu hiệu mới → gửi người dùng nghe (105 giây) → **xác nhận ổn, yêu cầu "tiếp tục"**.
+5. Chạy hàng loạt cho video #2-16: **11/16 thành công (video #2-11)**, video #12-16 gặp `429 RESOURCE_EXHAUSTED` (hết quota 10/ngày cho `gemini-3.8-flash-lite-tts` — quota tính từ các lần gọi trước đó trong ngày, kể cả lúc test giọng). Không dùng model khác để né quota (giữ đúng nguyên tắc người dùng đã yêu cầu ở mốc #10: không tự đổi model/giọng để né lỗi).
+6. Commit theo từng bước nhỏ (đổi default voice + tagline scripts + voice #1, rồi voice #2-11) để không mất tiến độ nếu phiên bị ngắt giữa chừng.
+
+**Kết quả:** 11/16 video đã có giọng đọc chuẩn cuối cùng (Charon + khẩu hiệu thương hiệu). Còn 5 video (#12-16) chờ quota reset.
+
+**Trong lúc chờ quota reset, tranh thủ làm luôn bumper thương hiệu (không tốn API):**
+7. Tạo `channels/ai-de-dung/assets/_brand/intro-bumper.mp4` (chữ "AI DỄ DÙNG") và `outro-bumper.mp4` (icon CTA + "Cảm ơn đã xem, đăng ký kênh") bằng `generate_motion_graphic.py` — miễn phí, tức thời.
+8. **Sửa `pipeline/assemble.py`: tự động ghép bumper mở/kết vào MỌI video** (không cần thao tác thủ công nữa) — phát hiện 2 file ở `assets/_brand/`, ghép làm cảnh đầu/cuối, và tự bù khoảng lặng vào audio (`adelay` cho đầu, `apad` cho cuối) để khớp đúng độ dài video mới thay vì bị cắt cụt bởi `-shortest`.
+9. Test end-to-end bằng assets demo có sẵn của video #1 (ảnh chụp màn hình giả lập) → `draft.mp4` ra đúng 109.76s (= 105.8s giọng đọc + 2s + 2s bumper, khớp chính xác) → gửi người dùng xem duyệt phần bumper trước khi áp dụng chính thức.
+10. Cập nhật `strategy/05` và `strategy/08` (mục 4) phản ánh việc ghép bumper giờ tự động, không còn là thao tác thủ công phải nhớ làm.
+
+---
 
 ### Mốc #13 — 2026-09-26 — Thay Veo bằng đồ hoạ chuyển động tự dựng — MIỄN PHÍ, xong 16/16 video
 **Yêu cầu người dùng (rất gay gắt):** "vẫn thốn lắm... nghĩ cách free đi, trên mạng đầy cách mà bạn chọn cách này thì để tôi làm lun chứ cần gì bạn nữa? bạn là chuyên gia trong lĩnh vực này mà?" — sau khi biết Veo cần bật billing thật và ước tính chi phí ~$20-25 cho cả kênh (dùng bản Lite).

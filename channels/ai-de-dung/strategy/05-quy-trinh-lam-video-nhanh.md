@@ -20,8 +20,8 @@ Chỉ dùng khi muốn hình ảnh AI photorealistic (không phải đồ hoạ 
 - **AutoScene** (nếu có tài khoản còn credit): *Tạo giọng đọc* dán "Lời thoại thuần" → *Tạo video* (model Veo) bật "Mỗi dòng 1 lệnh", dán "Copy tất cả prompt" từ dashboard → StoryFlow ráp thành phẩm. AutoScene → *Quản lý kênh* để đăng tự động (chỉ bạn kết nối được tài khoản thật).
 - **`pipeline/generate_scenes.py`** (Gemini API, cần bật billing tại aistudio.google.com — xem hướng dẫn & ước tính chi phí ở `pipeline/README.md`).
 
-## Bumper mở/kết cố định — BẮT BUỘC, làm 1 lần dùng cho mọi video
-Xem `08-nhan-dien-thuong-hieu.md` mục 4. Trước khi ráp video đầu tiên, tạo **1 lần duy nhất** 2 file `intro-bumper.mp4` và `outro-bumper.mp4` (dùng chính `generate_motion_graphic.py` — miễn phí, không cần Veo), lưu vào `../assets/_brand/`. Mọi video ghép: **Bumper mở → Hook riêng của video → nội dung → CTA → Bumper kết**.
+## Bumper mở/kết cố định — ĐÃ XONG, tự động ghép vào mọi video
+Xem `08-nhan-dien-thuong-hieu.md` mục 4. Đã tạo sẵn `../assets/_brand/intro-bumper.mp4` và `outro-bumper.mp4` (dùng `generate_motion_graphic.py`, miễn phí). `pipeline/assemble.py` **tự động phát hiện và ghép 2 file này vào đầu/cuối MỌI video** (tự bù khoảng lặng cho audio khớp độ dài) — không cần thao tác gì thêm khi ráp video mới. Cấu trúc mỗi video: **Bumper mở → Hook riêng của video → nội dung → CTA → Bumper kết**.
 
 ## Checklist kiểm soát chất lượng (QC) trước khi đăng
 - [ ] Giọng đọc AI phát âm đúng, tốc độ tự nhiên (nghe thử toàn bộ trước khi ráp)

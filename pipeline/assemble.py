@@ -66,6 +66,11 @@ def build_screenshot_clip(src: Path, duration: float, out_path: Path):
     ])
 
 
+def build_bumper_clip(src: Path, out_path: Path):
+    # Bumper đã đúng W/H/FPS (dựng bằng generate_motion_graphic.py) -- chỉ chuẩn hoá codec để concat được.
+    run(["ffmpeg", "-y", "-i", str(src), "-an", "-c:v", "libx264", "-pix_fmt", "yuv420p", str(out_path)])
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("script", type=Path)
@@ -74,10 +79,17 @@ def main():
     args = ap.parse_args()
 
     assets_dir = args.assets_dir or assets_dir_for(args.script)
+    channel_dir = assets_dir.resolve().parent.parent
     voice_path = assets_dir / "voice.wav"
     scenes_dir = assets_dir / "scenes"
     screenshots_dir = assets_dir / "screenshots"
     out_path = args.out or (assets_dir / "draft.mp4")
+
+    # Bumper mở/kết cố định của kênh (BẮT BUỘC theo strategy/08-nhan-dien-thuong-hieu.md
+    # mục 4) -- tự động ghép vào đầu/cuối MỌI video nếu đã có sẵn 2 file này,
+    # không cần thao tác gì thêm. Tạo 1 lần bằng generate_motion_graphic.py.
+    intro_bumper = channel_dir / "assets" / "_brand" / "intro-bumper.mp4"
+    outro_bumper = channel_dir / "assets" / "_brand" / "outro-bumper.mp4"
 
     if not voice_path.exists():
         sys.exit(f"Chưa có {voice_path} -- chạy generate_voice.py trước.")
@@ -93,6 +105,18 @@ def main():
     with tempfile.TemporaryDirectory() as tmp:
         tmp = Path(tmp)
         clip_paths = []
+        intro_duration = 0.0
+        outro_duration = 0.0
+
+        if intro_bumper.exists():
+            clip_path = tmp / "clip_00_intro.mp4"
+            build_bumper_clip(intro_bumper, clip_path)
+            intro_duration = ffprobe_duration(clip_path)
+            print(f"  Bumper mở: {intro_duration:.1f}s <- {intro_bumper.name}")
+            clip_paths.append(clip_path)
+        else:
+            print(f"  (Chưa có {intro_bumper} -- bỏ qua bumper mở, xem strategy/08-nhan-dien-thuong-hieu.md)")
+
         for s in scenes:
             duration = s.duration_seconds / authored_total * audio_duration
             clip_path = tmp / f"clip_{s.index:02d}.mp4"
@@ -113,14 +137,37 @@ def main():
                 build_screenshot_clip(src, duration, clip_path)
             clip_paths.append(clip_path)
 
+        if outro_bumper.exists():
+            clip_path = tmp / "clip_99_outro.mp4"
+            build_bumper_clip(outro_bumper, clip_path)
+            outro_duration = ffprobe_duration(clip_path)
+            print(f"  Bumper kết: {outro_duration:.1f}s <- {outro_bumper.name}")
+            clip_paths.append(clip_path)
+        else:
+            print(f"  (Chưa có {outro_bumper} -- bỏ qua bumper kết, xem strategy/08-nhan-dien-thuong-hieu.md)")
+
         filelist = tmp / "filelist.txt"
         filelist.write_text("\n".join(f"file '{p}'" for p in clip_paths), encoding="utf-8")
         concatenated = tmp / "concatenated.mp4"
         run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(filelist), "-c", "copy", str(concatenated)])
 
+        # Bumper không có giọng đọc riêng -- chèn khoảng lặng đúng bằng độ dài
+        # bumper mở/kết vào audio để khớp với video đã dài thêm (thay vì cắt
+        # cụt bumper bằng -shortest).
+        audio_path = voice_path
+        if intro_duration > 0 or outro_duration > 0:
+            padded_audio = tmp / "voice_padded.wav"
+            af_parts = []
+            if intro_duration > 0:
+                af_parts.append(f"adelay={int(intro_duration * 1000)}:all=1")
+            if outro_duration > 0:
+                af_parts.append(f"apad=pad_dur={outro_duration:.3f}")
+            run(["ffmpeg", "-y", "-i", str(voice_path), "-af", ",".join(af_parts), str(padded_audio)])
+            audio_path = padded_audio
+
         out_path.parent.mkdir(parents=True, exist_ok=True)
         run([
-            "ffmpeg", "-y", "-i", str(concatenated), "-i", str(voice_path),
+            "ffmpeg", "-y", "-i", str(concatenated), "-i", str(audio_path),
             "-map", "0:v:0", "-map", "1:a:0", "-c:v", "copy", "-c:a", "aac", "-shortest", str(out_path),
         ])
 
