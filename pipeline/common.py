@@ -1,27 +1,29 @@
 """Shared helpers for the zero-filming production pipeline.
 
 Parses the standard script markdown files (see channels/*/scripts/*.md) and
-wraps the Gemini API client. Every script in this pipeline reads
-GEMINI_API_KEY (or GOOGLE_API_KEY as a fallback) from the environment --
-never hardcode a key here, and never pass one on the command line where it
-could end up in shell history.
+wraps the Gemini API client.
+
+Auth: trong môi trường Claude Code Remote, key thật KHÔNG nằm trong biến môi
+trường -- nó được cấu hình dưới dạng "API credential" (Environment settings ->
+API credentials), và hệ thống tự tiêm header xác thực vào mọi request HTTPS đi
+tới domain đã khai báo (generativelanguage.googleapis.com), ở tầng network
+proxy, mà code không bao giờ thấy giá trị thật. Đã kiểm chứng thật (2026-09):
+gọi genai.Client(api_key="<chuỗi bất kỳ>") vẫn xác thực thành công. Vì vậy
+get_api_key() chỉ cần trả về MỘT CHUỖI BẤT KỲ để thoả yêu cầu của SDK -- không
+đọc secret thật từ đâu cả.
+
+Nếu chạy pipeline này BÊN NGOÀI Claude Code Remote (máy cá nhân, CI khác...),
+đặt biến môi trường thật GEMINI_API_KEY hoặc GOOGLE_API_KEY như bình thường --
+hàm này ưu tiên dùng giá trị đó nếu có.
 """
 import os
 import re
-import sys
 from dataclasses import dataclass
 from pathlib import Path
 
 
 def get_api_key() -> str:
-    key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
-    if not key:
-        sys.exit(
-            "Thiếu API key. Hãy thêm GEMINI_API_KEY (hoặc GOOGLE_API_KEY) vào "
-            "environment secrets (cloud environment menu -> Edit), không dán "
-            "trực tiếp vào lệnh hay vào code."
-        )
-    return key
+    return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY") or "unused-auth-injected-by-network-proxy"
 
 
 def get_client():

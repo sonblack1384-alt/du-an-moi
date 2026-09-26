@@ -23,7 +23,10 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import assets_dir_for, get_client, load_script  # noqa: E402
 
-VEO_MODEL = "veo-3.0-generate-001"
+# Xác nhận thật qua client.models.list() (2026-09): veo-3.1-generate-preview (chất
+# lượng cao nhất), veo-3.1-fast-generate-preview (nhanh/rẻ hơn), veo-3.1-lite-generate-preview
+# (rẻ nhất -- đúng model AutoScene dùng làm mặc định "Veo 3.1 - Lite").
+VEO_MODEL = "veo-3.1-generate-preview"
 
 
 def main():
@@ -31,6 +34,7 @@ def main():
     ap.add_argument("script", type=Path)
     ap.add_argument("--out-dir", type=Path, default=None)
     ap.add_argument("--aspect-ratio", default="16:9")
+    ap.add_argument("--model", default=VEO_MODEL, help=f"Model Veo (mặc định: {VEO_MODEL}, chất lượng cao nhất)")
     ap.add_argument("--only", type=int, default=None, help="Chỉ tạo cảnh có số thứ tự này")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
@@ -58,7 +62,7 @@ def main():
         from google.genai import types
 
         operation = client.models.generate_videos(
-            model=VEO_MODEL,
+            model=args.model,
             prompt=s.prompt,
             config=types.GenerateVideosConfig(aspect_ratio=args.aspect_ratio, number_of_videos=1),
         )

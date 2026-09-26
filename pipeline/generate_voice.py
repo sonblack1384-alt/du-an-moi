@@ -17,7 +17,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import assets_dir_for, get_client, load_script  # noqa: E402
 
-TTS_MODEL = "gemini-2.5-flash-preview-tts"
+TTS_MODEL = "gemini-3.8-flash-tts"
 
 
 def pcm_to_wav_bytes(pcm_bytes: bytes, sample_rate: int = 24000, channels: int = 1, sample_width: int = 2) -> bytes:
@@ -72,18 +72,23 @@ def main():
         ),
     )
     part = response.candidates[0].content.parts[0]
-    pcm_bytes = part.inline_data.data
+    audio_bytes = part.inline_data.data
     mime = getattr(part.inline_data, "mime_type", "") or ""
-    sample_rate = 24000
-    if "rate=" in mime:
-        try:
-            sample_rate = int(mime.split("rate=")[1].split(";")[0])
-        except (ValueError, IndexError):
-            pass
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_bytes(pcm_to_wav_bytes(pcm_bytes, sample_rate=sample_rate))
-    print(f"[generate_voice] Đã lưu {out_path} ({sample_rate}Hz)")
+    if audio_bytes[:4] == b"RIFF" or "wav" in mime.lower():
+        # API đã trả về file .wav hoàn chỉnh (đã kiểm chứng thật, 2026-09) -- ghi thẳng, không bọc lại.
+        out_path.write_bytes(audio_bytes)
+    else:
+        # Fallback: một số phiên bản model trả PCM thô, tự bọc thành .wav.
+        sample_rate = 24000
+        if "rate=" in mime:
+            try:
+                sample_rate = int(mime.split("rate=")[1].split(";")[0])
+            except (ValueError, IndexError):
+                pass
+        out_path.write_bytes(pcm_to_wav_bytes(audio_bytes, sample_rate=sample_rate))
+    print(f"[generate_voice] Đã lưu {out_path} (mime: {mime})")
 
 
 if __name__ == "__main__":

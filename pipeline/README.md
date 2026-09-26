@@ -9,13 +9,19 @@ Dùng chung cho **mọi kênh** trong `channels/` — không cần sửa gì khi
 ## Vì sao chọn Google Gemini API (không phải ElevenLabs/Runway/Pika)
 Đã kiểm tra thực tế trong môi trường chạy: `generativelanguage.googleapis.com` (Gemini API, gồm Veo + TTS) **gọi được**. `api.elevenlabs.io` và `api.runwayml.com` **bị chặn** bởi chính sách mạng của môi trường này. Vì vậy pipeline này dùng 100% Google Gemini API.
 
-## ⚠️ Giới hạn quan trọng cần biết trước khi chạy thật
-- **Chưa được test với API key thật.** Phần parsing kịch bản (`common.py`) và phần ráp video bằng ffmpeg (`assemble.py`) đã chạy thử thành công (kể cả test end-to-end với dữ liệu giả). Nhưng lệnh gọi Veo/TTS thật (tên model, cách gọi SDK) dựa trên tài liệu Gemini API tại thời điểm viết — **API có thể đã đổi tên model hoặc cách gọi khi bạn chạy**. Luôn chạy thử 1 cảnh/1 video ngắn trước (xem "Chạy thử an toàn" bên dưới) trước khi chạy hàng loạt.
-- **Tốn phí thật** theo tài khoản Google AI/Cloud của bạn — Veo tính phí theo giây video tạo ra, TTS tính theo ký tự. Kiểm tra bảng giá hiện tại tại Google AI Studio/Vertex AI trước khi chạy hàng loạt 8 video.
-- Claude (trong môi trường Claude Code) không tự gọi được các script này để tốn phí thay bạn trừ khi bạn yêu cầu trực tiếp trong phiên chat — không có gì chạy ngầm tự động.
+## ✅ Đã test thật (2026-09-26) — xem WORKLOG.md mốc #7 để biết chi tiết
+- **TTS (giọng đọc): hoạt động thật**, đã tạo file `.wav` thật cho video #1, nghe ổn.
+- **Veo (video): bị chặn bởi billing** — tài khoản Google AI cần bật billing/plan trả phí mới dùng được Veo (lỗi `429 RESOURCE_EXHAUSTED` nếu chưa bật). Bật tại https://aistudio.google.com/ → Billing.
+- Tên model đã cập nhật theo API thật tại thời điểm test: TTS = `gemini-3.8-flash-tts`, Veo = `veo-3.1-generate-preview`. Model có thể tiếp tục đổi theo thời gian — nếu gặp lỗi `404 NOT_FOUND` nhắc tên model mới, cập nhật lại `TTS_MODEL`/`VEO_MODEL` trong `generate_voice.py`/`generate_scenes.py`.
+- **Tốn phí thật** theo tài khoản Google AI của bạn khi bật billing — Veo tính phí theo giây video, TTS tính theo ký tự.
+- Claude không tự chạy các script này để tốn phí thay bạn trừ khi được yêu cầu trực tiếp trong phiên chat.
 
 ## Cài đặt (1 lần)
-1. **Thêm API key**: mở menu môi trường cloud (góc trên session) → Edit → thêm biến môi trường `GEMINI_API_KEY` (lấy key tại Google AI Studio, cần bật billing để dùng Veo). **Không dán key vào chat hay vào file trong repo.**
+1. **Thêm API key** — dùng mục **"API credentials"** trong Environment settings (menu môi trường cloud → Edit), **không phải** mục "Environment variables" (mục đó cấm chứa secret). Bấm "+ Add credential":
+   - **Name** (tên credential, tuỳ ý): ví dụ `Gemini API`
+   - **Allowed websites**: `generativelanguage.googleapis.com`
+   - **Custom headers** → Name: `x-goog-api-key`, Prefix: để trống, Value: dán API key thật (lấy tại Google AI Studio)
+   - Bấm **Connect**. Hệ thống sẽ tự tiêm header này vào mọi request tới domain trên — code không bao giờ thấy giá trị key thật (`pipeline/common.py::get_api_key()` chỉ trả về 1 chuỗi placeholder, không đọc secret từ đâu cả). **Không dán key vào chat.**
 2. Cài thư viện (đã cài sẵn trong phiên hiện tại, chạy lại nếu phiên mới):
    ```
    pip install -r pipeline/requirements.txt
@@ -29,7 +35,7 @@ python3 pipeline/generate_scenes.py channels/ai-de-dung/scripts/01-chatgpt-la-gi
 ```
 Hai lệnh trên **không gọi API**, chỉ in ra nội dung/prompt sẽ gửi đi — dùng để kiểm tra file kịch bản parse đúng trước khi tốn phí thật.
 
-Khi đã có `GEMINI_API_KEY`, thử 1 cảnh trước để xác nhận API hoạt động đúng:
+Khi đã thêm API credential, thử 1 cảnh Veo trước để xác nhận billing đã bật:
 ```
 python3 pipeline/generate_scenes.py channels/ai-de-dung/scripts/01-chatgpt-la-gi.md --only 1
 ```

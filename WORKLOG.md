@@ -5,7 +5,18 @@
 ---
 
 ## TRẠNG THÁI HIỆN TẠI
-*(cập nhật lần cuối: mốc #6 — 2026-09-25)*
+*(cập nhật lần cuối: mốc #7 — 2026-09-26)*
+
+### 🎉 Option B (pipeline tự host) ĐÃ XÁC THỰC THẬT — TTS chạy được, Veo cần bật billing
+Người dùng đã thêm key qua cơ chế **"API credentials"** trong Environment settings (không phải "Environment variables" — mục đó cấm secrets). Cơ chế này khác thiết kế ban đầu: **key KHÔNG nằm trong `os.environ`**, mà hệ thống tự tiêm header xác thực vào mọi request HTTPS đi tới domain đã khai báo (`generativelanguage.googleapis.com`) ở tầng network proxy — code không bao giờ thấy giá trị key thật. Đã cập nhật `pipeline/common.py`: `get_api_key()` giờ chỉ trả về 1 chuỗi placeholder bất kỳ (SDK cần có giá trị để khởi tạo, nhưng auth thật đến từ proxy).
+
+**Đã test thật và xác nhận:**
+- `generate_voice.py` (Gemini TTS) — **THÀNH CÔNG**, đã tạo file giọng đọc thật cho video #1 (100 giây), gửi người dùng nghe. API trả về file `.wav` hoàn chỉnh (RIFF header có sẵn), không phải PCM thô như code cũ giả định — đã sửa `generate_voice.py` để ghi thẳng bytes khi phát hiện RIFF/wav, không bọc lại qua `wave` module nữa.
+- `generate_scenes.py` (Veo) — **THẤT BẠI**: lỗi `429 RESOURCE_EXHAUSTED` — tài khoản Google AI của người dùng chưa bật billing/đủ quota cho Veo. Đã báo người dùng vào aistudio.google.com bật billing.
+- **Tên model đã lỗi thời trong code cũ, đã sửa theo model thật list được từ API (2026-09):**
+  - TTS: `gemini-2.5-flash-preview-tts` → `gemini-3.8-flash-tts`
+  - Veo: `veo-3.0-generate-001` → `veo-3.1-generate-preview` (thêm `--model` flag để chọn `-fast`/`-lite` nếu cần rẻ hơn; AutoScene mặc định dùng `-lite`)
+  - Model text `gemini-2.5-flash` cũng đã bị deprecate, model hiện tại là `gemini-3.8-flash` (chỉ dùng để test, không dùng trong pipeline chính).
 
 ### Đã có
 - **Khung sườn dùng chung** (`framework/`) — 8 file template + hướng dẫn tạo kênh mới, mặc định zero-filming.
@@ -16,26 +27,43 @@
 - `channels/ai-de-dung/strategy/05-quy-trinh-lam-video-nhanh.md` đã viết lại theo đúng 2 Option này.
 - **Đã hỏi & chốt:** người dùng có thêm "OmniRoute" (router AI provider chạy ở `localhost:20128` trên máy họ, chỉ 4/348 provider đã cấu hình) — nhưng phiên Claude Code chạy cloud nên không với tới `localhost` của họ được. Người dùng quyết định **bỏ qua OmniRoute, tập trung vào Option A + B đã có** — không cần thêm code hỗ trợ base_url tuỳ chỉnh. Không hỏi lại việc này nữa trừ khi người dùng chủ động nhắc lại.
 
-### Đang thiếu / chưa làm
-- **Chưa có video nào render thật** — cả Option A (người dùng tự thao tác trên AutoScene) lẫn Option B (cần `GEMINI_API_KEY`) đều chưa chạy thật lần nào.
-- Option B: code gọi Veo/TTS (`veo-3.0-generate-001`, `gemini-2.5-flash-preview-tts`) chưa xác minh với API thật — cần chạy thử 1 cảnh trước khi tin tưởng chạy hàng loạt.
-- Vẫn cần người dùng tự chụp vài tấm ảnh màn hình thao tác thật cho mỗi video (không phải quay, chỉ vài giây/tấm) ở cả 2 Option.
+### Đang thiếu / chưa làm — ĐIỂM NGHẼN HIỆN TẠI
+- **Cần người dùng bật billing cho Veo tại aistudio.google.com** — đây là chặn duy nhất còn lại để Option B chạy trọn vẹn. TTS đã chạy tốt không cần thêm gì.
+- Chưa có video hoàn chỉnh (draft.mp4) nào — cần Veo hoạt động trước (hoặc dùng ảnh chụp màn hình cho toàn bộ cảnh, bỏ qua AI-video, nhưng sẽ kém sinh động hơn).
+- Vẫn cần người dùng tự chụp vài tấm ảnh màn hình thao tác thật cho mỗi video (không phải quay, chỉ vài giây/tấm).
 - Chưa kiểm tra tên/handle "AI Dễ Dùng" có bị trùng trên YouTube ngoài đời chưa.
 - Kịch bản video #17 trở đi (Tier 1 còn lại #17-20 + Tier 2) chưa viết.
 - Chưa có kênh thứ 2 (chủ đề khác).
+- Option A (AutoScene) người dùng chưa báo lại đã thử hay chưa — có thể vẫn là đường thay thế nếu Veo qua Gemini API tiếp tục vướng billing.
 
 ### Câu hỏi đang chờ người dùng quyết định
-**Đang chờ người dùng thêm `GEMINI_API_KEY` qua Environment Secrets (không qua chat).** Người dùng từng dán 1 key trực tiếp vào chat — hệ thống tự chặn lệnh Bash có chứa key đó ("Credential Leakage"), không chạy được. Đã báo người dùng: coi key đó là lộ, cần thu hồi/tạo key mới tại Google AI Studio và thêm qua menu môi trường cloud → Edit → Environment Secrets. Chưa test được API thật vì lý do này — phiên sau nếu thấy `GEMINI_API_KEY` đã có trong env, thử ngay `generate_voice.py`/`generate_scenes.py --only 1` cho video #1.
+**Đang chờ người dùng bật billing cho Veo** (aistudio.google.com → Billing/Plan) rồi báo lại. Sau đó Claude chạy lại `generate_scenes.py --only 1` cho video #1 để xác nhận, rồi chạy `run_all.py` hàng loạt cho cả 16 video. Trong lúc chờ, Claude có thể tự tạo trước toàn bộ giọng đọc (TTS) cho 16 video vì phần đó đã chạy tốt — hỏi người dùng có muốn vậy không trước khi tốn thêm phí TTS cho 15 video còn lại.
 
 ### Việc tiếp theo nên làm (theo thứ tự ưu tiên)
-1. **Người dùng:** mở dashboard, làm thử trọn 1 video (ví dụ video #1) qua Option A (AutoScene) để xác nhận luồng chạy mượt — copy lời thoại vào Tạo giọng đọc, copy prompt vào Tạo video, chụp 2 ảnh màn hình còn thiếu, ráp bằng StoryFlow.
-2. Nếu Option A ổn: lặp lại cho video #2-8, rồi kết nối kênh YouTube thật ở *Quản lý kênh* nếu muốn đăng tự động.
-3. Song song/dự phòng: nếu muốn Option B, thêm `GEMINI_API_KEY` vào environment secrets rồi báo Claude chạy thử `generate_scenes.py --only 1`.
-4. Sau khi có video thật + số liệu, viết tiếp kịch bản #9+ và/hoặc mở kênh thứ 2 từ `framework/template/`.
+1. **Người dùng:** bật billing cho Veo tại aistudio.google.com, báo lại Claude.
+2. Claude chạy thử lại `generate_scenes.py --only 1` cho video #1 → nếu OK, chạy `run_all.py` cho video #1 trọn vẹn (voice + scenes, dừng lại xin ảnh chụp màn hình nếu thiếu).
+3. Người dùng chụp ảnh màn hình theo danh sách được liệt kê, Claude chạy `assemble.py` ra `draft.mp4` đầu tiên — nghe/xem thử trước khi làm hàng loạt.
+4. Nếu ổn, lặp lại cho video #2-16 (có thể chạy `generate_voice.py` cho tất cả trước vì không cần billing thêm).
+5. Song song: Option A (AutoScene) vẫn là phương án thay thế nếu billing Google AI có vấn đề — dashboard đã sẵn sàng cho việc này.
+6. Sau khi có video thật + số liệu, viết tiếp kịch bản #17+ và/hoặc mở kênh thứ 2 từ `framework/template/`.
 
 ---
 
 ## LOG CHI TIẾT (mới nhất ở trên)
+
+### Mốc #7 — 2026-09-26 — Xác thực Option B thật: TTS chạy được, Veo cần billing
+**Diễn biến:** người dùng loay hoay thêm `GEMINI_API_KEY` qua UI Environment settings (đã gửi nhiều ảnh chụp màn hình thật). Hoá ra nền tảng này dùng cơ chế **"API credentials"** (khác "Environment variables") — tạo 1 credential tên "GEMINI API" áp cho domain `generativelanguage.googleapis.com`, hệ thống tự tiêm header xác thực ở tầng proxy, code không bao giờ thấy key thật.
+
+**Đã làm:**
+1. Sửa `pipeline/common.py::get_api_key()` — bỏ yêu cầu đọc `os.environ`, giờ trả về placeholder bất kỳ (vẫn ưu tiên env var thật nếu chạy ngoài môi trường này).
+2. Test thật `generate_content` với model `gemini-2.5-flash` → lỗi 404 (model bị deprecate) → phát hiện tên model hiện tại qua `client.models.list()` → cập nhật `TTS_MODEL` = `gemini-3.8-flash-tts`, `VEO_MODEL` = `veo-3.1-generate-preview` (thêm `--model` flag để đổi sang `-fast`/`-lite`).
+3. Test thật `generate_voice.py` cho video #1 → **thành công**, file `.wav` 100 giây, gửi người dùng nghe qua SendUserFile. Phát hiện & sửa: API trả `.wav` hoàn chỉnh (RIFF header), không phải PCM thô — code cũ sẽ bọc sai, đã sửa để ghi thẳng bytes khi phát hiện RIFF.
+4. Test thật `generate_scenes.py --only 1` (Veo) cho video #1 → lỗi `429 RESOURCE_EXHAUSTED` — tài khoản chưa bật billing cho Veo. Báo người dùng bật billing tại aistudio.google.com.
+5. Cập nhật WORKLOG với điểm nghẽn mới (billing Veo) thay cho điểm nghẽn cũ (thiếu key — đã qua).
+
+**Kết quả:** Option B giờ đã được xác thực kỹ thuật thật (không còn là "chưa test"), chỉ còn chặn bởi billing phía người dùng.
+
+---
 
 ### Mốc #6 — 2026-09-25 — Viết tiếp video #9-16, mở rộng lịch đăng lên 8 tuần
 **Bối cảnh:** trong lúc chờ người dùng thêm `GEMINI_API_KEY` (đã thử dán key vào chat, bị hệ thống tự chặn vì lộ credential — xem mục "Câu hỏi đang chờ"), người dùng yêu cầu "tiếp tục song song việc khác". Việc tiếp theo trong danh sách ưu tiên là mở rộng backlog.
