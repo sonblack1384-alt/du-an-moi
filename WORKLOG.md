@@ -32,7 +32,7 @@ Người dùng đã nghe 3 mẫu (Puck, Charon, Fenrir — sau khi sửa lỗi f
 3. Tạo lại `voice.wav` cho video #1 → gửi người dùng nghe → **xác nhận ổn** → chạy tiếp hàng loạt.
 4. **Kết quả: 11/16 video (video #1-11) đã có `voice.wav` mới (Charon + khẩu hiệu), đã commit vào git.** Video #12-16 gặp `429 RESOURCE_EXHAUSTED` (hết quota 10 lượt/ngày cho `gemini-3.8-flash-lite-tts`).
 
-**Việc còn lại:** đợi quota model `gemini-3.8-flash-lite-tts` reset (thường theo ngày — thử lại sau, có thể đã reset ở phiên sau), rồi chạy: `python3 pipeline/generate_voice.py channels/ai-de-dung/scripts/{12,13,14,15,16}-*.md` (từng file — script không nhận nhiều file cùng lúc, cần lặp). Không cần `--voice`/`--model` gì thêm vì đã là mặc định. **KHÔNG dùng `--model` khác để né quota** — sẽ làm giọng #12-16 khác các video khác.
+**Việc còn lại (đã thử lại trong cùng phiên, chỉ thêm được video #12 rồi hết quota lại):** đợi quota model `gemini-3.8-flash-lite-tts` reset thật (là quota theo ngày thật — `retryDelay` trong lỗi 429 chỉ là gợi ý backoff, KHÔNG phải thời gian reset, đã kiểm chứng: đợi 20-40s vẫn còn lỗi 429), rồi chạy: `python3 pipeline/generate_voice.py channels/ai-de-dung/scripts/{13,14,15,16}-*.md` (từng file — script không nhận nhiều file cùng lúc, cần lặp). Không cần `--voice`/`--model` gì thêm vì đã là mặc định. **KHÔNG dùng `--model` khác để né quota** — sẽ làm giọng #13-16 khác các video khác. **12/16 video đã xong** (video #1-12).
 
 **Đã sửa `pipeline/generate_voice.py`:** bỏ hoàn toàn cơ chế tự động xoay vòng model. Giờ `TTS_MODEL` là **1 hằng số cố định duy nhất** (`gemini-3.8-flash-lite-tts`), không tự đổi khi lỗi/hết quota — script sẽ báo lỗi rõ ràng và dừng lại thay vì âm thầm dùng model khác. Muốn đổi model chuẩn của kênh: sửa đúng 1 dòng `TTS_MODEL` rồi tạo lại toàn bộ cho nhất quán.
 
@@ -88,11 +88,10 @@ Người dùng đã thêm key qua cơ chế **"API credentials"** trong Environm
 3. Nếu phiên hiện tại đã đóng, phiên mới đọc file này sẽ biết chính xác: 8/16 voice (video #1-8) đã có sẵn **trong git** tại `channels/ai-de-dung/assets/*/voice.wav` — clone repo là có ngay, không cần tạo lại.
 
 ### Việc tiếp theo nên làm (theo thứ tự ưu tiên)
-1. **Claude (phiên sau, thử ngay khi mở lại):** chạy nốt `python3 pipeline/generate_voice.py channels/ai-de-dung/scripts/{12,13,14,15,16}-*.md` (từng file) để hoàn tất 16/16 giọng Charon + khẩu hiệu — 11/16 đã xong (video #1-11), chỉ chặn bởi quota 10/ngày, thường đã reset khi phiên sau mở lại.
-2. Claude tạo 2 file `intro-bumper.mp4`/`outro-bumper.mp4` bằng `generate_motion_graphic.py` (không còn bị chặn, chỉ cần soạn 2 câu mô tả ngắn theo `08-nhan-dien-thuong-hieu.md` mục 4).
-3. **Người dùng:** tự chụp ảnh màn hình thật theo "Bảng cảnh AI" của từng video (điểm nghẽn thật duy nhất còn lại, không có cách tự động thay được).
-4. Sau khi có ảnh chụp màn hình, Claude chạy `assemble.py` ra `draft.mp4` cho từng video, nghe/xem thử video đầu trước khi làm hàng loạt.
-5. Sau khi có video thật + số liệu, viết tiếp kịch bản #17+ và/hoặc mở kênh thứ 2 từ `framework/template/`.
+1. **Claude (phiên sau, thử ngay khi mở lại):** chạy nốt `python3 pipeline/generate_voice.py channels/ai-de-dung/scripts/{13,14,15,16}-*.md` (từng file) để hoàn tất 16/16 giọng Charon + khẩu hiệu — 12/16 đã xong (video #1-12), chỉ chặn bởi quota 10/ngày thật (không phải chờ vài giây).
+2. **Người dùng:** tự chụp ảnh màn hình thật theo "Bảng cảnh AI" của từng video (điểm nghẽn thật duy nhất còn lại, không có cách tự động thay được).
+3. Sau khi có ảnh chụp màn hình, Claude chạy `assemble.py` ra `draft.mp4` cho từng video (đã tự động ghép bumper + bù audio, không cần thao tác gì thêm), nghe/xem thử video đầu trước khi làm hàng loạt.
+4. Sau khi có video thật + số liệu, viết tiếp kịch bản #17+ và/hoặc mở kênh thứ 2 từ `framework/template/`.
 
 ---
 
