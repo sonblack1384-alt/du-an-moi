@@ -65,12 +65,12 @@
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |
 |---|---|---|---|
 | 0:00-0:10 | 5 icon công cụ AI xuất hiện lần lượt trên nền tối | AI text-to-video | "Five glowing app icons appearing one by one on dark tech background, clean minimal motion, blue-purple accent lighting" |
-| 0:25-1:45 | Ảnh chụp màn hình demo ChatGPT | Ảnh chụp màn hình | Chụp 1 ví dụ thực tế đang chạy |
-| 1:45-3:00 | Ảnh chụp màn hình demo Claude tóm tắt file dài | Ảnh chụp màn hình | Chụp thao tác tóm tắt |
-| 3:00-4:15 | Ảnh chụp màn hình demo Canva AI tạo slide/poster | Ảnh chụp màn hình | Chụp thao tác tạo thiết kế |
-| 4:15-5:30 | Ảnh chụp màn hình demo Gemini trong Google Sheets | Ảnh chụp màn hình | Chụp thao tác trong Sheets |
-| 5:30-6:45 | Ảnh chụp màn hình demo Notion AI tạo ghi chú | Ảnh chụp màn hình | Chụp thao tác tạo ghi chú |
-| 6:45-8:00 | Bảng tổng hợp 5 công cụ dạng đồ hoạ | Ảnh chụp màn hình (dựng trong CapCut/Canva) | Dựng bảng trực tiếp trong tool dựng |
+| 0:25-1:45 | Ảnh chụp màn hình demo ChatGPT | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 1:45-3:00 | Ảnh chụp màn hình demo Claude tóm tắt file dài | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 3:00-4:15 | Ảnh chụp màn hình demo Canva AI tạo slide/poster | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 4:15-5:30 | Ảnh chụp màn hình demo Gemini trong Google Sheets | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 5:30-6:45 | Ảnh chụp màn hình demo Notion AI tạo ghi chú | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 6:45-8:00 | Bảng tổng hợp 5 công cụ dạng đồ hoạ | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
 | 8:00-9:00 | Cảnh kết, chữ CTA | AI text-to-video | "Clean minimal outro background, soft moving gradient blue-white, subscribe icon pulsing" |
 
 ## Ghi chú sản xuất

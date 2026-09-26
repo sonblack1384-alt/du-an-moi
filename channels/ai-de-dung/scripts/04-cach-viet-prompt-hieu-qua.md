@@ -63,9 +63,9 @@ Sơ đồ 4 khối đơn giản (Vai trò → Bối cảnh → Yêu cầu → Đ
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |
 |---|---|---|---|
 | 0:00-0:10 | Sơ đồ 4 khối công thức xuất hiện lần lượt | AI text-to-video | "Minimal flat animation, 4 glowing blocks appearing in sequence forming a formula diagram, clean tech style, blue accent" |
-| 0:25-1:00 | Ảnh chụp màn hình prompt cộc lốc "viết email" + kết quả chung chung | Ảnh chụp màn hình | Chụp prompt ngắn và kết quả AI mờ nhạt |
-| 1:00-4:00 | Ảnh chụp màn hình prompt đầy đủ theo VBYĐ + kết quả tốt hơn | Ảnh chụp màn hình | Chụp prompt 4 phần và email hoàn chỉnh |
-| 4:00-5:30 | Ảnh chụp màn hình 2 ví dụ thêm (thực đơn, bài bán hàng) | Ảnh chụp màn hình | Chụp prompt + kết quả từng ví dụ (2 cặp) |
+| 0:25-1:00 | Ảnh chụp màn hình prompt cộc lốc "viết email" + kết quả chung chung | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 1:00-4:00 | Ảnh chụp màn hình prompt đầy đủ theo VBYĐ + kết quả tốt hơn | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 4:00-5:30 | Ảnh chụp màn hình 2 ví dụ thêm (thực đơn, bài bán hàng) | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
 | 5:30-6:30 | Đồ hoạ liệt kê 3 lỗi thường gặp | AI text-to-video | "Three warning icons with short text labels appearing one by one, flat minimal red-orange accent on dark background" |
 | 6:30-7:00 | Cảnh kết, chữ CTA | AI text-to-video | "Clean minimal outro background, soft moving gradient, subscribe icon pulsing" |
 

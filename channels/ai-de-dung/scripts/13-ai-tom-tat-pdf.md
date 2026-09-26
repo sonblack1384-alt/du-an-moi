@@ -63,9 +63,9 @@ số liệu quan trọng (nếu có) và kết luận/đề xuất của tài li
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |
 |---|---|---|---|
 | 0:00-0:10 | Chồng giấy PDF dày đặc thu nhỏ lại thành 1 trang tóm tắt | AI text-to-video | "Thick stack of documents rapidly compressing into a single clean summary page, fast motion, satisfying transition" |
-| 0:25-1:30 | Ảnh chụp màn hình thao tác kéo thả file PDF vào Claude | Ảnh chụp màn hình | Chụp thao tác upload file |
-| 1:30-3:00 | Ảnh chụp màn hình prompt tóm tắt + kết quả | Ảnh chụp màn hình | Chụp prompt và bản tóm tắt gạch đầu dòng |
-| 3:00-4:00 | Ảnh chụp màn hình câu hỏi đào sâu + câu trả lời trích đúng phần | Ảnh chụp màn hình | Chụp câu hỏi "phần 3 nói gì" và kết quả |
+| 0:25-1:30 | Ảnh chụp màn hình thao tác kéo thả file PDF vào Claude | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 1:30-3:00 | Ảnh chụp màn hình prompt tóm tắt + kết quả | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 3:00-4:00 | Ảnh chụp màn hình câu hỏi đào sâu + câu trả lời trích đúng phần | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
 | 4:00-5:00 | Minh hoạ đồng hồ so sánh 2 phút vs 30 phút đọc | AI text-to-video | "Split screen clock comparison, 2 minutes vs 30 minutes, clean infographic style, contrasting colors" |
 | 5:00-5:30 | Hình cảnh báo nhẹ về việc vẫn cần đọc kỹ văn bản pháp lý | AI text-to-video | "Simple icon of a magnifying glass over a contract document, cautious trustworthy tone, flat minimal style" |
 | 5:30-6:00 | Cảnh kết, chữ CTA | AI text-to-video | "Clean minimal outro background, soft moving gradient, subscribe icon pulsing" |

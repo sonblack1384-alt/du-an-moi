@@ -7,7 +7,7 @@
 {{Mô tả niche cụ thể. Nêu rõ vì sao chọn: nhu cầu thị trường, mức độ cạnh tranh tiếng Việt, độ bền nội dung (evergreen hay trend ngắn hạn), tiềm năng kiếm tiền, và mức độ an toàn với nguyên tắc cộng đồng (tránh YMYL rủi ro cao trừ khi có kiểm duyệt chuyên môn).}}
 
 ## Định dạng nội dung
-{{Mặc định khuyên dùng: **faceless, sản xuất 100% qua AI** (ảnh chụp màn hình/AI text-to-video + AI voice + auto-assembly, xem `05-quy-trinh-lam-video-nhanh.md`) — phù hợp khi không có thời gian quay/thu âm. Chỉ chọn quay tay/xuất hiện camera nếu niche bắt buộc (ví dụ vlog cá nhân, review sản phẩm cần cầm nắm thật) hoặc người làm chủ động muốn vậy.
+{{Mặc định khuyên dùng: **faceless, sản xuất 100% qua AI, KHÔNG cần người dùng chụp/quay gì** (đồ hoạ chữ/icon tự dựng + AI voice + auto-assembly, xem `05-quy-trinh-lam-video-nhanh.md`) — phù hợp khi không có thời gian quay/thu âm/chụp màn hình. Chỉ chọn quay tay/xuất hiện camera/chụp màn hình thật nếu niche bắt buộc (ví dụ vlog cá nhân, review sản phẩm cần cầm nắm thật, hoặc cần độ tin cậy demo giao diện cao hơn) hoặc người làm chủ động muốn vậy.
 
 Lưu ý an toàn cộng đồng: rủi ro không phải ở việc dùng AI tạo hình/giọng, mà ở nội dung lặp lại/rỗng ("mass-produced/spam"). Luôn giữ kịch bản do người biên soạn viết có góc nhìn riêng, thông tin kiểm chứng được.}}
 

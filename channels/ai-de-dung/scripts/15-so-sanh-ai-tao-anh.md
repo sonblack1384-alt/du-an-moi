@@ -64,10 +64,10 @@ Lưới 4 ảnh AI tạo từ 4 công cụ khác nhau, chữ "CÔNG CỤ NÀO Đ
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |
 |---|---|---|---|
 | 0:00-0:10 | Lưới 4 ô ảnh AI khác nhau xuất hiện đồng thời | AI text-to-video | "Grid of four different AI-generated art styles appearing simultaneously, colorful showcase, clean gallery layout" |
-| 0:25-2:00 | Ảnh chụp màn hình 4 kết quả ảnh chân dung từ 4 công cụ | Ảnh chụp màn hình | Chụp lưới so sánh 4 ảnh cùng prompt |
-| 2:00-3:30 | Ảnh chụp màn hình 4 kết quả ảnh sản phẩm | Ảnh chụp màn hình | Chụp lưới so sánh 4 ảnh sản phẩm |
-| 3:30-5:00 | Ảnh chụp màn hình 4 kết quả ảnh trừu tượng | Ảnh chụp màn hình | Chụp lưới so sánh 4 ảnh trừu tượng |
-| 5:00-6:30 | Bảng so sánh tổng hợp dạng đồ hoạ | Ảnh chụp màn hình (dựng trong CapCut/Canva) | Dựng bảng trực tiếp trong tool dựng |
+| 0:25-2:00 | Ảnh chụp màn hình 4 kết quả ảnh chân dung từ 4 công cụ | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 2:00-3:30 | Ảnh chụp màn hình 4 kết quả ảnh sản phẩm | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 3:30-5:00 | Ảnh chụp màn hình 4 kết quả ảnh trừu tượng | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 5:00-6:30 | Bảng so sánh tổng hợp dạng đồ hoạ | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
 | 6:30-7:30 | Hình minh hoạ biểu tượng bản quyền/điều khoản sử dụng | AI text-to-video | "Simple copyright and terms of use icon, document with checkmark, cautious professional tone, flat minimal style" |
 | 7:30-8:00 | Cảnh kết, chữ CTA | AI text-to-video | "Clean minimal outro background, soft moving gradient, subscribe icon pulsing" |
 

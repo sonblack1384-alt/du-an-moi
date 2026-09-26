@@ -65,12 +65,12 @@
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |
 |---|---|---|---|
 | 0:00-0:10 | Điện thoại phát sáng trong túi/tay, cảm giác tiện lợi | AI text-to-video | "Close-up of a smartphone glowing softly in a hand, warm cozy lighting, minimal modern aesthetic" |
-| 0:25-1:30 | Ảnh chụp màn hình điện thoại: cài đặt Gemini từ Play Store/App Store | Ảnh chụp màn hình | Chụp màn hình điện thoại (không phải quay), 1-2 tấm |
-| 1:30-2:15 | Ảnh chụp màn hình giao diện Gemini cơ bản | Ảnh chụp màn hình | Chụp giao diện chính |
-| 2:15-3:15 | Ảnh chụp màn hình demo hỏi bằng giọng nói | Ảnh chụp màn hình | Chụp lúc đang dùng micro + kết quả trả lời |
-| 3:15-4:15 | Ảnh chụp màn hình demo chụp ảnh hỏi AI (hoá đơn/thực đơn) | Ảnh chụp màn hình | Chụp ảnh input + kết quả AI dịch/giải thích |
-| 4:15-5:15 | Ảnh chụp màn hình demo hỏi rảnh tay khi nấu ăn | Ảnh chụp màn hình | Chụp câu hỏi giọng nói + gợi ý món ăn |
-| 5:15-5:45 | Đồ hoạ so sánh nhanh điện thoại vs máy tính | Ảnh chụp màn hình (dựng trong CapCut/Canva) | Dựng bảng so sánh ngắn trực tiếp trong tool dựng |
+| 0:25-1:30 | Ảnh chụp màn hình điện thoại: cài đặt Gemini từ Play Store/App Store | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 1:30-2:15 | Ảnh chụp màn hình giao diện Gemini cơ bản | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 2:15-3:15 | Ảnh chụp màn hình demo hỏi bằng giọng nói | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 3:15-4:15 | Ảnh chụp màn hình demo chụp ảnh hỏi AI (hoá đơn/thực đơn) | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 4:15-5:15 | Ảnh chụp màn hình demo hỏi rảnh tay khi nấu ăn | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 5:15-5:45 | Đồ hoạ so sánh nhanh điện thoại vs máy tính | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
 | 5:45-6:00 | Cảnh kết, chữ hỏi ý kiến khán giả | AI text-to-video | "Clean minimal outro background, soft moving gradient, comment bubble icon appearing" |
 
 ## Ghi chú sản xuất

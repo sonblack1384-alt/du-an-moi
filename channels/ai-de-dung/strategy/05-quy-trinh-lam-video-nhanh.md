@@ -1,6 +1,6 @@
 # 5. Quy trình sản xuất video — Zero-filming, mặc định 100% MIỄN PHÍ
 
-> **Cập nhật quan trọng:** pipeline tự host (`pipeline/`) giờ tự tạo được **giọng đọc thật** (Gemini TTS) và **cảnh minh hoạ thật** (đồ hoạ chuyển động dựng bằng Pillow/ffmpeg) — hoàn toàn miễn phí, không cần API key trả phí, không cần bật billing, không giới hạn số lần chạy. Đây là đường **mặc định, ưu tiên dùng trước**. Veo/AutoScene chỉ còn là lựa chọn phụ khi muốn ảnh AI photorealistic và chấp nhận trả phí.
+> **Cập nhật quan trọng (2026-09-26):** đã bỏ hẳn yêu cầu người dùng tự chụp ảnh màn hình thật — **100% cảnh giờ là đồ hoạ chữ/icon tự dựng** bằng `pipeline/generate_motion_graphic.py`, kể cả các cảnh trước đây định demo giao diện phần mềm thật. Kết hợp **giọng đọc thật** (Gemini TTS), pipeline giờ ráp được video hoàn chỉnh **KHÔNG CẦN người dùng thao tác gì** — hoàn toàn miễn phí, không giới hạn số lần chạy. Đánh đổi: video không còn cảnh "xem tận mắt thao tác trên giao diện thật" (ChatGPT/Canva/...). Veo/AutoScene chỉ còn là lựa chọn phụ khi muốn ảnh AI photorealistic và chấp nhận trả phí.
 
 ## Dashboard tổng hợp
 Mở [`../dashboard.html`](../dashboard.html) (hoặc bản đã publish) để xem toàn bộ video kèm nút copy lời thoại/prompt từng cảnh.
@@ -10,10 +10,11 @@ Chi tiết đầy đủ ở `../../../pipeline/README.md`. Tóm tắt các bư�
 
 1. **Lấy kịch bản có sẵn** — mỗi video trong `../backlog.md` có file ở `../scripts/NN-slug.md`, gồm "Lời thoại thuần" + "Bảng cảnh AI".
 2. **Tạo giọng đọc** — `python3 pipeline/generate_voice.py <script.md>` (Gemini TTS, model cố định xem `pipeline/generate_voice.py`, miễn phí trong hạn mức 10 lượt/model/ngày — quota tính riêng theo từng model).
-3. **Tạo cảnh minh hoạ** — `python3 pipeline/generate_motion_graphic.py <script.md>` (đồ hoạ chuyển động: chữ động + icon đơn giản theo đúng màu/font thương hiệu ở `08-nhan-dien-thuong-hieu.md`, dựng local bằng Pillow + ffmpeg, **miễn phí hoàn toàn, không giới hạn**).
-4. **Ảnh chụp màn hình** — các cảnh nguồn = "Ảnh chụp màn hình" vẫn cần bạn tự chụp (vài giây/tấm, không phải quay — không AI nào thay được phần này), lưu vào `assets/<slug>/screenshots/NN.png`.
-5. **Ráp tự động** — `python3 pipeline/assemble.py <script.md>` (ffmpeg: Ken Burns cho ảnh tĩnh, ghép cảnh, mux giọng đọc) → `assets/<slug>/draft.mp4`.
-6. **Thumbnail, đăng tải, tối ưu SEO, tái sử dụng** — thumbnail template Canva; đăng tiêu đề/mô tả/tag theo từ khoá đã nghiên cứu, chapters, pinned comment, end screen; sau 48h xem retention graph, cắt đoạn hay thành Shorts.
+3. **Tạo cảnh minh hoạ (TẤT CẢ cảnh, kể cả cảnh trước đây là "ảnh chụp màn hình")** — `python3 pipeline/generate_motion_graphic.py <script.md>` (đồ hoạ chuyển động: chữ động + icon đơn giản theo đúng màu/font thương hiệu ở `08-nhan-dien-thuong-hieu.md`, dựng local bằng Pillow + ffmpeg, **miễn phí hoàn toàn, không giới hạn, không cần người dùng làm gì**).
+4. **Ráp tự động** — `python3 pipeline/assemble.py <script.md>` (ffmpeg: Ken Burns, ghép cảnh + bumper, mux giọng đọc) → `assets/<slug>/draft.mp4`. **Không còn bước nào cần người dùng thao tác trước bước này.**
+5. **Thumbnail, đăng tải, tối ưu SEO, tái sử dụng** — thumbnail template Canva; đăng tiêu đề/mô tả/tag theo từ khoá đã nghiên cứu, chapters, pinned comment, end screen; sau 48h xem retention graph, cắt đoạn hay thành Shorts.
+
+*(Nếu sau này muốn nâng cấp lại một vài video có demo giao diện phần mềm thật, có thể tự tay đổi Nguồn 1 dòng trong "Bảng cảnh AI" từ "AI text-to-video" về "Ảnh chụp màn hình" rồi chụp ảnh thật, lưu vào `assets/<slug>/screenshots/NN.png` — `assemble.py` vẫn hỗ trợ cả 2 kiểu, nhưng đây là lựa chọn thêm, không còn là yêu cầu bắt buộc.)*
 
 ## Option B (phụ, tốn phí) — Veo qua AutoScene hoặc `pipeline/generate_scenes.py`
 Chỉ dùng khi muốn hình ảnh AI photorealistic (không phải đồ hoạ chữ/icon) và chấp nhận trả phí thật (xem ước tính chi phí ở `pipeline/README.md`). Hai cách:

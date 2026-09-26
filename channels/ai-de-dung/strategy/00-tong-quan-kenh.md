@@ -12,7 +12,7 @@ Hướng dẫn ứng dụng **AI (ChatGPT, Claude, Gemini, Midjourney, Suno, Can
 
 ## Định dạng nội dung
 **Faceless, sản xuất 100% qua AI — không quay, không thu âm tay:**
-- **Hình ảnh:** ảnh chụp màn hình (screenshot, vài giây/tấm — không phải quay) cho các bước thao tác thật + AI text-to-video/image-to-video (CapCut AI, Pika, Kling, Runway...) cho cảnh hook/B-roll/minh hoạ không có sẵn ảnh thật, thêm hiệu ứng chuyển động (Ken Burns/smart zoom) cho ảnh tĩnh để không bị "chết hình".
+- **Hình ảnh:** 100% đồ hoạ chữ/icon tự dựng bằng `pipeline/generate_motion_graphic.py` (Pillow + ffmpeg, miễn phí, không giới hạn, không cần người dùng thao tác gì) cho mọi cảnh — kể cả cảnh trước đây định demo giao diện phần mềm thật. **Quyết định 2026-09-26: bỏ hẳn yêu cầu người dùng tự chụp ảnh màn hình thật** (đổi hướng để tự động hoá 100%, đánh đổi mất phần "xem tận mắt thao tác trên giao diện thật"). Có hiệu ứng chuyển động (Ken Burns) cho mọi cảnh để không bị "chết hình".
 - **Giọng đọc:** AI TTS tiếng Việt (CapCut TTS, FPT.AI, ElevenLabs...), không cần tự thu âm.
 - **Dựng:** tool auto-assembly (CapCut AI / InVideo AI / Pictory) ráp trực tiếp từ kịch bản văn bản → video nháp, người chỉ cần review/chỉnh nhẹ.
 - Chi tiết pipeline và prompt cụ thể cho từng cảnh: xem `05-quy-trinh-lam-video-nhanh.md` và mục "Bảng cảnh AI" trong từng file ở `../scripts/`.

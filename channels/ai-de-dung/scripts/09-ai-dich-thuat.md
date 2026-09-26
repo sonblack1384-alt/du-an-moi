@@ -54,9 +54,9 @@ Hai đoạn văn bản dịch đặt cạnh nhau (1 bên "Google Translate", 1 b
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |
 |---|---|---|---|
 | 0:00-0:10 | Hai khối văn bản dịch đối chiếu, dấu hỏi lớn ở giữa | AI text-to-video | "Two text panels side by side with a large glowing question mark between them, clean minimal comparison layout, blue and orange accent" |
-| 0:25-2:00 | Ảnh chụp màn hình so sánh bản dịch email (Google Translate vs ChatGPT) | Ảnh chụp màn hình | Chụp cả 2 kết quả dịch cạnh nhau |
-| 2:00-3:30 | Ảnh chụp màn hình so sánh bản dịch hội thoại có tiếng lóng | Ảnh chụp màn hình | Chụp cả 2 kết quả dịch cạnh nhau |
-| 3:30-5:00 | Ảnh chụp màn hình so sánh bản dịch văn bản chuyên ngành | Ảnh chụp màn hình | Chụp cả 2 kết quả, khoanh đỏ chỗ khác biệt thuật ngữ |
+| 0:25-2:00 | Ảnh chụp màn hình so sánh bản dịch email (Google Translate vs ChatGPT) | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 2:00-3:30 | Ảnh chụp màn hình so sánh bản dịch hội thoại có tiếng lóng | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 3:30-5:00 | Ảnh chụp màn hình so sánh bản dịch văn bản chuyên ngành | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
 | 5:00-6:00 | Minh hoạ điện thoại dùng Google Translate dịch bằng camera khi du lịch | AI text-to-video | "Person using phone camera translation app pointing at a street sign while traveling, warm travel mood, realistic style" |
 | 6:00-6:30 | Cảnh kết, chữ CTA | AI text-to-video | "Clean minimal outro background, soft moving gradient, subscribe icon pulsing" |
 

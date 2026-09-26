@@ -56,9 +56,9 @@ Hình quyển sách + icon ChatGPT, chữ "HỌC ĐÚNG CÁCH" đậm màu xanh 
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |
 |---|---|---|---|
 | 0:00-0:10 | Sinh viên căng thẳng trước bài tập, sau đó chuyển sang tự tin | AI text-to-video | "Student transitioning from stressed to confident at a desk with books and laptop, warm study lighting, motivational mood" |
-| 0:25-2:00 | Ảnh chụp màn hình hỏi AI giải thích khái niệm + ghi chú tay bên cạnh | Ảnh chụp màn hình | Chụp câu trả lời AI + hình vở ghi chú viết lại bằng lời riêng |
-| 2:00-3:30 | Ảnh chụp màn hình dán bài viết xin AI góp ý | Ảnh chụp màn hình | Chụp bài viết gốc + góp ý của AI |
-| 3:30-5:00 | Ảnh chụp màn hình dàn ý AI gợi ý + bài viết tự triển khai | Ảnh chụp màn hình | Chụp dàn ý + đoạn văn tự viết dựa trên đó |
+| 0:25-2:00 | Ảnh chụp màn hình hỏi AI giải thích khái niệm + ghi chú tay bên cạnh | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 2:00-3:30 | Ảnh chụp màn hình dán bài viết xin AI góp ý | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 3:30-5:00 | Ảnh chụp màn hình dàn ý AI gợi ý + bài viết tự triển khai | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
 | 5:00-6:00 | Hình minh hoạ so sánh "học thật" vs "chép nguyên văn" | AI text-to-video | "Split concept: one side a glowing brain absorbing knowledge, other side a robotic copy-paste icon, contrast lighting" |
 | 6:00-6:30 | Cảnh kết, chữ CTA | AI text-to-video | "Clean minimal outro background, soft moving green gradient, subscribe icon pulsing" |
 

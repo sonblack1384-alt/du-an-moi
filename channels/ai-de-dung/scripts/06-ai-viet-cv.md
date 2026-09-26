@@ -67,10 +67,10 @@ vị trí [tên vị trí], giọng tự tin nhưng không phóng đại.
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |
 |---|---|---|---|
 | 0:00-0:10 | Cảnh người ngồi khuya vật lộn với CV, giấy nháp xung quanh | AI text-to-video | "Tired person at desk late at night surrounded by crumpled paper, laptop glow lighting, cinematic mood" |
-| 0:25-1:15 | Danh sách checklist thông tin cần chuẩn bị | Ảnh chụp màn hình (dựng trong CapCut/Canva) | Dựng checklist trực tiếp trong tool dựng |
-| 1:15-3:30 | Ảnh chụp màn hình prompt viết kinh nghiệm + kết quả | Ảnh chụp màn hình | Chụp prompt và đoạn kinh nghiệm AI viết |
-| 3:30-4:30 | Ảnh chụp màn hình prompt tóm tắt bản thân + kết quả | Ảnh chụp màn hình | Chụp prompt và đoạn tóm tắt |
-| 4:30-5:45 | Ảnh chụp màn hình thao tác dán nội dung vào template Canva | Ảnh chụp màn hình | Chụp quá trình chỉnh CV trên Canva |
+| 0:25-1:15 | Danh sách checklist thông tin cần chuẩn bị | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 1:15-3:30 | Ảnh chụp màn hình prompt viết kinh nghiệm + kết quả | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 3:30-4:30 | Ảnh chụp màn hình prompt tóm tắt bản thân + kết quả | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 4:30-5:45 | Ảnh chụp màn hình thao tác dán nội dung vào template Canva | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
 | 5:45-6:30 | Hình cảnh báo nhẹ nhàng về việc không bịa thông tin | AI text-to-video | "Simple warning icon with checkmark vs cross, flat minimal style, honest/trustworthy tone" |
 | 6:30-7:00 | Cảnh kết, chữ CTA | AI text-to-video | "Clean minimal outro background, soft moving gradient, subscribe icon pulsing" |
 

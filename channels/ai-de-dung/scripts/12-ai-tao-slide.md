@@ -54,10 +54,10 @@ Slide đẹp bên phải, đồng hồ "5 PHÚT" góc trái, chữ đậm "SLIDE
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |
 |---|---|---|---|
 | 0:00-0:10 | Người mệt mỏi ngồi chỉnh slide khuya, sau đó cảnh slide đẹp tự xuất hiện | AI text-to-video | "Tired person adjusting presentation slides late at night, then a beautiful slide appearing magically, warm to cool light transition" |
-| 0:25-1:30 | Ảnh chụp màn hình prompt lên dàn ý slide + kết quả AI trả về | Ảnh chụp màn hình | Chụp prompt và dàn ý dạng danh sách slide |
-| 1:30-3:30 | Ảnh chụp màn hình dán dàn ý vào Gamma/Canva + slide được tạo | Ảnh chụp màn hình | Chụp thao tác dán + kết quả slide tự động |
-| 3:30-4:30 | Ảnh chụp màn hình chỉnh màu/font/hình trong Canva | Ảnh chụp màn hình | Chụp thao tác tinh chỉnh |
-| 4:30-5:30 | Ảnh chụp màn hình phần ghi chú thuyết trình AI viết | Ảnh chụp màn hình | Chụp speaker notes AI tạo |
+| 0:25-1:30 | Ảnh chụp màn hình prompt lên dàn ý slide + kết quả AI trả về | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 1:30-3:30 | Ảnh chụp màn hình dán dàn ý vào Gamma/Canva + slide được tạo | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 3:30-4:30 | Ảnh chụp màn hình chỉnh màu/font/hình trong Canva | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 4:30-5:30 | Ảnh chụp màn hình phần ghi chú thuyết trình AI viết | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
 | 5:30-6:00 | Cảnh kết, chữ CTA | AI text-to-video | "Clean minimal outro background, soft moving gradient, subscribe icon pulsing" |
 
 ## Ghi chú sản xuất

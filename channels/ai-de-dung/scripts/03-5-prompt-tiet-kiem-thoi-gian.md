@@ -89,12 +89,12 @@ Gợi ý 10 ý tưởng cho [chủ đề], mỗi ý tưởng 1 câu ngắn gọn
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |
 |---|---|---|---|
 | 0:00-0:10 | Đồng hồ bấm giờ đếm ngược, hình ảnh 2 tiếng được "lấy lại" | AI text-to-video | "Stopwatch counting down fast, glowing clock hands reversing, energetic warm lighting, motivational feel" |
-| 0:25-1:30 | Ảnh chụp màn hình prompt 1 + kết quả email | Ảnh chụp màn hình | Chụp prompt và email AI trả về |
-| 1:30-2:45 | Ảnh chụp màn hình prompt 2 + kết quả tóm tắt | Ảnh chụp màn hình | Chụp prompt và bản tóm tắt |
-| 2:45-4:00 | Ảnh chụp màn hình prompt 3 + kết quả lịch làm việc | Ảnh chụp màn hình | Chụp prompt và bảng lịch AI sắp xếp |
-| 4:00-5:30 | Ảnh chụp màn hình prompt 4 + kết quả báo cáo | Ảnh chụp màn hình | Chụp prompt và đoạn báo cáo |
-| 5:30-6:45 | Ảnh chụp màn hình prompt 5 + kết quả brainstorm | Ảnh chụp màn hình | Chụp prompt và danh sách ý tưởng |
-| 6:45-7:30 | Đồ hoạ bảng tổng kết thời gian tiết kiệm | Ảnh chụp màn hình (dựng trong CapCut/Canva) | Dựng bảng trực tiếp trong tool dựng, không cần AI-video |
+| 0:25-1:30 | Ảnh chụp màn hình prompt 1 + kết quả email | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 1:30-2:45 | Ảnh chụp màn hình prompt 2 + kết quả tóm tắt | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 2:45-4:00 | Ảnh chụp màn hình prompt 3 + kết quả lịch làm việc | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 4:00-5:30 | Ảnh chụp màn hình prompt 4 + kết quả báo cáo | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 5:30-6:45 | Ảnh chụp màn hình prompt 5 + kết quả brainstorm | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 6:45-7:30 | Đồ hoạ bảng tổng kết thời gian tiết kiệm | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
 | 7:30-8:00 | Cảnh kết, chữ CTA | AI text-to-video | "Clean minimal outro background, soft moving gradient blue-white, subscribe icon pulsing" |
 
 ## Ghi chú sản xuất

@@ -54,9 +54,9 @@ Poster đẹp bật sáng giữa khung hình, chữ "0 KỸ NĂNG THIẾT KẾ" 
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |
 |---|---|---|---|
 | 0:00-0:10 | Poster trống bật sáng thành poster đầy màu sắc | AI text-to-video | "Blank white poster canvas transforming into a colorful vibrant designed poster, fast magical transition, clean style" |
-| 0:25-1:30 | Ảnh chụp màn hình gõ mô tả vào Magic Design + các mẫu AI tạo ra | Ảnh chụp màn hình | Chụp ô nhập mô tả và kết quả các mẫu |
-| 1:30-3:00 | Ảnh chụp màn hình chỉnh sửa nội dung mẫu đã chọn | Ảnh chụp màn hình | Chụp thao tác đổi chữ/hình |
-| 3:00-4:00 | Ảnh chụp màn hình dùng AI tạo ảnh trong Canva | Ảnh chụp màn hình | Chụp thao tác tạo ảnh minh hoạ |
+| 0:25-1:30 | Ảnh chụp màn hình gõ mô tả vào Magic Design + các mẫu AI tạo ra | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 1:30-3:00 | Ảnh chụp màn hình chỉnh sửa nội dung mẫu đã chọn | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 3:00-4:00 | Ảnh chụp màn hình dùng AI tạo ảnh trong Canva | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
 | 4:00-5:00 | Đồ hoạ minh hoạ nguyên tắc bố cục (1 điểm nhấn, chữ lớn) | AI text-to-video | "Minimal flat design diagram showing good poster layout principles, one focal point, large bold text, clean tech style" |
 | 5:00-5:30 | Cảnh kết, chữ CTA | AI text-to-video | "Clean minimal outro background, soft moving gradient, subscribe icon pulsing" |
 

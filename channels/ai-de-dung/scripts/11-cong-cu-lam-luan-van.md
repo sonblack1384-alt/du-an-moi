@@ -54,9 +54,9 @@
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |
 |---|---|---|---|
 | 0:00-0:10 | Chồng sách/tài liệu cao ngất chuyển thành gọn gàng | AI text-to-video | "Tall stack of academic papers transforming into a neat organized folder, fast motion, clean minimal style" |
-| 0:25-2:00 | Ảnh chụp màn hình dán bài báo khoa học + bản tóm tắt AI | Ảnh chụp màn hình | Chụp văn bản gốc dài + bản tóm tắt |
-| 2:00-3:45 | Ảnh chụp màn hình dàn ý luận văn AI gợi ý | Ảnh chụp màn hình | Chụp cấu trúc chương mục AI đề xuất |
-| 3:45-5:15 | Ảnh chụp màn hình AI kiểm tra văn phong + gợi ý trích dẫn | Ảnh chụp màn hình | Chụp đoạn văn + góp ý của AI |
+| 0:25-2:00 | Ảnh chụp màn hình dán bài báo khoa học + bản tóm tắt AI | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 2:00-3:45 | Ảnh chụp màn hình dàn ý luận văn AI gợi ý | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 3:45-5:15 | Ảnh chụp màn hình AI kiểm tra văn phong + gợi ý trích dẫn | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
 | 5:15-6:00 | Hình minh hoạ biểu tượng liêm chính học thuật (dấu check + sách) | AI text-to-video | "Simple academic integrity icon, checkmark with graduation cap and open book, trustworthy flat design" |
 | 6:00-6:30 | Cảnh kết, chữ CTA | AI text-to-video | "Clean minimal outro background, soft moving gradient, subscribe icon pulsing" |
 

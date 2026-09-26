@@ -65,8 +65,8 @@ Chia đôi màn hình: logo Claude bên trái / logo ChatGPT bên phải, dấu 
 | 0:00-0:10 | Hai logo/icon AI đối đầu nhau kiểu "VS" | AI text-to-video | "Two glowing abstract AI orb icons facing each other, VS text in the middle, dark tech background, dramatic lighting" |
 | 0:10-0:25 | Minh hoạ 2 công cụ AI chat song song | AI text-to-video | "Split screen two chat interfaces glowing softly, minimal flat UI style, blue vs orange color contrast" |
 | 0:25-1:15 | Minh hoạ Claude/Anthropic — hình tượng trưng "cẩn trọng, xử lý văn bản dài" | AI text-to-video | "Abstract icon of a document scroll being read carefully by a glowing AI assistant, calm blue tones" |
-| 1:15-4:30 | Ảnh chụp màn hình chạy song song 3 prompt trên ChatGPT và Claude | Ảnh chụp màn hình | Chụp từng cặp kết quả (3 cặp = 6 tấm) |
-| 4:30-5:30 | Bảng so sánh dạng đồ hoạ text overlay | Ảnh chụp màn hình (dựng trong CapCut/Canva) | Không cần AI-video, dựng bảng trực tiếp trong tool dựng |
+| 1:15-4:30 | Ảnh chụp màn hình chạy song song 3 prompt trên ChatGPT và Claude | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 4:30-5:30 | Bảng so sánh dạng đồ hoạ text overlay | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
 | 5:30-6:30 | Minh hoạ case study hợp đồng 10 trang được tóm tắt nhanh | AI text-to-video | "Stack of paper documents transforming into a short glowing summary card, fast motion, clean minimal style" |
 | 6:30-7:00 | Cảnh kết, chữ CTA | AI text-to-video | "Clean minimal outro background, soft moving gradient, subscribe icon pulsing" |
 

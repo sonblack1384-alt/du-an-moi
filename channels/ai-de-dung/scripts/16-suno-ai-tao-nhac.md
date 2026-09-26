@@ -59,9 +59,9 @@ Sóng âm nhạc phát sáng + icon nốt nhạc, chữ "2 PHÚT CÓ NHẠC" đ�
 | Thời điểm | Nội dung hình cần có | Nguồn | Prompt / ghi chú |
 |---|---|---|---|
 | 0:00-0:10 | Sóng âm nhạc phát sáng lan toả từ một nốt nhạc trung tâm | AI text-to-video | "Glowing music waveform radiating from a central musical note, purple and blue tones, smooth motion, minimal style" |
-| 0:25-1:15 | Ảnh chụp màn hình đăng ký tài khoản Suno | Ảnh chụp màn hình | Chụp trang đăng ký |
-| 1:15-2:45 | Ảnh chụp màn hình mô tả bài hát + kết quả nhạc tạo ra | Ảnh chụp màn hình | Chụp ô mô tả và giao diện phát nhạc kết quả |
-| 2:45-4:00 | Ảnh chụp màn hình dán lời có sẵn + kết quả phổ nhạc | Ảnh chụp màn hình | Chụp lời bài hát và kết quả |
+| 0:25-1:15 | Ảnh chụp màn hình đăng ký tài khoản Suno | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 1:15-2:45 | Ảnh chụp màn hình mô tả bài hát + kết quả nhạc tạo ra | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 2:45-4:00 | Ảnh chụp màn hình dán lời có sẵn + kết quả phổ nhạc | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
 | 4:00-5:00 | Minh hoạ 3 ứng dụng: nhạc nền video, nhạc sinh nhật, sáng tác vui | AI text-to-video | "Three small warm scenes montage: video editing with music, birthday celebration, person humming happily, cozy lighting" |
 | 5:00-5:30 | Hình cảnh báo nhẹ về điều khoản bản quyền | AI text-to-video | "Simple icon of a music note with a terms-of-use document, cautious professional tone, flat minimal style" |
 | 5:30-6:00 | Cảnh kết, chữ CTA | AI text-to-video | "Clean minimal outro background, soft moving purple gradient, subscribe icon pulsing" |

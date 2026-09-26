@@ -56,8 +56,8 @@ Nền xanh dương-trắng tương phản cao, icon ChatGPT phóng to + chữ "5
 | 0:00-0:10 | Cảnh mở đầu gây chú ý: đồng hồ chạy nhanh, đống giấy tờ/email chất đống trên bàn làm việc | AI text-to-video | "Cinematic shot, tired office worker's desk piled with papers, clock ticking fast, warm indoor lighting, slight motion blur, 4k" |
 | 0:10-0:25 | Hình minh hoạ "trước/sau" khi biết dùng AI — người thư giãn có thời gian rảnh | AI text-to-video | "Split-screen concept, left side stressed person at messy desk, right side same person relaxed with clean desk and coffee, soft transition" |
 | 0:25-1:30 | Minh hoạ khái niệm ChatGPT như trợ lý ảo | AI text-to-video | "Abstract friendly AI assistant icon typing fast on a glowing chat bubble, minimal flat design, blue and white palette" |
-| 1:30-3:00 | Ảnh chụp màn hình trang đăng ký chatgpt.com và giao diện chat | Ảnh chụp màn hình | Chụp: trang đăng nhập, giao diện chat trống |
-| 3:00-4:30 | Ảnh chụp màn hình 3 prompt thực tế và kết quả trả về | Ảnh chụp màn hình | Chụp từng prompt + câu trả lời tương ứng (3 tấm) |
+| 1:30-3:00 | Ảnh chụp màn hình trang đăng ký chatgpt.com và giao diện chat | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 3:00-4:30 | Ảnh chụp màn hình 3 prompt thực tế và kết quả trả về | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
 | 4:30-5:00 | Cảnh kết, chữ CTA "Đăng ký" nổi lên nền động nhẹ | AI text-to-video | "Clean minimal outro background, soft moving gradient blue-white, subscribe button icon pulsing" |
 
 ## Ghi chú sản xuất

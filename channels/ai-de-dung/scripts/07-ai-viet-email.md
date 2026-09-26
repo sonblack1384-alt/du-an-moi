@@ -63,10 +63,10 @@ nội dung chính: [tóm tắt ý cần truyền đạt], độ dài [ngắn/v�
 |---|---|---|---|
 | 0:00-0:10 | Người nhìn đồng hồ sốt ruột trước màn hình email trống | AI text-to-video | "Person staring anxiously at blank email screen, clock ticking overlay, office lighting, stressed mood" |
 | 0:25-1:15 | Đồ hoạ công thức câu lệnh 5 phần | AI text-to-video | "Minimal flat diagram, 5 labeled blocks connecting in sequence, clean tech style, blue accent" |
-| 1:15-2:30 | Ảnh chụp màn hình prompt + email xin gia hạn deadline | Ảnh chụp màn hình | Chụp prompt và kết quả |
-| 2:30-3:45 | Ảnh chụp màn hình prompt + email từ chối khéo | Ảnh chụp màn hình | Chụp prompt và kết quả |
-| 3:45-5:00 | Ảnh chụp màn hình prompt + email nhắc thanh toán | Ảnh chụp màn hình | Chụp prompt và kết quả |
-| 5:00-5:40 | Đồ hoạ mẹo nâng cao (câu thêm vào cuối prompt) | Ảnh chụp màn hình (dựng trong CapCut/Canva) | Dựng text overlay trực tiếp |
+| 1:15-2:30 | Ảnh chụp màn hình prompt + email xin gia hạn deadline | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 2:30-3:45 | Ảnh chụp màn hình prompt + email từ chối khéo | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 3:45-5:00 | Ảnh chụp màn hình prompt + email nhắc thanh toán | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
+| 5:00-5:40 | Đồ hoạ mẹo nâng cao (câu thêm vào cuối prompt) | AI text-to-video | Đồ hoạ chữ/icon tự dựng (generate_motion_graphic.py) -- không cần ảnh chụp màn hình thật |
 | 5:40-6:00 | Cảnh kết, chữ CTA | AI text-to-video | "Clean minimal outro background, soft moving gradient, subscribe icon pulsing" |
 
 ## Ghi chú sản xuất
