@@ -5,6 +5,9 @@
 ## Dashboard tổng hợp
 Mở [`../dashboard.html`](../dashboard.html) (hoặc bản đã publish) để xem cả 8 video kèm nút copy lời thoại/prompt từng cảnh — dán trực tiếp vào tool ở Option A hoặc B bên dưới, không cần mở từng file kịch bản thủ công.
 
+## Bumper mở/kết cố định — BẮT BUỘC, làm 1 lần dùng cho mọi video
+Xem `08-nhan-dien-thuong-hieu.md` mục 4. Trước khi ráp video đầu tiên, tạo **1 lần duy nhất** 2 file `intro-bumper.mp4` (1.5-2s) và `outro-bumper.mp4` (2s) theo đúng prompt đã viết sẵn ở đó, lưu vào `../assets/_brand/`. Mọi video sau này ghép: **Bumper mở → Hook riêng của video → nội dung → CTA → Bumper kết** — không tạo cảnh mở/kết riêng bằng Veo cho từng video nữa (tiết kiệm quota + tăng nhận diện). Nếu 1 video đã có cảnh mở/kết riêng trong "Bảng cảnh AI" (từ trước khi có brand guide), khi ráp cứ thay 2 cảnh đó bằng bumper cố định, giữ nguyên các cảnh giữa.
+
 ## Option A — Dùng AutoScene (đã có tài khoản, khuyên dùng vì nhanh nhất)
 Nếu bạn đã có tài khoản AutoScene còn credit, đây là đường ngắn nhất — AutoScene tự vận hành Veo (tạo video) + Azure Speech (giọng đọc) phía sau, không cần setup gì thêm:
 
@@ -33,6 +36,7 @@ Dự phòng khi hết credit AutoScene hoặc muốn kiểm soát nhiều hơn �
 - [ ] Tiêu đề khớp 100% nội dung
 - [ ] Có chapters/timestamps, CTA + end screen, gắn đúng playlist trụ cột
 - [ ] Nội dung có giá trị thông tin thật, không phải AI-slop lặp lại (xem lưu ý an toàn cộng đồng ở `00-tong-quan-kenh.md`)
+- [ ] Có bumper mở + bumper kết cố định (xem `08-nhan-dien-thuong-hieu.md`), watermark góc màn hình xuyên suốt, đúng font/màu thương hiệu
 
 ## Mẫu prompt viết kịch bản (dùng khi viết video mới)
 ```

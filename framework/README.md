@@ -1,6 +1,6 @@
 # Khung sườn xây kênh YouTube (dùng chung cho nhiều kênh)
 
-Đây là bộ khung 7 bước (+ 1 file tổng quan) dùng để lập chiến lược cho **bất kỳ kênh YouTube nào**, bất kể chủ đề. Kênh demo đầu tiên dùng khung này là [`channels/ai-de-dung/`](../channels/ai-de-dung) — mở file đó ra để xem một bộ đã điền đầy đủ làm ví dụ mẫu.
+Đây là bộ khung 8 bước (+ 1 file tổng quan) dùng để lập chiến lược cho **bất kỳ kênh YouTube nào**, bất kể chủ đề. Kênh demo đầu tiên dùng khung này là [`channels/ai-de-dung/`](../channels/ai-de-dung) — mở file đó ra để xem một bộ đã điền đầy đủ làm ví dụ mẫu.
 
 ## Cấu trúc khung (`template/`)
 | File | Nội dung |
@@ -13,6 +13,7 @@
 | `05-quy-trinh-lam-video-nhanh.md` | Quy trình sản xuất 8 bước + checklist QC + công cụ |
 | `06-ke-hoach-kiem-tien.md` | Lộ trình kiếm tiền theo 3 giai đoạn tăng trưởng |
 | `07-doc-so-lieu.md` | Khung đánh giá số liệu hàng tuần/tháng |
+| `08-nhan-dien-thuong-hieu.md` | **Bắt buộc điền trước khi làm video đầu tiên** — màu/font cố định, bumper mở/kết dùng chung, watermark, khẩu hiệu, nguyên tắc "không đổi". Đây là thứ phân biệt "một kênh có bản sắc" với "một đống video AI rời rạc/kênh rác" |
 
 Mỗi kênh mới còn có thêm (không nằm trong `template/`, tự tạo theo mẫu ở kênh demo):
 - `backlog.md` — bảng theo dõi trạng thái từng ý tưởng video (chưa làm/đang làm/đã đăng)

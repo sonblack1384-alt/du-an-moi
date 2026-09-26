@@ -30,6 +30,9 @@ Song song hai mục tiêu, ưu tiên theo thứ tự:
 1. Xây nền nội dung chất lượng, đúng niche, đúng khán giả (không đốt cháy giai đoạn bằng clickbait rỗng).
 2. Đạt điều kiện Chương trình Đối tác YouTube (1.000 sub + 4.000 giờ xem, hoặc 10M views Shorts/90 ngày) trong khoảng tháng 3-4, bằng cách kết hợp long-form trụ cột + Shorts tần suất cao để tận dụng thuật toán đẩy nhanh.
 
+## Nhận diện thương hiệu (chống loãng, chống "kênh rác")
+Xem `08-nhan-dien-thuong-hieu.md` — bảng màu/font cố định, bumper mở/kết dùng chung cho mọi video, watermark, câu khẩu hiệu, và nguyên tắc "không đổi" các yếu tố nhận diện đã chốt. **Bắt buộc đọc trước khi tạo kênh mới hoặc video mới** — đây là thứ phân biệt "một kênh có bản sắc" với "một đống video AI rời rạc".
+
 ## Các tài liệu chiến lược trong repo này
 1. `01-ke-hoach-tron-goi.md` — Kế hoạch trọn gói cho kênh
 2. `02-chon-niche.md` — Nghiên cứu niche & 100 ý tưởng video đầu tiên
@@ -38,3 +41,4 @@ Song song hai mục tiêu, ưu tiên theo thứ tự:
 5. `05-quy-trinh-lam-video-nhanh.md` — Quy trình sản xuất nhanh gấp 3 (có AI hỗ trợ)
 6. `06-ke-hoach-kiem-tien.md` — Kế hoạch kiếm tiền
 7. `07-doc-so-lieu.md` — Đọc số liệu & tối ưu hiệu suất
+8. `08-nhan-dien-thuong-hieu.md` — Nhận diện thương hiệu, chống loãng/kênh rác

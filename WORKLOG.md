@@ -5,7 +5,15 @@
 ---
 
 ## TRẠNG THÁI HIỆN TẠI
-*(cập nhật lần cuối: mốc #11 — 2026-09-26)*
+*(cập nhật lần cuối: mốc #12 — 2026-09-26)*
+
+### 🎨 Đã có bộ nhận diện thương hiệu — chống loãng/"kênh rác"
+Người dùng hỏi "làm sao để kênh không loãng, không phải kênh rác" → đồng ý đề xuất → đã xử lý:
+- **File mới `channels/ai-de-dung/strategy/08-nhan-dien-thuong-hieu.md`**: bảng màu cố định (kế thừa từ dashboard: nền `#14171C`, accent `#E8A33D`), font cố định (Be Vietnam Pro), watermark góc màn hình, **bumper mở/kết cố định dùng chung cho MỌI video** (thay vì mỗi video có cảnh mở/kết riêng do Veo tạo — vừa tăng nhận diện vừa tiết kiệm ~32 lượt gọi Veo cho 16 video hiện có), câu khẩu hiệu đọc trong video, hệ thống đặt tên các "framework" riêng (đã có sẵn công thức VBYĐ ở video #4), và nguyên tắc "không đổi" các yếu tố nhận diện đã chốt.
+- Cập nhật `strategy/00` (trỏ tới file mới) và `strategy/05` (tích hợp bumper cố định vào quy trình ráp video + checklist QC).
+- Đã nhân bản thành `framework/template/08-nhan-dien-thuong-hieu.md` để MỌI kênh sau này đều bắt buộc có bước này trước khi làm video đầu tiên.
+- **CỐ Ý CHƯA áp dụng câu khẩu hiệu (spoken tagline) vào 16 file kịch bản/giọng đọc hiện có** — sẽ gộp chung vào lần tạo lại giọng đọc kế tiếp (khi đổi sang giọng nam đã chọn ở mục dưới), tránh tạo lại audio 2 lần cho 2 mục đích riêng lẻ.
+- **Chưa tạo file `intro-bumper.mp4`/`outro-bumper.mp4` thật** — cần Veo hoạt động (đang chờ billing, xem mục dưới) mới tạo được.
 
 ### 🎤 Đang chờ người dùng chọn GIỌNG NAM — sẽ tạo lại toàn bộ 16 video sau khi chọn
 Người dùng yêu cầu đổi sang giọng nam (hiện đang dùng "Kore" — giọng nữ), và không muốn trộn nam/nữ giữa các video. Đã tạo 3 mẫu giọng nam bằng model `gemini-3.1-flash-tts-preview` (chỉ dùng để test giọng, không phải model chuẩn sản xuất) và gửi người dùng nghe: **Puck, Charon, Fenrir** — hết quota model test sau 3 mẫu này, chưa test thêm được (Orus, Algenib... để dành nếu người dùng muốn nghe thêm, đợi quota mai reset).
@@ -84,6 +92,19 @@ Người dùng đã thêm key qua cơ chế **"API credentials"** trong Environm
 ---
 
 ## LOG CHI TIẾT (mới nhất ở trên)
+
+### Mốc #12 — 2026-09-26 — Xây bộ nhận diện thương hiệu chống loãng
+**Diễn biến:** Claude chủ động hỏi ý kiến người dùng (câu hỏi định hướng, 2-3 câu) về việc làm sao tránh kênh trông "loãng"/"kênh rác" khi 100% sản xuất bằng AI. Người dùng đồng ý đề xuất, yêu cầu xử lý luôn.
+
+**Đã làm:**
+1. Viết `channels/ai-de-dung/strategy/08-nhan-dien-thuong-hieu.md` — 7 mục: bảng màu, font, watermark, bumper mở/kết cố định (kèm 2 prompt Veo cụ thể), câu khẩu hiệu, hệ thống đặt tên framework riêng (VBYĐ), nguyên tắc không đổi tuỳ tiện.
+2. Cập nhật `strategy/00-tong-quan-kenh.md` (thêm mục trỏ tới brand guide) và `strategy/05-quy-trinh-lam-video-nhanh.md` (thêm bước bắt buộc tạo bumper 1 lần + checklist QC mới).
+3. Nhân bản thành `framework/template/08-nhan-dien-thuong-hieu.md` với placeholder — để mọi kênh mới sau này qua `framework/` đều có bước này ngay từ đầu, không phải nghĩ lại từ số 0.
+4. **Quyết định có chủ đích:** không áp dụng câu khẩu hiệu vào giọng đọc/kịch bản hiện có ngay — gộp vào đợt tạo lại giọng nam sắp tới (mốc #11) để tránh tốn quota TTS 2 lần liên tiếp cho 2 lý do khác nhau.
+
+**Chưa làm (cần Veo, đang chờ billing):** tạo file `intro-bumper.mp4`/`outro-bumper.mp4` thật từ 2 prompt đã viết sẵn.
+
+---
 
 ### Mốc #11 — 2026-09-26 — Test giọng nam theo yêu cầu người dùng
 **Yêu cầu người dùng:** "Đang miễn phí, dùng giọng nào cũng được, cố gắng giọng nam được không? Hay phải trộn cả nữ?"
