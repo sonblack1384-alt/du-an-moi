@@ -26,6 +26,8 @@ Người dùng hỏi "làm sao để kênh không loãng, không phải kênh r�
 ### 🎤 Đang chờ người dùng chọn GIỌNG NAM — sẽ tạo lại toàn bộ 16 video sau khi chọn
 Người dùng yêu cầu đổi sang giọng nam (hiện đang dùng "Kore" — giọng nữ), và không muốn trộn nam/nữ giữa các video. Đã tạo 3 mẫu giọng nam bằng model `gemini-3.1-flash-tts-preview` (chỉ dùng để test giọng, không phải model chuẩn sản xuất) và gửi người dùng nghe: **Puck, Charon, Fenrir** — hết quota model test sau 3 mẫu này, chưa test thêm được (Orus, Algenib... để dành nếu người dùng muốn nghe thêm, đợi quota mai reset).
 
+**Sự cố đã sửa (2026-09-26):** 3 file mẫu gửi lần đầu bị lỗi "không mở được" trên máy người dùng (Windows báo `0xC00D36C4`) — do file gốc là PCM thô ghi thẳng, thiếu hoàn toàn header RIFF/WAVE (khác với `generate_voice.py` — script chuẩn đã kiểm tra và bọc header đúng, 16 file `voice.wav` thật trong git không bị lỗi này). Đã bọc lại header WAV cho đúng 3 file mẫu từ dữ liệu PCM gốc (không cần gọi lại API, không tốn thêm quota) và gửi lại — xác nhận qua `ffmpeg -af volumedetect` là có âm thanh thật (không phải file rỗng/nhiễu).
+
 **Đang chờ người dùng chọn 1 trong 3 (hoặc xin nghe thêm giọng khác).** Sau khi chọn xong:
 1. Sửa `pipeline/generate_voice.py`: đổi `--voice` mặc định (hiện đang hardcode "Kore" ở `argparse` default) sang tên giọng nam đã chọn.
 2. Tạo lại **toàn bộ 16/16 file `voice.wav`** bằng model chuẩn `gemini-3.8-flash-lite-tts` + giọng nam mới chọn — không chỉ 11 file bị lệch model như tính toán ở mốc #10 nữa, vì đằng nào cũng phải tạo lại hết do đổi giọng (nam thay nữ), nên bỏ luôn kế hoạch "chỉ tạo lại 11 file" ở mốc #10.
