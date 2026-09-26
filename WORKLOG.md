@@ -5,9 +5,17 @@
 ---
 
 ## TRẠNG THÁI HIỆN TẠI
-*(cập nhật lần cuối: mốc #10 — 2026-09-26)*
+*(cập nhật lần cuối: mốc #11 — 2026-09-26)*
 
-### ⚠️ Giọng đọc 16/16 KHÔNG ĐỒNG NHẤT model — đang chờ người dùng nghe & quyết định
+### 🎤 Đang chờ người dùng chọn GIỌNG NAM — sẽ tạo lại toàn bộ 16 video sau khi chọn
+Người dùng yêu cầu đổi sang giọng nam (hiện đang dùng "Kore" — giọng nữ), và không muốn trộn nam/nữ giữa các video. Đã tạo 3 mẫu giọng nam bằng model `gemini-3.1-flash-tts-preview` (chỉ dùng để test giọng, không phải model chuẩn sản xuất) và gửi người dùng nghe: **Puck, Charon, Fenrir** — hết quota model test sau 3 mẫu này, chưa test thêm được (Orus, Algenib... để dành nếu người dùng muốn nghe thêm, đợi quota mai reset).
+
+**Đang chờ người dùng chọn 1 trong 3 (hoặc xin nghe thêm giọng khác).** Sau khi chọn xong:
+1. Sửa `pipeline/generate_voice.py`: đổi `--voice` mặc định (hiện đang hardcode "Kore" ở `argparse` default) sang tên giọng nam đã chọn.
+2. Tạo lại **toàn bộ 16/16 file `voice.wav`** bằng model chuẩn `gemini-3.8-flash-lite-tts` + giọng nam mới chọn — không chỉ 11 file bị lệch model như tính toán ở mốc #10 nữa, vì đằng nào cũng phải tạo lại hết do đổi giọng (nam thay nữ), nên bỏ luôn kế hoạch "chỉ tạo lại 11 file" ở mốc #10.
+3. Quota 10/ngày/model — 16 file có thể cần chia làm 2 ngày nếu dùng chung 1 model.
+
+### ⚠️ (Đã lỗi thời — xem mục trên) Giọng đọc 16/16 KHÔNG ĐỒNG NHẤT model — đang chờ người dùng nghe & quyết định
 Người dùng yêu cầu: "giữ 1 giọng đọc, đừng thay đổi liên tục khi đổi model". Đúng — do cơ chế tự xoay vòng ở mốc #9, hiện tại:
 - **Video #1-8, #10, #14, #15 (11 video)** dùng model `gemini-3.8-flash-tts`
 - **Video #9, #11, #12, #13, #16 (5 video)** dùng model `gemini-3.8-flash-lite-tts`
@@ -76,6 +84,15 @@ Người dùng đã thêm key qua cơ chế **"API credentials"** trong Environm
 ---
 
 ## LOG CHI TIẾT (mới nhất ở trên)
+
+### Mốc #11 — 2026-09-26 — Test giọng nam theo yêu cầu người dùng
+**Yêu cầu người dùng:** "Đang miễn phí, dùng giọng nào cũng được, cố gắng giọng nam được không? Hay phải trộn cả nữ?"
+
+**Đã làm:** Tạo 3 file mẫu giọng nam (Puck, Charon, Fenrir) cùng đọc 1 câu tiếng Việt, dùng model `gemini-3.1-flash-tts-preview` (chỉ để test, không phải model chuẩn) để không đụng vào quota của `gemini-3.8-flash-lite-tts` (model chuẩn sản xuất). Gửi cả 3 cho người dùng nghe. Hết quota model test sau 3 mẫu (còn Orus, Algenib chưa test được, để dành nếu cần).
+
+**Đang chờ:** người dùng chọn 1 giọng nam. Kế hoạch cũ ở mốc #10 (chỉ tạo lại 11/16 video bị lệch model) **không còn áp dụng** — vì đổi giọng nữ sang nam thì phải tạo lại cả 16/16 video, không phân biệt model cũ dùng gì.
+
+---
 
 ### Mốc #10 — 2026-09-26 — Bỏ auto-rotate model TTS, giữ giọng đọc nhất quán
 **Yêu cầu người dùng:** "Cố gắng giữ 1 giọng đọc, đừng thay đổi liên tục khi đổi model được không?"
