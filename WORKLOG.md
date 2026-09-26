@@ -5,7 +5,15 @@
 ---
 
 ## TRẠNG THÁI HIỆN TẠI
-*(cập nhật lần cuối: mốc #12 — 2026-09-26)*
+*(cập nhật lần cuối: mốc #13 — 2026-09-26)*
+
+### 🎬 ĐỘT PHÁ: cảnh AI-video giờ MIỄN PHÍ HOÀN TOÀN, không cần Veo/billing nữa
+Người dùng phản đối mạnh chi phí Veo ("nghĩ cách free đi, trên mạng đầy cách mà bạn chọn cách này thì để tôi làm lun chứ cần gì bạn nữa?"). Đã tìm và xác thực xong hướng miễn phí thật:
+- **`pipeline/generate_motion_graphic.py`** (mới) — dựng thẳng cảnh minh hoạ bằng Pillow + ffmpeg (không gọi API nào), theo đúng bảng màu/font thương hiệu ở `08-nhan-dien-thuong-hieu.md` (nền `#14171C`, accent `#E8A33D`, font Be Vietnam Pro Bold tải từ Google Fonts). Ghi ra đúng vị trí `assets/<slug>/scenes/NN.mp4` mà Veo từng ghi → `assemble.py` dùng chung, không cần sửa gì.
+- **Đã chạy demo video #1, người dùng xác nhận ổn, rồi chạy hàng loạt cho toàn bộ 16 video còn lại** ("tiếp tục") → **kết quả: 45/45 cảnh AI-video của cả 16/16 video đã dựng xong, miễn phí 100%, 0 lỗi.**
+- Veo/`generate_scenes.py` vẫn giữ trong code làm lựa chọn phụ (nếu sau này muốn ảnh photorealistic thật và chấp nhận trả phí — đã tính sẵn giá thật ở `pipeline/README.md`), nhưng **không còn là điểm nghẽn của kênh nữa**.
+- Đã cập nhật `pipeline/README.md`, `channels/ai-de-dung/strategy/05-quy-trinh-lam-video-nhanh.md`, `framework/template/05` và `framework/template/08` để phản ánh hướng miễn phí này làm mặc định cho mọi kênh (kể cả kênh mới sau này).
+- **Điểm nghẽn thật còn lại của kênh demo giờ CHỈ CÒN**: (1) người dùng chọn giọng nam, (2) người dùng tự chụp ảnh màn hình thật cho từng video — 2 việc này không có cách nào Claude tự làm được trong môi trường này.
 
 ### 🎨 Đã có bộ nhận diện thương hiệu — chống loãng/"kênh rác"
 Người dùng hỏi "làm sao để kênh không loãng, không phải kênh rác" → đồng ý đề xuất → đã xử lý:
@@ -13,7 +21,7 @@ Người dùng hỏi "làm sao để kênh không loãng, không phải kênh r�
 - Cập nhật `strategy/00` (trỏ tới file mới) và `strategy/05` (tích hợp bumper cố định vào quy trình ráp video + checklist QC).
 - Đã nhân bản thành `framework/template/08-nhan-dien-thuong-hieu.md` để MỌI kênh sau này đều bắt buộc có bước này trước khi làm video đầu tiên.
 - **CỐ Ý CHƯA áp dụng câu khẩu hiệu (spoken tagline) vào 16 file kịch bản/giọng đọc hiện có** — sẽ gộp chung vào lần tạo lại giọng đọc kế tiếp (khi đổi sang giọng nam đã chọn ở mục dưới), tránh tạo lại audio 2 lần cho 2 mục đích riêng lẻ.
-- **Chưa tạo file `intro-bumper.mp4`/`outro-bumper.mp4` thật** — cần Veo hoạt động (đang chờ billing, xem mục dưới) mới tạo được.
+- **Chưa tạo file `intro-bumper.mp4`/`outro-bumper.mp4` thật** — giờ KHÔNG cần Veo nữa, có thể tạo ngay bằng `generate_motion_graphic.py` (xem mốc #13) — chỉ còn thiếu bước soạn 2 câu mô tả ngắn cho mỗi bumper rồi chạy script, chưa làm vì đang ưu tiên xong 45 cảnh của 16 video trước.
 
 ### 🎤 Đang chờ người dùng chọn GIỌNG NAM — sẽ tạo lại toàn bộ 16 video sau khi chọn
 Người dùng yêu cầu đổi sang giọng nam (hiện đang dùng "Kore" — giọng nữ), và không muốn trộn nam/nữ giữa các video. Đã tạo 3 mẫu giọng nam bằng model `gemini-3.1-flash-tts-preview` (chỉ dùng để test giọng, không phải model chuẩn sản xuất) và gửi người dùng nghe: **Puck, Charon, Fenrir** — hết quota model test sau 3 mẫu này, chưa test thêm được (Orus, Algenib... để dành nếu người dùng muốn nghe thêm, đợi quota mai reset).
@@ -63,14 +71,15 @@ Người dùng đã thêm key qua cơ chế **"API credentials"** trong Environm
 - **Đã hỏi & chốt:** người dùng có thêm "OmniRoute" (router AI provider chạy ở `localhost:20128` trên máy họ, chỉ 4/348 provider đã cấu hình) — nhưng phiên Claude Code chạy cloud nên không với tới `localhost` của họ được. Người dùng quyết định **bỏ qua OmniRoute, tập trung vào Option A + B đã có** — không cần thêm code hỗ trợ base_url tuỳ chỉnh. Không hỏi lại việc này nữa trừ khi người dùng chủ động nhắc lại.
 
 ### Đang thiếu / chưa làm — ĐIỂM NGHẼN HIỆN TẠI
-- **Giọng đọc: XONG 16/16, không còn việc gì ở đây.**
-- **Cần người dùng bật billing tại aistudio.google.com** (Billing/Plan) — chặn duy nhất còn lại, chỉ ảnh hưởng tới **Veo** (tạo cảnh AI-video). Không có cách miễn phí nào thay Veo trong môi trường này (đã thử hết các domain TTS/AI khác, đều bị chặn mạng — xem log mốc #9).
-- Chưa có video hoàn chỉnh (draft.mp4) nào — cần Veo hoạt động trước.
-- Vẫn cần người dùng tự chụp vài tấm ảnh màn hình thao tác thật cho mỗi video (không phải quay, chỉ vài giây/tấm).
+- **Giọng đọc: XONG 16/16** (nhưng đang chờ chọn giọng nam để tạo lại — xem mục trên).
+- **Cảnh AI-video: XONG 45/45 (16/16 video), miễn phí, 0 lỗi (mốc #13)** — không còn cần Veo/billing cho bước này nữa.
+- **Bumper mở/kết thương hiệu:** chưa tạo file thật (chỉ còn thiếu bước chạy `generate_motion_graphic.py`, không còn bị chặn bởi billing).
+- Chưa có video hoàn chỉnh (draft.mp4) nào ngoài demo video #1 (dùng ảnh chụp màn hình giả lập) — vì còn thiếu ảnh chụp màn hình thật cho mọi video.
+- **Vẫn cần người dùng tự chụp vài tấm ảnh màn hình thao tác thật cho mỗi video** (không phải quay, chỉ vài giây/tấm) — không có cách tự động nào thay được, đây là điểm nghẽn thật duy nhất còn lại để ráp `draft.mp4` hàng loạt.
 - Chưa kiểm tra tên/handle "AI Dễ Dùng" có bị trùng trên YouTube ngoài đời chưa.
 - Kịch bản video #17 trở đi (Tier 1 còn lại #17-20 + Tier 2) chưa viết.
 - Chưa có kênh thứ 2 (chủ đề khác).
-- Option A (AutoScene) người dùng chưa báo lại đã thử hay chưa — vẫn là đường thay thế nếu billing Google AI tiếp tục vướng.
+- Veo/billing/AutoScene giờ chỉ còn là lựa chọn phụ (nếu muốn ảnh photorealistic) — không còn là điểm nghẽn để hoàn thành kênh.
 
 ### Câu hỏi đang chờ người dùng quyết định (bổ sung)
 **Nghe 2 file mẫu đã gửi (video #1 vs video #9) — có khác giọng rõ không?** Nếu có/nghi ngờ, báo Claude tạo lại 11 video dùng sai model cho đồng nhất (xem hướng dẫn ở mục trên). Nếu nghe giống nhau, không cần làm gì thêm — giữ nguyên 16 file hiện tại.
@@ -82,16 +91,34 @@ Người dùng đã thêm key qua cơ chế **"API credentials"** trong Environm
 3. Nếu phiên hiện tại đã đóng, phiên mới đọc file này sẽ biết chính xác: 8/16 voice (video #1-8) đã có sẵn **trong git** tại `channels/ai-de-dung/assets/*/voice.wav` — clone repo là có ngay, không cần tạo lại.
 
 ### Việc tiếp theo nên làm (theo thứ tự ưu tiên)
-1. **Người dùng:** bật billing cho Veo tại aistudio.google.com, báo lại Claude.
-2. Claude chạy thử lại `generate_scenes.py --only 1` cho video #1 → nếu OK, chạy `run_all.py` cho video #1 trọn vẹn (voice + scenes, dừng lại xin ảnh chụp màn hình nếu thiếu).
-3. Người dùng chụp ảnh màn hình theo danh sách được liệt kê, Claude chạy `assemble.py` ra `draft.mp4` đầu tiên — nghe/xem thử trước khi làm hàng loạt.
-4. Nếu ổn, lặp lại cho video #2-16 (có thể chạy `generate_voice.py` cho tất cả trước vì không cần billing thêm).
-5. Song song: Option A (AutoScene) vẫn là phương án thay thế nếu billing Google AI có vấn đề — dashboard đã sẵn sàng cho việc này.
+1. **Người dùng:** chọn 1 trong 3 giọng nam đã gửi (Puck/Charon/Fenrir) hoặc xin nghe thêm.
+2. Sau khi chọn xong: Claude tạo lại toàn bộ 16/16 `voice.wav` với giọng mới + gộp luôn câu khẩu hiệu thương hiệu (xem mục "Đang chờ chọn giọng nam" ở trên) — có thể cần chia 2 ngày do quota 10/ngày/model.
+3. Claude tạo 2 file `intro-bumper.mp4`/`outro-bumper.mp4` bằng `generate_motion_graphic.py` (không còn bị chặn, chỉ cần soạn 2 câu mô tả ngắn).
+4. **Người dùng:** tự chụp ảnh màn hình thật theo "Bảng cảnh AI" của từng video (điểm nghẽn thật duy nhất còn lại).
+5. Sau khi có ảnh chụp màn hình, Claude chạy `assemble.py` ra `draft.mp4` cho từng video, nghe/xem thử video đầu trước khi làm hàng loạt.
 6. Sau khi có video thật + số liệu, viết tiếp kịch bản #17+ và/hoặc mở kênh thứ 2 từ `framework/template/`.
 
 ---
 
 ## LOG CHI TIẾT (mới nhất ở trên)
+
+### Mốc #13 — 2026-09-26 — Thay Veo bằng đồ hoạ chuyển động tự dựng — MIỄN PHÍ, xong 16/16 video
+**Yêu cầu người dùng (rất gay gắt):** "vẫn thốn lắm... nghĩ cách free đi, trên mạng đầy cách mà bạn chọn cách này thì để tôi làm lun chứ cần gì bạn nữa? bạn là chuyên gia trong lĩnh vực này mà?" — sau khi biết Veo cần bật billing thật và ước tính chi phí ~$20-25 cho cả kênh (dùng bản Lite).
+
+**Đã làm:**
+1. Kiểm tra thực tế mọi hướng miễn phí khác trước khi kết luận: ElevenLabs, RunwayML, edge-tts, Google Translate TTS, FPT.AI, Zalo AI, VBee, HuggingFace, Replicate, Play.ht, Deepgram, Azure, Pexels, Pixabay, Yandex — tất cả bị chặn bởi chính sách mạng môi trường này. Gemini native image generation (`gemini-3.1-flash-lite-image`...) cũng bị chặn billing giống Veo (`limit: 0` free tier).
+2. **Nhận ra bản chất vấn đề:** phần lớn cảnh "AI text-to-video" trong kịch bản chỉ là card đồ hoạ đơn giản (cảnh báo, so sánh, đồng hồ, CTA chữ) — không cần ảnh photorealistic. Viết `pipeline/generate_motion_graphic.py`: dựng thẳng bằng Pillow (đúng bảng màu/font thương hiệu, tải font Be Vietnam Pro Bold thật từ Google Fonts — domain này gọi được và có đủ dấu tiếng Việt, đã xác nhận qua `fc-scan`) rồi áp hiệu ứng Ken Burns bằng ffmpeg. Ghi ra đúng vị trí `assets/<slug>/scenes/NN.mp4` mà `generate_scenes.py` (Veo) từng ghi → **`assemble.py` dùng chung, không cần sửa gì** — 2 script thay thế nhau hoàn toàn.
+3. Xử lý các chi tiết chất lượng: tự nhận diện style cảnh theo từ khoá trong mô tả (`pick_style`: cảnh báo/so sánh/CTA/đồng hồ/thông thường), vẽ icon tương ứng bằng primitives của Pillow, rút gọn mô tả dài dòng thành nhãn chữ ngắn hiển thị trên khung hình (`shorten_label` — lọc bỏ các cụm dẫn nhập như "Cảnh mở đầu:", "Ảnh chụp màn hình", dấu ngoặc kép thừa), watermark tên kênh cố định góc dưới phải.
+4. **Test demo video #1 trước** (voice + graphics + ảnh chụp màn hình giả lập), gửi người dùng xem/nghe xác nhận ổn.
+5. Người dùng xác nhận, yêu cầu "tiếp tục" → chạy hàng loạt `generate_motion_graphic.py` cho toàn bộ video #2-16 (chạy nền, không cần theo dõi liên tục).
+6. **Kết quả xác nhận qua log + kiểm tra thư mục:** 45/45 cảnh AI-video của cả 16/16 video đã dựng xong thành công, 0 lỗi thật (chỉ có 1 kết quả khớp "lỗi" trong log là do trùng từ trong nội dung mô tả cảnh, không phải lỗi chạy).
+7. Cập nhật tài liệu để phản ánh hướng mới làm mặc định: viết lại `pipeline/README.md` (Veo giờ là "Option phụ", có kèm bảng giá thật đã tra cứu Vertex AI pricing), viết lại `channels/ai-de-dung/strategy/05-quy-trinh-lam-video-nhanh.md` (đã làm ở phiên trước khi bị ngắt), và nhân bản triết lý này sang `framework/template/05-quy-trinh-lam-video-nhanh.md` + `framework/template/08-nhan-dien-thuong-hieu.md` (mục bumper) để mọi kênh mới sau này mặc định miễn phí ngay từ đầu, không phải đi qua đường Veo rồi mới quay lại tìm hướng free như kênh demo này.
+
+**Kết quả:** giải quyết dứt điểm phản đối chi phí của người dùng — kênh demo giờ **không còn điểm nghẽn tài chính nào** để hoàn thành sản xuất. Veo vẫn giữ trong code làm lựa chọn phụ, không xoá, phòng khi sau này muốn ảnh photorealistic thật và chấp nhận trả phí.
+
+**Chưa làm:** bumper mở/kết thật (chỉ còn thiếu bước chạy script + soạn 2 câu mô tả, không còn bị chặn kỹ thuật); giọng nam vẫn đang chờ người dùng chọn; ảnh chụp màn hình thật vẫn cần người dùng tự làm.
+
+---
 
 ### Mốc #12 — 2026-09-26 — Xây bộ nhận diện thương hiệu chống loãng
 **Diễn biến:** Claude chủ động hỏi ý kiến người dùng (câu hỏi định hướng, 2-3 câu) về việc làm sao tránh kênh trông "loãng"/"kênh rác" khi 100% sản xuất bằng AI. Người dùng đồng ý đề xuất, yêu cầu xử lý luôn.

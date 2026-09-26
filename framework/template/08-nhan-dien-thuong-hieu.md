@@ -14,7 +14,9 @@
 ## 4. Bumper mở/kết cố định — BẮT BUỘC, làm 1 lần dùng cho mọi video
 Thay vì để AI tạo cảnh mở đầu/kết thúc khác nhau cho từng video, tạo **đúng 1 bumper mở + 1 bumper kết**, dùng lại y hệt cho mọi video của kênh. Lợi ích kép: người xem nhận diện kênh ngay trong 2 giây đầu, và tiết kiệm số lượt gọi AI-video (chỉ tạo 1 lần thay vì mỗi video 1 lần).
 
-{{Viết sẵn 2 prompt AI-video cụ thể cho bumper mở/kết, theo đúng bảng màu + font đã chọn ở trên, lưu vào `channels/<kênh>/assets/_brand/intro-bumper.mp4` và `outro-bumper.mp4`.}}
+Cách rẻ nhất: dựng bằng `pipeline/generate_motion_graphic.py` (miễn phí, không giới hạn, đúng màu/font thương hiệu đã chọn ở trên) — chỉ cần soạn 1 câu mô tả ngắn cho mỗi bumper (ví dụ tên kênh + khẩu hiệu cho bumper mở, lời cảm ơn + CTA cho bumper kết), lưu vào `channels/<kênh>/assets/_brand/intro-bumper.mp4` và `outro-bumper.mp4`. Chỉ cân nhắc AI-video trả phí (Veo...) nếu muốn hình ảnh photorealistic thay vì card chữ/icon.
+
+{{Nếu chọn hướng AI-video trả phí, viết sẵn 2 prompt cụ thể cho bumper mở/kết ở đây, theo đúng bảng màu + font đã chọn ở trên.}}
 
 **Cấu trúc mọi video:** Bumper mở (cố định) → Hook riêng của video (đặc thù nội dung) → nội dung → CTA → Bumper kết (cố định).
 
