@@ -17,14 +17,17 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import assets_dir_for, get_client, load_script  # noqa: E402
 
-# Đã kiểm chứng thật (2026-09): quota miễn phí tính RIÊNG theo từng model, không
-# dùng chung -- khi model đầu hết 10 lượt/ngày, các model khác vẫn còn nguyên.
-# Thứ tự ưu tiên: chất lượng cao nhất trước, model dự phòng sau.
-TTS_MODELS = [
-    "gemini-3.8-flash-tts",
-    "gemini-3.1-flash-tts-preview",
-    "gemini-3.8-flash-lite-tts",
-]
+# CỐ ĐỊNH 1 model duy nhất cho toàn kênh -- KHÔNG tự động đổi sang model khác
+# khi hết quota, để tránh giọng đọc nghe khác nhau giữa các video (dù cùng
+# voice_name, các model khác nhau có thể render hơi khác chất lượng/âm sắc).
+# Đổi model chuẩn của kênh: sửa đúng 1 dòng này rồi tạo lại toàn bộ voice.wav
+# cho nhất quán, hoặc dùng --model để test 1 video riêng lẻ trước khi đổi hẳn.
+TTS_MODEL = "gemini-3.8-flash-lite-tts"
+
+# Các model khác đã kiểm chứng còn hoạt động (chỉ dùng qua --model khi test,
+# KHÔNG dùng làm fallback tự động): gemini-3.8-flash-tts, gemini-3.1-flash-tts-preview.
+# Quota miễn phí tính riêng theo từng model (10 lượt/ngày/model) -- nếu
+# TTS_MODEL hết quota, script sẽ báo lỗi rõ ràng thay vì tự âm thầm đổi model.
 
 
 def pcm_to_wav_bytes(pcm_bytes: bytes, sample_rate: int = 24000, channels: int = 1, sample_width: int = 2) -> bytes:
@@ -44,7 +47,7 @@ def main():
     ap.add_argument("script", type=Path, help="Đường dẫn file kịch bản .md")
     ap.add_argument("--voice", default="Kore", help="Tên giọng đọc prebuilt của Gemini TTS (mặc định: Kore)")
     ap.add_argument("--out", type=Path, default=None, help="Đường dẫn file .wav xuất ra (mặc định: assets/<slug>/voice.wav)")
-    ap.add_argument("--model", default=None, help="Chỉ dùng đúng 1 model này (bỏ qua cơ chế tự xoay vòng)")
+    ap.add_argument("--model", default=TTS_MODEL, help=f"Model TTS (mặc định cố định: {TTS_MODEL} -- không tự đổi sang model khác)")
     ap.add_argument("--dry-run", action="store_true", help="Chỉ in ra, không gọi API")
     args = ap.parse_args()
 
@@ -66,38 +69,32 @@ def main():
 
     from google.genai import types
 
+    print(f"[generate_voice] Model: {args.model}")
     client = get_client()
-    models_to_try = [args.model] if args.model else TTS_MODELS
-    response = None
-    last_err = None
-    used_model = None
-    for m in models_to_try:
-        try:
-            response = client.models.generate_content(
-                model=m,
-                contents=narration,
-                config=types.GenerateContentConfig(
-                    response_modalities=["AUDIO"],
-                    speech_config=types.SpeechConfig(
-                        voice_config=types.VoiceConfig(
-                            prebuilt_voice_config=types.PrebuiltVoiceConfig(voice_name=args.voice)
-                        )
-                    ),
+    try:
+        response = client.models.generate_content(
+            model=args.model,
+            contents=narration,
+            config=types.GenerateContentConfig(
+                response_modalities=["AUDIO"],
+                speech_config=types.SpeechConfig(
+                    voice_config=types.VoiceConfig(
+                        prebuilt_voice_config=types.PrebuiltVoiceConfig(voice_name=args.voice)
+                    )
                 ),
-            )
-            if response.candidates[0].content and response.candidates[0].content.parts:
-                used_model = m
-                break
-            response = None
-        except Exception as e:  # noqa: BLE001 - thử model kế tiếp khi hết quota/lỗi model này
-            last_err = e
-            print(f"[generate_voice] Model {m} lỗi ({type(e).__name__}), thử model kế tiếp...")
-            continue
+            ),
+        )
+    except Exception as e:  # noqa: BLE001 - báo lỗi rõ ràng, không âm thầm đổi model khác
+        sys.exit(
+            f"Lỗi khi gọi model {args.model}: {e}\n\n"
+            f"KHÔNG tự động đổi sang model khác để giữ giọng đọc nhất quán cho cả kênh. "
+            f"Nếu hết quota, đợi quota reset (thường theo ngày), hoặc chạy lại với "
+            f"--model <model_khac> CHỈ khi chấp nhận giọng video này có thể khác nhẹ so với các video khác."
+        )
 
-    if response is None:
-        sys.exit(f"Tất cả model TTS đều lỗi/hết quota. Lỗi cuối: {last_err}")
+    if not (response.candidates[0].content and response.candidates[0].content.parts):
+        sys.exit(f"Model {args.model} trả về rỗng (có thể do bộ lọc an toàn). Thử lại hoặc kiểm tra nội dung lời thoại.")
 
-    print(f"[generate_voice] Dùng model: {used_model}")
     part = response.candidates[0].content.parts[0]
     audio_bytes = part.inline_data.data
     mime = getattr(part.inline_data, "mime_type", "") or ""

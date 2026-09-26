@@ -5,7 +5,19 @@
 ---
 
 ## TRẠNG THÁI HIỆN TẠI
-*(cập nhật lần cuối: mốc #9 — 2026-09-26)*
+*(cập nhật lần cuối: mốc #10 — 2026-09-26)*
+
+### ⚠️ Giọng đọc 16/16 KHÔNG ĐỒNG NHẤT model — đang chờ người dùng nghe & quyết định
+Người dùng yêu cầu: "giữ 1 giọng đọc, đừng thay đổi liên tục khi đổi model". Đúng — do cơ chế tự xoay vòng ở mốc #9, hiện tại:
+- **Video #1-8, #10, #14, #15 (11 video)** dùng model `gemini-3.8-flash-tts`
+- **Video #9, #11, #12, #13, #16 (5 video)** dùng model `gemini-3.8-flash-lite-tts`
+- Cùng `voice_name="Kore"` nhưng khác model — có thể nghe hơi khác chất lượng/âm sắc.
+
+**Đã sửa `pipeline/generate_voice.py`:** bỏ hoàn toàn cơ chế tự động xoay vòng model. Giờ `TTS_MODEL` là **1 hằng số cố định duy nhất** (`gemini-3.8-flash-lite-tts`), không tự đổi khi lỗi/hết quota — script sẽ báo lỗi rõ ràng và dừng lại thay vì âm thầm dùng model khác. Muốn đổi model chuẩn của kênh: sửa đúng 1 dòng `TTS_MODEL` rồi tạo lại toàn bộ cho nhất quán.
+
+**Đã gửi người dùng 2 file mẫu để so sánh:** video #1 (model `gemini-3.8-flash-tts`) và video #9 (model `gemini-3.8-flash-lite-tts`) — **đang chờ người dùng nghe và trả lời có khác biệt rõ không**, trước khi quyết định có cần tạo lại 11 video #1-8,10,14,15 bằng model `gemini-3.8-flash-lite-tts` cho đồng nhất hay không (chưa tạo lại để tránh tốn quota nếu hoá ra không cần thiết — quota `gemini-3.8-flash-lite-tts` hôm nay đã dùng ~7/10, không đủ tạo lại cả 11 video trong 1 ngày).
+
+**Nếu người dùng xác nhận "có, tạo lại cho giống nhau" ở phiên sau:** chạy `python3 pipeline/generate_voice.py channels/ai-de-dung/scripts/0{1,2,3,4,5,6,7,8}-*.md channels/ai-de-dung/scripts/10-*.md channels/ai-de-dung/scripts/14-*.md channels/ai-de-dung/scripts/15-*.md` (từng file một, script không nhận nhiều file cùng lúc — cần lặp) — model mặc định giờ đã là `gemini-3.8-flash-lite-tts` nên không cần thêm `--model`. Có thể cần chia làm nhiều ngày do quota 10/ngày.
 
 ### 🎙️ 16/16 giọng đọc thật ĐÃ XONG — hoàn toàn miễn phí, không cần billing
 Sau khi video #9-16 bị chặn quota ở model `gemini-3.8-flash-tts` (10 lượt/ngày), nghiên cứu theo yêu cầu người dùng ("tìm giọng miễn phí khác, test trước khi đầu tư"):
@@ -44,7 +56,10 @@ Người dùng đã thêm key qua cơ chế **"API credentials"** trong Environm
 - Chưa có kênh thứ 2 (chủ đề khác).
 - Option A (AutoScene) người dùng chưa báo lại đã thử hay chưa — vẫn là đường thay thế nếu billing Google AI tiếp tục vướng.
 
-### Câu hỏi đang chờ người dùng quyết định
+### Câu hỏi đang chờ người dùng quyết định (bổ sung)
+**Nghe 2 file mẫu đã gửi (video #1 vs video #9) — có khác giọng rõ không?** Nếu có/nghi ngờ, báo Claude tạo lại 11 video dùng sai model cho đồng nhất (xem hướng dẫn ở mục trên). Nếu nghe giống nhau, không cần làm gì thêm — giữ nguyên 16 file hiện tại.
+
+### Câu hỏi đang chờ người dùng quyết định (trước đó — vẫn còn hiệu lực)
 **Không có câu hỏi cần trả lời trong chat.** Người dùng đã dặn: tiếp tục làm song song, không hỏi lại, tự lưu tiến độ vào WORKLOG cho phiên sau. Việc duy nhất cần người dùng: **bật billing tại aistudio.google.com** rồi báo lại (không phải trả lời câu hỏi — là 1 thao tác). Khi có billing:
 1. Claude chạy `generate_voice.py` cho 8 video #9-16 còn thiếu giọng đọc.
 2. Claude chạy `generate_scenes.py --only 1` cho video #1 để xác nhận Veo hoạt động, rồi chạy hàng loạt qua `run_all.py`.
@@ -61,6 +76,18 @@ Người dùng đã thêm key qua cơ chế **"API credentials"** trong Environm
 ---
 
 ## LOG CHI TIẾT (mới nhất ở trên)
+
+### Mốc #10 — 2026-09-26 — Bỏ auto-rotate model TTS, giữ giọng đọc nhất quán
+**Yêu cầu người dùng:** "Cố gắng giữ 1 giọng đọc, đừng thay đổi liên tục khi đổi model được không?"
+
+**Đã làm:**
+1. Kiểm tra lại: cơ chế xoay vòng ở mốc #9 khiến 11/16 video dùng `gemini-3.8-flash-tts`, 5/16 dùng `gemini-3.8-flash-lite-tts` — đúng như người dùng lo ngại, không nhất quán.
+2. Sửa `pipeline/generate_voice.py`: xoá hoàn toàn logic thử lần lượt nhiều model. Thay bằng 1 hằng số `TTS_MODEL` cố định (chọn `gemini-3.8-flash-lite-tts` vì còn nhiều quota nhất tính tới lúc này). Khi model lỗi/hết quota, script dừng lại và báo lỗi rõ ràng thay vì âm thầm đổi model khác.
+3. Gửi người dùng 2 file mẫu để tự nghe so sánh: video #1 (`gemini-3.8-flash-tts`) và video #9 (`gemini-3.8-flash-lite-tts`) — chưa vội tạo lại 11 video vì (a) chưa chắc 2 model nghe khác nhau thật sự, (b) quota `gemini-3.8-flash-lite-tts` hôm nay gần hết (đã dùng ~7/10), không đủ tạo lại hết 11 video trong 1 lần.
+
+**Đang chờ:** người dùng nghe 2 file, xác nhận có cần tạo lại 11 video #1-8,10,14,15 cho đồng nhất hay không.
+
+---
 
 ### Mốc #9 — 2026-09-26 — Hoàn thành 16/16 giọng đọc miễn phí bằng xoay vòng model
 **Yêu cầu người dùng:** "Nghiên cứu thêm các giọng miễn phí khác đi, test thử nghiệm ok mới đầu tư nha."
